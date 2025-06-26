@@ -1,0 +1,22 @@
+version: '3'
+tasks:
+  ensure-k3sup:
+    desc: Verify k3sup is installed
+    cmds:
+      - which k3sup || (echo "k3sup is not installed. Please install it from https://k3sup.dev/" && exit 1)
+
+  install-k3sup:
+    desc: Install k3sup if not installed
+    cmds:
+      - curl -sLS https://get.k3sup.dev | sh
+      - sudo install k3sup /usr/local/bin/
+
+  bootstrap-leader:
+    desc: Setup a leader node with k3sup
+    cmds:
+      - k3sup install {{ .CLI_ARGS }}
+
+  bootstrap-worker:
+    desc: Setup a worker node with k3sup
+    cmds:
+      - k3sup join {{ .CLI_ARGS }}
