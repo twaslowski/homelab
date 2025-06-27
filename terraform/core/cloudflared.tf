@@ -8,16 +8,21 @@ resource "helm_release" "cloudflare_tunnel_ingress_controller" {
   namespace        = "cloudflare-tunnel-ingress-controller"
   create_namespace = true
 
-  set {
-    name  = "cloudflare.apiToken"
-    value = var.cloudflare_api_token
-  }
-  set {
-    name  = "cloudflare.accountId"
-    value = var.cloudflare_account_id
-  }
-  set {
-    name  = "cloudflare.tunnelName"
-    value = var.cloudflare_tunnel_name
-  }
+  set = [
+    {
+      name  = "cloudflare.tunnelName"
+      value = var.cloudflare_tunnel_name
+    }
+  ]
+
+  set_sensitive = [
+    {
+      name  = "cloudflare.apiToken"
+      value = var.cloudflare_api_token
+    },
+    {
+      name  = "cloudflare.accountId"
+      value = var.cloudflare_account_id
+    },
+  ]
 }

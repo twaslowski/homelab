@@ -28,7 +28,7 @@ config:
         Labels           On
 
     [FILTER]
-        Name parser
+        Name multiline
         Match kube.*
         Key_Name log
         Parser java-multiline

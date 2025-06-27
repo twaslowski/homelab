@@ -1,8 +1,8 @@
 terraform {
   backend "kubernetes" {
-    secret_suffix     = "core"
-    namespace         = "default"
-    in_cluster_config = true
+    secret_suffix = "core"
+    namespace     = "default"
+    config_path   = "~/.kube/config"
   }
 
   required_providers {
@@ -19,5 +19,11 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "~/.kube/config"
+  config_path    = "~/.kube/config"
+}
+
+provider "helm" {
+  kubernetes = {
+    config_path    = "~/.kube/config"
+  }
 }

@@ -80,5 +80,3 @@ kubectl get nodes
 ```shell
 task bootstrap-agent -- --ip <IP_ADDRESS> --user <USER> --server-ip <LEADER_IP>
 ```
-
-## Running services
