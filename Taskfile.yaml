@@ -14,9 +14,9 @@ tasks:
   bootstrap-leader:
     desc: Setup a leader node with k3sup
     cmds:
-      - k3sup install --context homelab --merge --local-path ~/.kube/config {{ .CLI_ARGS }}
+      - k3sup install --context homelab --merge --no-extras --local-path ~/.kube/config {{ .CLI_ARGS }}
 
-  bootstrap-worker:
-    desc: Setup a worker node with k3sup
+  bootstrap-agent:
+    desc: Setup an agent node with k3sup
     cmds:
       - k3sup join {{ .CLI_ARGS }}

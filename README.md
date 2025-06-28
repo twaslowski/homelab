@@ -16,7 +16,7 @@ Further, ensure that you have the same user on all nodes, and that you can SSH i
 
 ### Raspberry Pi
 
-Raspberry Pi devices require some additional configuration to work properly with k3s. 
+Raspberry Pi devices require some additional configuration to work properly with k3s.
 If you're using a Raspberry Pi, you need to ensure that the cgroup memory controller is enabled.
 You'll need to modify `/boot/firmare/cmdline.txt` to include the following:
 
@@ -55,7 +55,17 @@ Running `task bootstrap-leader` will set up your leader node. This will install 
 to point to the new cluster. You will need to provide several parameters in order for this command to work:
 
 ```shell
-task bootstrap-leader -- --ip <IP_ADDRESS> --user <USER> --ssh-key <SSH_KEY>
+task bootstrap-leader -- --ip <IP_ADDRESS> \
+  --user <USER> --ssh-key <SSH_KEY>
+```
+
+By default, the `bootstrap-leader` task will install k3s with the following parameters:
+
+```shell
+--no-extras  # disable servicelb and traefik
+--context homelab  # set the context name in kubeconfig
+--local-path ~/.kube/config  # write new cluster config to ~/.kube/config
+--merge  # do not overwrite existing kubeconfig, but merge the new cluster into it
 ```
 
 Additional noteworthy arguments you could supply are `--no-extras` for skipping the installation of "_servicelb_"
@@ -72,11 +82,31 @@ After running the command, you should see a message indicating that the cluster 
 You can verify that the cluster is up and running by checking the status of the nodes:
 
 ```shell
+kubectl config use-context homelab
 kubectl get nodes
 ```
 
 ### Bootstrapping agent nodes
 
+Bootstrapping agent nodes is super straightforward now.
+All you need is the IP address of the leader node, everything else is the same as for the leader node.
+
 ```shell
-task bootstrap-agent -- --ip <IP_ADDRESS> --user <USER> --server-ip <LEADER_IP>
+task bootstrap-agent -- --ip <IP_ADDRESS> --user <USER> --server-ip <LEADER_IP> --ssh-key <SSH_KEY>
 ```
+
+## Setting up core
+
+Now it's time to get some core functionality up and running.
+This will include the following services:
+
+- Grafana
+- Prometheus
+- Loki
+- fluent-bit
+- cloudflared
+
+This will give you a solid logging and monitoring stack to work with.
+Additionally, it will set up a cloudflared tunnel to your Grafana instance, so you can access it from outside your network.
+
+This tunnel will be used to set up DNS records as we install more services to give you super easy ingress.

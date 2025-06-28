@@ -28,10 +28,11 @@ config:
         Labels           On
 
     [FILTER]
-        Name multiline
-        Match kube.*
-        Key_Name log
-        Parser java-multiline
+        name                  multiline
+        match                 *
+        multiline.key_content log
+        multiline.parser      java
+
 
   outputs: |
     [OUTPUT]
@@ -48,14 +49,3 @@ config:
         Time_Key    time
         Time_Format %Y-%m-%d %H:%M:%S,%L
         Time_Keep   On
-    
-    [MULTILINE_PARSER]
-        Name          java-multiline
-        Type          regex
-        Flush_Timeout 1000
-        Rule          "^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2},[0-9]{3}" "start_state" "cont"
-        Rule          "^[^\t]" "cont" "cont"
-        Rule          "^\t" "cont" "cont"
-        Rule          "^[\\s]+at " "cont" "cont"
-        Rule          "^[\\s]+... [0-9]+ more" "cont" "cont"
-        Rule          "^[\\s]*Caused by:" "cont" "cont"
