@@ -10,7 +10,9 @@ resource "helm_release" "arc" {
 }
 
 resource "helm_release" "arc_runner_scale_set" {
-  for_each  = toset(local.github_projects)
+  for_each = toset(local.github_projects)
+  depends_on = [helm_release.arc]
+
   name      = "arc-runner-${each.key}"
   namespace = "arc-runners"
 
@@ -20,13 +22,14 @@ resource "helm_release" "arc_runner_scale_set" {
 
   create_namespace = true
 
-  set_wo {
-    name  = "githubConfigSecret.github_token"
-    value = var.github_token
-  }
-
-  set {
-    name  = "githubConfigUrl"
-    value = "https://github.com/twaslowski/${each.value}"
-  }
+  set = [
+    {
+      name  = "githubConfigSecret.github_token"
+      value = var.github_token
+    },
+    {
+      name  = "githubConfigUrl"
+      value = "https://github.com/twaslowski/${each.value}"
+    }
+  ]
 }

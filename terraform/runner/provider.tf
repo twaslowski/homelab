@@ -1,8 +1,5 @@
 terraform {
   backend "kubernetes" {
-    secret_suffix     = "arc-runner"
-    namespace         = "default"
-    config_path       = "~/.kube/config"
   }
 
   required_providers {
@@ -20,4 +17,10 @@ terraform {
 
 provider "kubernetes" {
   config_path = "~/.kube/config"
+}
+
+provider "helm" {
+  kubernetes = {
+    config_path    = "~/.kube/config"
+  }
 }
