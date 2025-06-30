@@ -77,3 +77,9 @@ kubectl get secret --namespace grafana grafana -o jsonpath="{.data.admin-passwor
 
 In order to access Grafana to view your dashboards, you can either port-forward into the service,
 use a LoadBalancer or the Cloudflared tunnel to expose the service to the internet.
+
+### Data sources
+
+Prometheus: `http://prometheus-server.monitoring.svc.cluster.local:80`
+
+Loki: `http://loki-gateway.logging.svc.cluster.local:80`
