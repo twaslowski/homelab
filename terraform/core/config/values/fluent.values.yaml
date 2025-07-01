@@ -11,6 +11,7 @@ config:
     [INPUT]
         Name         tail
         Path         /var/log/containers/*.log
+        Exclude_Path /var/log/containers/*_logging_*.log
         Parser       cri
         Tag          kube.*
 
