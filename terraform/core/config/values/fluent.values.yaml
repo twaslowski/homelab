@@ -32,7 +32,7 @@ config:
         name                  multiline
         match                 *
         multiline.key_content log
-        multiline.parser      java
+        multiline.parser      multiline-java
 
 
   outputs: |
@@ -50,3 +50,11 @@ config:
         Time_Key    time
         Time_Format %Y-%m-%d %H:%M:%S,%L
         Time_Keep   On
+
+    [MULTILINE_PARSER]
+        name                      multiline-java
+        type                      regex
+        flush_timeout             1000
+        key_content               log
+        rule      "start_state"   "/\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}.\d{3}Z.*/"  "cont"
+        rule      "cont"          "/^(?!\d{4}-\d{1,2}-\d{1,2}T).+/"  "cont"
