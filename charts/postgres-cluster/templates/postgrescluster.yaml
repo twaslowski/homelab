@@ -14,12 +14,28 @@ spec:
           name: {{ include "postgres-cluster.fullname" . }}-pgbackrest-secret
       global:
         repo1-path: {{ .Values.backups.pgbackrest.global.repo1Path | default (printf "/pgbackrest/%s/%s/repo1" .Release.Namespace (include "postgres-cluster.fullname" .)) }}
+        repo1-retention-full: {{ .Values.backups.retentionDays }}
+        repo1-retention-full-type: time
       repos:
       - name: repo1
+        schedules:
+          full: {{ .Values.backups.schedules.full }}
+          differential: {{ .Values.backups.schedules.differential }}
         s3:
           bucket: {{ .Values.s3.bucket }}
           endpoint: {{ .Values.s3.endpoint | default (printf "s3.%s.amazonaws.com" .Values.s3.region ) }}
           region: {{ .Values.s3.region }}
+      manual:
+        repoName: repo1
+        options:
+          - "--type=full"
+  {{ end }}
+  {{ if .Values.restore.performRestore }}
+  datasource:
+    postgresCluster:
+      clusterName: {{ .Values.restore.clusterName | default include "postgres-cluster.fullname" . }}
+      clusterNamespace: {{ .Values.restore.clusterNamespace | default .Release.Namespace }}
+      repoName: {{ .Values.restore.repoName }}
   {{ end }}
   {{ if .Values.databaseInitSQL.enabled }}
   databaseInitSQL:

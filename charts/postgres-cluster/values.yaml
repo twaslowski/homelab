@@ -16,9 +16,19 @@ users: [ ]
 
 backups:
   enabled: true
+  retentionDays: 14
+  schedules:
+    full: "0 1 * * 0"
+    differential: "0 1 * * 1-6"
   pgbackrest:
     global:
       repo1Path: ""
+
+restore:
+  performRestore: false
+  clusterName: ""
+  clusterNamespace: ""
+  repoName: "repo1"
 
 s3:
   bucket: ""
