@@ -33,7 +33,7 @@ spec:
   {{ if .Values.restore.performRestore }}
   datasource:
     postgresCluster:
-      clusterName: {{ .Values.restore.clusterName | default include "postgres-cluster.fullname" . }}
+      clusterName: {{ .Values.restore.clusterName | default (include "postgres-cluster.fullname" .) }}
       clusterNamespace: {{ .Values.restore.clusterNamespace | default .Release.Namespace }}
       repoName: {{ .Values.restore.repoName }}
   {{ end }}
