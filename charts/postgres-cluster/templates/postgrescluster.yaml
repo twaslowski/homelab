@@ -14,7 +14,7 @@ spec:
           name: {{ include "postgres-cluster.fullname" . }}-pgbackrest-secret
       global:
         repo1-path: {{ .Values.backups.pgbackrest.global.repo1Path | default (printf "/pgbackrest/%s/%s/repo1" .Release.Namespace (include "postgres-cluster.fullname" .)) }}
-        repo1-retention-full: {{ .Values.backups.retentionDays }}
+        repo1-retention-full: {{ .Values.backups.retentionDays | quote }}
         repo1-retention-full-type: time
       repos:
       - name: repo1
