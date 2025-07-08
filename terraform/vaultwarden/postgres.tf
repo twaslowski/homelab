@@ -1,6 +1,10 @@
-resource "helm_release" "postgres_operator" {
-  chart = "${path.module}/../../charts/postgres"
-  name  = "postgres-2"
+resource "helm_release" "postgres" {
+  name       = "postgres"
+  chart      = "postgrescluster"
+  repository = "https://twaslowski.github.io/homelab"
+  version    = "5.7.5"
 
-  namespace = ""
+  values = [file("${path.module}/config/values/postgres.values.yaml")]
+
+  namespace = kubernetes_namespace_v1.namespace.metadata[0].name
 }
