@@ -1,9 +1,26 @@
-name: postgres
-postgresVersion: 17
+nameOverride: "vaultwarden-postgres"
 
 users:
   - name: vaultwarden
+    databases:
+      - vaultwarden
+    options: 'SUPERUSER'
     password:
       type: AlphaNumeric
-    databases: ["vaultwarden"]
-    options: 'SUPERUSER'
+
+backups:
+  enabled: true
+  retentionDays: "30"
+
+restore:
+    performRestore: true
+    clusterName: "postgres"
+
+s3:
+  bucket: "246770851643-homelab-backrest-backups"
+  region: "eu-central-1"
+  accessKeyId: "${aws_access_key_id}}"
+  secretAccessKey: "${aws_secret_access_key}"
+
+databaseInitSQL:
+  enabled: false
