@@ -23,7 +23,7 @@ backups:
 s3:
   bucket: ""
   endpoint: ""
-  region: ""
+  region: "eu-central-1"
   accessKeyId: ""
   secretAccessKey: ""
 
