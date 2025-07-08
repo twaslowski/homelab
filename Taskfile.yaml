@@ -20,3 +20,12 @@ tasks:
     desc: Setup an agent node with k3sup
     cmds:
       - k3sup join {{ .CLI_ARGS }}
+
+  bootstrap-aws:
+    desc: Setup AWS account bootstrap
+    cmds:
+      - | 
+        aws cloudformation deploy --stack-name=bootstrap \
+          --template-file bootstrap/aws.yaml \
+          --capabilities CAPABILITY_NAMED_IAM \
+          --tags "project=homelab created-by=bootstrap"

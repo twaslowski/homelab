@@ -1,0 +1,14 @@
+domain: https://vw.twaslowski.com
+
+ingress:
+  class: "cloudflare-tunnel"
+  enabled: true
+  hostname: vw.twaslowski.com
+  tls: false
+
+database:
+  type: postgresql
+  host: postgres.vaultwarden.svc.cluster.local
+  username: vaultwarden
+  password: ${vaultwarden_postgres_password}
+  dbName: vaultwarden

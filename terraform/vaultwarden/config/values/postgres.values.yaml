@@ -1,0 +1,9 @@
+name: postgres
+postgresVersion: 17
+
+users:
+    - name: postgres
+      password: "${postgres_password}"
+      host: "%"
+      privileges:
+        - ALL PRIVILEGES
