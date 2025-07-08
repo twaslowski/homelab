@@ -3,6 +3,9 @@ database:
   postgresVersion: 17
   replicas: 1
 
+nameOverride: ""
+fullnameOverride: ""
+
 users: [ ]
 #  - name: my-user
 #    databases:
@@ -16,11 +19,6 @@ backups:
   pgbackrest:
     global:
       repo1Path: ""
-      configuration:
-        - secret:
-            name: postgres-pgbackrest-secret
-      repos:
-        - name: repo1
 
 s3:
   bucket: ""

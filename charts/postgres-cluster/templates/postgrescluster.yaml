@@ -28,10 +28,6 @@ items:
       key: initSQL
       name: {{ include "postgres-cluster.fullname" . }}-database-init-sql
     {{ end }}
-    {{ with .Values.affinity }}
-    affinity:
-      {{ toYaml . | nindent 6 }}
-    {{ end }}
     instances:
     - dataVolumeClaimSpec:
         accessModes:

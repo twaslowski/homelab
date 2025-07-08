@@ -8,3 +8,9 @@ It is, for now, drastically simplified for my personal use case, which consists 
 - Creating simple backups to S3
 
 It is not suited for production-grade setups (yet).
+
+## Todos
+
+- Add: Postgres Exporter
+- Add: Metrics
+- Add: Replication
