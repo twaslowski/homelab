@@ -26,6 +26,16 @@ entries:
   postgres-cluster:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-07-08T13:08:46.799603528Z"
+    description: A Helm chart for Kubernetes
+    digest: c8a3436bd5bf2846a8e4887a51004a8612c67a82158c957e64eb1f7d78750e6d
+    name: postgres-cluster
+    type: application
+    urls:
+    - postgres-cluster-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-07-08T12:48:06.72170721Z"
     description: A Helm chart for Kubernetes
     digest: 950827cc406930badb1db0004554cc9754b74034cb554db301549d80b0a75ba1
@@ -115,4 +125,4 @@ entries:
     urls:
     - postgrescluster-5.7.4.tgz
     version: 5.7.4
-generated: "2025-07-08T12:48:06.721740993Z"
+generated: "2025-07-08T13:08:46.799638974Z"
