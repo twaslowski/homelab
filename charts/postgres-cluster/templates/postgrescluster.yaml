@@ -1,0 +1,49 @@
+apiVersion: v1
+items:
+- apiVersion: postgres-operator.crunchydata.com/v1beta1
+  kind: PostgresCluster
+  metadata:
+    labels:
+      {{ include "postgres-cluster.labels" . | nindent 4 }}
+    name: {{ include "postgres-cluster.fullname" . }}
+    namespace: {{ .Release.Namespace }}
+  spec:
+    {{ if .Values.backups.enabled }}
+    backups:
+      pgbackrest:
+        configuration:
+        - secret:
+            name: postgres-pgbackrest-secret
+        global:
+          repo1-path: {{ .Values.backups.pgbackrest.global.repo1Path | default (printf "/pgbackrest/%s/%s/repo1" .Release.Namespace (include "postgres-cluster.fullname" .)) }}
+        repos:
+        - name: repo1
+          s3:
+            bucket: {{ .Values.s3.bucket }}
+            endpoint: {{ .Values.s3.endpoint }}
+            region: {{ .Values.s3.region }}
+    {{ end }}
+    {{ if .Values.databaseInitSQL.enabled }}
+    databaseInitSQL:
+      key: initSQL
+      name: {{ include "postgres-cluster.fullname" . }}-database-init-sql
+    {{ end }}
+    {{ with .Values.affinity }}
+    affinity:
+      {{ toYaml . | nindent 6 }}
+    {{ end }}
+    instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      name: instance1
+      replicas: {{ .Values.database.replicas }}
+    port: {{ .Values.database.port }}
+    postgresVersion: {{ .Values.database.postgresVersion }}
+    users:
+    {{- with .Values.users }}
+    {{ toYaml . | nindent 8 }}
+    {{- end }}

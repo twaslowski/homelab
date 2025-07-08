@@ -1,0 +1,36 @@
+database:
+  port: 5432
+  postgresVersion: 17
+  replicas: 1
+
+users: [ ]
+#  - name: my-user
+#    databases:
+#      - my-database
+#    options: []
+#    password:
+#      type: AlphaNumeric | ASCII
+
+backups:
+  enabled: true
+  pgbackrest:
+    global:
+      repo1Path: ""
+      configuration:
+        - secret:
+            name: postgres-pgbackrest-secret
+      repos:
+        - name: repo1
+
+s3:
+  bucket: ""
+  endpoint: ""
+  region: ""
+  accessKeyId: ""
+  secretAccessKey: ""
+
+databaseInitSQL:
+  enabled: false
+  content: ""
+  #  - |
+  #    CREATE DATABASE my-database;

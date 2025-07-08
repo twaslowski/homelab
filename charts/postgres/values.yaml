@@ -7,9 +7,8 @@
 # General #
 ###########
 
-# name is the name of the cluster. This defaults to the name of the Helm
-# release.
-# name: hippo
+# name is the name of the cluster. This defaults to the name of the Helm release.
+name: hippo
 
 # postgresVersion sets the version to deploy. This version number needs to be
 # available as one of the "RELATED_IMAGE_POSTGRES_..." images as part of the PGO
@@ -21,7 +20,7 @@ postgresVersion: 17
 # PostGIS. This version number needs to be available as one of the
 # "RELATED_IMAGE_POSTGRES_..." images as part of the PGO installation if you
 # want to deploy the image without setting the "postgres" image variable.
-# postGISVersion: 3.4
+postGISVersion: 3.4
 
 # NOTE: pgBackRest is enabled by default. It must be set in
 # "RELATED_IMAGE_PGBACKREST" on the PGO deployment, otherwise you will need to
@@ -32,19 +31,19 @@ postgresVersion: 17
 # "pgBouncerConfig". Setting "pgBouncerConfig" will override the value of
 # pgBouncerReplicas. The "RELATED_IMAGE_PGBOUNCER" in the PGO deployment must be
 # set if you want to enable this without explicitly setting "pgBouncer".
-# pgBouncerReplicas: 1
+pgBouncerReplicas: 1
 
 # monitoring enables the ability to monitor the Postgres cluster through a
 # metrics exporter that can be scraped by Prometheus. This defaults to the value
 # below.
-# monitoring: false
+monitoring: false
 
 # instrumentation enables the ability to monitor the Postgres cluster through an
 # OpenTelemetry collector. This defaults to the value below.
 # This feature is currently behind the feature gates OpenTelemetryLogs and
 # OpenTelemetryMetrics; at least one of these feature gates must be turned
 # on for `instrumentation` to be turned on.
-# instrumentation: false
+instrumentation: false
 
 ###################
 # Image Overrides #
@@ -54,19 +53,19 @@ postgresVersion: 17
 # below value. "postgresVersion" needs to match the version of Postgres that is
 # used here. If using the GIS-enabled Postgres image, you need to ensure
 # "postGISVersion" matches the version of PostGIS used.
-imagePostgres: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-17.4-0
+# imagePostgres: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-17.4-0
 
 # imagePgBackRest is the pgBackRest backup utility image. This defaults to the
 # below value.
-imagePgBackRest: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.54.1-1
+# imagePgBackRest: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.54.1-1
 
 # imagePgBouncer is the image for the PgBouncer connection pooler. This defaults
 # to the below value.
-imagePgBouncer: registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.23-4
+# imagePgBouncer: registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.23-4
 
 # imageExporter is the image name for the exporter used as a part of monitoring.
 # This defaults to the value below.
-imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-0.16.0-1
+# imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-0.16.0-1
 
 ###########################
 # Basic Postgres Settings #
@@ -196,7 +195,7 @@ s3:
   # bucket specifies the S3 bucket to use,
   bucket: ""
   # endpoint specifies the S3 endpoint to use.
-  endpoint: ""
+  # endpoint: ""
   # region specifies the S3 region to use. If your S3 storage system does not
   # use "region", fill this in with a random value.
   region: ""
@@ -204,13 +203,10 @@ s3:
   key: ""
   # keySecret is the S3 key secret. This is stored in a Secret.
   keySecret: ""
-  # keyType can be configured to enable IAM integration via AssumeRole
-  # For more info, see the documentation at https://access.crunchydata.com/documentation/postgres-operator/latest/tutorials/backups-disaster-recovery/backups#using-an-aws-integrated-identity-provider-and-role
-  keyType: ""
   # encryptionPassphrase is an optional parameter to enable encrypted backups
   # with pgBackRest. This is encrypted by pgBackRest and does not use S3's
   # built-in encryption system.
-  encryptionPassphrase: ""
+  # encryptionPassphrase: ""
 
 # gcs allows for Google Cloud Storage (GCS) to be used for backups. This allows
 # for a quick setup with GCS; if you need a more advanced setup, use
@@ -245,24 +241,16 @@ azure:
 # Below is an example that enables one of each backup type.
 # All available quickstart options are presented below; please see the backup types
 # if you want to see how each option works.
-multiBackupRepos:
-  - volume:
-      backupsSize: 1Gi
-  - s3:
-      bucket: ""
-      endpoint: ""
-      region: ""
-      key: ""
-      keySecret: ""
-      keyType: ""
-  - gcs:
-      bucket: ""
-      key: |
-        {}
-  - azure:
-      account: ""
-      key: ""
-      container: ""
+#multiBackupRepos:
+#  - volume:
+#      backupsSize: 1Gi
+#  - s3:
+#      bucket: ""
+#      endpoint: ""
+#      region: ""
+#      key: ""
+#      keySecret: ""
+#      keyType: ""
 
 # pgBackRestConfig allows for the configuration of every pgBackRest option
 # except for "image", which is set by "pgBackRest".
