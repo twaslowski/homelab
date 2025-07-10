@@ -13,3 +13,5 @@ spec:
         kind: HelmRepository
         name: homelab
       interval: 15m
+  values:
+    singleNamespace: false
