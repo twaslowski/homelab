@@ -6,3 +6,4 @@ resources:
   - logging
   - postgres-operator
   - metallb
+  - cloudflared
