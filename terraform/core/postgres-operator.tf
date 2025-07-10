@@ -1,6 +1,6 @@
 resource "helm_release" "postgres_operator" {
   name  = "postgres-operator"
-  chart = "../charts/pgo"
+  chart = "../../charts/pgo"
   namespace = "postgres-operator"
   create_namespace = true
 
