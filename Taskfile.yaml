@@ -29,3 +29,16 @@ tasks:
           --template-file bootstrap/aws.yaml \
           --capabilities CAPABILITY_NAMED_IAM \
           --tags "project=homelab created-by=bootstrap"
+
+  bootstrap-flux:
+    desc: Setup Flux for GitOps
+    cmds:
+      - |
+        flux bootstrap github \
+          --owner=twaslowski \
+          --repository=homelab \
+          --branch=main \
+          --path=clusters/homelab \
+          --personal \
+          --token=${GITHUB_TOKEN} \
+          --context=homelab
