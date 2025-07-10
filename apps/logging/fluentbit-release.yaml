@@ -1,5 +1,5 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: fluent
@@ -8,7 +8,7 @@ spec:
   interval: 24h
   url: https://fluent.github.io/helm-charts
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: fluent-bit
@@ -86,3 +86,10 @@ data:
             Time_Key    time
             Time_Format %Y-%m-%d %H:%M:%S,%L
 
+        [MULTILINE_PARSER]
+            name                      multiline-java
+            type                      regex
+            flush_timeout             1000
+            key_content               log
+            rule      "start_state"   "/\d{4}-\d{1,2}-\d{1,2}T\d{2}:\d{2}:\d{2}.\d{3}Z.*/"  "cont"
+            rule      "cont"          "/^(?!\d{4}-\d{1,2}-\d{1,2}T).+/"  "cont"
