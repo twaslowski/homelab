@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - fluent-bit-helmrelease.yaml
   - loki-helmrelease.yaml
+  - namespace.yaml
