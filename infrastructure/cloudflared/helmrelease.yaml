@@ -1,18 +1,3 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cloudflare-tunnel-ingress-controller
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: cloudflare
-  namespace: flux-system
-spec:
-  interval: 24h
-  url: https://helm.strrl.dev
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -29,17 +14,7 @@ spec:
         name: cloudflare
         namespace: flux-system
       interval: 15m
-  values:
-    cloudflare:
-      tunnelName: "homelab-tunnel"
-      apiToken:
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-credentials
-            key: apiToken
-      accountId:
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-credentials
-            key: accountId
+  valuesFrom:
+    kind: Secret
+    name: cloudflare-credentials
 
