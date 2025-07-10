@@ -1,6 +1,6 @@
 creation_rules:
   - path_regex: '.*values\.yaml$'
-    pgp: "724F500945BCC137625A3673CF957C48EDCBEA5D"
+    age: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
   - path_regex: '.*\.yaml$'
-    pgp: "724F500945BCC137625A3673CF957C48EDCBEA5D"
+    age: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
     encrypted_regex: ^(data|stringData)$

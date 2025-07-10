@@ -1,27 +1,18 @@
 cloudflare:
-    apiToken: ENC[AES256_GCM,data:OaeqI9zWZ8nprMgDYSv/OyRemq36FgcO4jAhCOwa0+NuCAey/ZG7GQ==,iv:DkT2Jcr6tjDxRrp9bCpld7vZgv1THxxYn+zdGVEaJ9w=,tag:nD2GyKeWxyVfgW3vKwI90A==,type:str]
-    accountId: ENC[AES256_GCM,data:8vKSTApAnGrSAte+t/O/fyZuvELyAWfGylgPTE4MyXs=,iv:PQAYC/xoJPePFNJAnSKxjZDj4EDYsNIwziacdBcNW2Y=,tag:f798/LrJGfwt1geHJl69rg==,type:str]
+    apiToken: ENC[AES256_GCM,data:sSDue0QzMB39Y40uQI69dLOLGhOkZ64dSAqiEUzsFZo1UTv6XkMLfg==,iv:687rxUvIunPLksbJeyUHfPvgSFozXA6fi0iggxUwtmE=,tag:Gs1iEQWcQ8+0NOC+9o3UUA==,type:str]
+    accountId: ENC[AES256_GCM,data:9ieC7s1Wyrtjl48coSQNs3jutuAcCjtaNBAK3lp1xIc=,iv:pSjMPa+A2d+l0o1o3lq9iAbSoYonCYmj24cTnY1hgr8=,tag:yoGqxrmuAVENbUT1PxnjIQ==,type:str]
 sops:
-    lastmodified: "2025-07-10T19:21:42Z"
-    mac: ENC[AES256_GCM,data:1Ms5TOh8mbo7n8W7yGIfMKODa1QHhPyBHvCbmHzI3bIMyYWFwQAd9GotQA0geoeYuH4tYXe8/FqgEFatyluB7q0Gt93TD5o3gJYdHLEhiQSEaaoQnv5szPJJuQWIYFxKuUVwDgKhAuUH6QvuhUeBZVDm4BTRMMdZYMBbRdupoII=,iv:0bql3xohG7LClpEaRWsSzugkju7S15B4etByfD/+FR0=,tag:HWHusylk5rnovnjfMBq0kg==,type:str]
-    pgp:
-        - created_at: "2025-07-10T19:21:42Z"
-          enc: |-
-            -----BEGIN PGP MESSAGE-----
-
-            hQGMA7NRKuY3YlEEAQv+KdJBu5XRtUivOOgJqmYtptXkkyxehU+XLFe03ZWb+5ZF
-            TwrA9tXjFEr4PcPQcym7JQLfkuCT86rbk72SKSJhfNdp9jK5HRPjQe0xq4IK9B5N
-            jRaRumRfhiahv0qFOi/5TFQOlh8wsRDBr3GEwvGAOSEpjtJFVRX75i3Rg9ODytDL
-            OaCOXZsla8OBEf9KTD99C+l5FgsRkjWabjczHkAgl4SN7vAiZf/OqcdNV8SKP8y7
-            Tw3bQyWehxMSoecDD3WhIqHB0/V4c6E3oqTcF7wf6Kd3XonCTcoLkG0fKFW6UCIL
-            tkDiLN1fmCq9sPZUbWEf51MSpwTGWrECQ++GZLTivPXjhifQZCZas4ZQ0IuQE/eg
-            gA3tLlm1I7ujTLxpOyYvC2bKQ4QpWqO1WelEyy35GIw3SIke7dKF7Ef/H6zalMnr
-            JEiRtbrkM2bR7E6O29f6OZvt9LpyJNcSfH+dTlU4gXkVBUL0mibpz0qfdjYti9sF
-            uTMHtpdDtHBJHPkOuScE1GYBCQIQZokZk26aYwwgehgLKs8S+k1w2oO22IdB0tT6
-            Yz2ortjRW1WH/1miPG8GgUNimWnuUcB6ECtI++4/Zg3Rd4VxQTjLCCbMeGjnBwLg
-            lHm5QJD9kMLisr+2AC7WvGqTgX7oa44=
-            =Q692
-            -----END PGP MESSAGE-----
-          fp: 724F500945BCC137625A3673CF957C48EDCBEA5D
+    age:
+        - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxVElVaE1hSlFFbE5IeW4w
+            L2luL2Fndm5qY21HOXV2dzl3U2hhZGRiMG5ZCjhVUXpodi80VW5HelBrZzNCb0Fu
+            WVhPVWlWdHNmeDdhUFVEM3FiTUtnOWcKLS0tIHY4ZTRUVUZLanJ3VXQ1c3FlVVFT
+            SHNlR2V4NjN3MCsyNW85M01GbU9hUDAKR0+fehEbA3pre1W2zUmnQSBDMqa+2B5h
+            F0Mpr+tYcWS1WTr0TH9UlEovbG8N7BeDotnqH5Fd1JLHY2ozcsGidw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-07-10T19:28:46Z"
+    mac: ENC[AES256_GCM,data:hgHRx1HoDstoYCDYYvHObCufTWWGTTu59biYH6/R3g2luSF22bzjYrQ5ouds7bVRl2N1NVvi2KEfVwIoc0cHKTNFSgi769/GY7C9FShrqN2cASBmG8yXlQD76etzkQuqNxFJoXNh0qIttHS7Yl38RpoyfwTtaqgprC8K4O85Raw=,iv:qK95MrkXQhPtIJq0Ldhoyotvx9O5jS3iSvFPMS9D7mg=,tag:Em+4a3u0QGqXcYw/snAH6Q==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2
