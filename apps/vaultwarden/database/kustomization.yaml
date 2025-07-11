@@ -10,7 +10,7 @@ configMapGenerator:
 secretGenerator:
   - name: postgres-values-secret
     files:
-      - secret.yaml=postgres-values.enc.yaml
+      - values.yaml=postgres-values.enc.yaml
     type: Opaque
 configurations:
   - kustomizeconfig.yaml
