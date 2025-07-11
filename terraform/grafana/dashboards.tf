@@ -11,3 +11,8 @@ resource "grafana_dashboard" "nodes" {
   config_json = file("${path.module}/dashboards/nodes.json")
   folder      = grafana_folder.infrastructure.id
 }
+
+resource "grafana_dashboard" "flux" {
+  config_json = file("${path.module}/dashboards/flux.json")
+  folder      = grafana_folder.infrastructure.id
+}
