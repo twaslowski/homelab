@@ -1,0 +1,23 @@
+fullnameOverride: "vaultwarden-db"
+
+users:
+  - name: vaultwarden
+    databases:
+      - vaultwarden
+    options: 'SUPERUSER'
+    password:
+      type: AlphaNumeric
+
+backups:
+  enabled: true
+  retentionDays: "30"
+  schedules:
+    full: "0 3 * * 0"
+    differential: "0 3 * * 1-6"
+
+restore:
+  performRestore: true
+  clusterName: "postgres-vaultwarden-postgres"
+
+databaseInitSQL:
+  enabled: false

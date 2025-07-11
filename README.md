@@ -22,7 +22,7 @@ to build upon.
 
 ### Installed software
 
-[You need the following software installed on your local machine:
+You need the following software installed on your local machine:
 
 - [k3sup](https://github.com/alexellis/k3sup) - a utility to install and manage k3s clusters
 - [kubectl](https://kubernetes.io/docs/tasks/tools/) - the Kubernetes command-line tool
@@ -32,8 +32,17 @@ Optional, but recommended:
 - [task](https://taskfile.dev/) - a task runner to manage the setup of your cluster
 - [age](https://age-encryption.org/) - a simple, modern and secure file encryption tool
 - An AWS Account to set up reliable storage for backups, external secrets management and more.
-]([[source](https://github.com/fluent/fluent-bit/issues/9730#issuecomment-2705240923)])
-### Preparing your nodes
+- Remote machines that you can SSH into. However, you can also run all of this locally.
+
+You should create a fork of this repository to your GitHub account and clone it to your local machine.
+
+```shell
+git clone git@github.com:<your-account>/homelab.git
+```
+
+## Preparing your nodes
+
+If you're setting up a k3s cluster on a remote node, you need to ensure that the node is prepared for the installation.
 
 There's a few things you need to do before installing k3s.
 Depending on your Linux distribution, you may need to install some additional packages and configure your system.
@@ -41,7 +50,8 @@ Depending on your Linux distribution, you may need to install some additional pa
 You should have the following packages installed on your nodes: `curl`, `git`, `ssh`.
 
 Further, ensure that you have the same user on all nodes, and that you can SSH into each node without a password
-(i.e. `authorized_keys` are set up correctly).
+(i.e. `authorized_keys` are set up correctly). For instructions on how to set up SSH keys, see
+[this article](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
 ### Raspberry Pi
 
@@ -65,27 +75,8 @@ kernel=kernel8.img
 
 ## Set up your cluster
 
-You're now ready to set up your k3s cluster.
-
-First, you should fork this repository to your own GitHub account, and then clone it to your local machine:
-
-```shell
-git clone git@github.com:<your-account>/homelab.git && cd homelab
-```
-
-Additionally, ensure you have `task` installed on your system. You can find installation instructions
-[here](https://taskfile.dev/installation/).
-
-This repository uses the `Taskfile` to manage the setup of your k3s cluster. The `Taskfile.yml` defines several
-tasks that you can run. Start out by installing `k3sup` to install and manage k3s on your nodes:
-
-```shell
-task install-k3sup
-```
-
-You're now ready to bootstrap your k3s cluster. You're going to want to create a leader node. If you're simply
-creating a single-node cluster, that is going to be sufficient; for multi-node clusters, you'll want to attach
-agents afterward.
+You're now ready to set up your k3s cluster! If you do not have `task` installed, you can run the commands
+from the following sections manually.
 
 ### Bootstrapping the leader node
 
@@ -93,8 +84,12 @@ Running `task bootstrap-leader` will set up your leader node. This will install 
 to point to the new cluster. You will need to provide several parameters in order for this command to work:
 
 ```shell
-task bootstrap-leader -- --ip <IP_ADDRESS> \
-  --user <USER> --ssh-key <SSH_KEY>
+export IP_ADDRESS=<IP_ADDRESS>  # IP address of the leader node
+export USER=<USER>  # SSH user to connect to the node
+export SSH=<SSH_KEY>  # Path to the SSH private key to use for authentication
+
+task bootstrap-leader -- --ip "$IP_ADDRESS" \
+  --user "$USER" --ssh-key "$SSH_KEY"
 ```
 
 By default, the `bootstrap-leader` task will install k3s with the following parameters:
@@ -106,8 +101,9 @@ By default, the `bootstrap-leader` task will install k3s with the following para
 --merge  # do not overwrite existing kubeconfig, but merge the new cluster into it
 ```
 
-Additional noteworthy arguments you could supply are `--no-extras` for skipping the installation of "_servicelb_"
-and "_traefic_", as well as `--k3s-extra-args` to pass additional arguments to the k3s installation command.
+You can pass extra arguments to your k3 install by supplying the `--k3s-extra-args`
+flag. Any networking configuration you want to do should be passed through this flag as well.
+This pertains in particular to flannel, which is the default CNI (Container Network Interface) used by k3s.
 
 If you would like to customize networking, you can pass args to flannel this way, such as `--flannel-backend=host-gw`
 if you would like to avoid VXLAN encapsulation. You can find more information about the available flags
@@ -124,27 +120,46 @@ kubectl config use-context homelab
 kubectl get nodes
 ```
 
+The output of this command should show the leader node as `Ready`:
+
+```text
+NAME             STATUS   ROLES                  AGE   VERSION        INTERNAL-IP       EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION       CONTAINER-RUNTIME
+homelab-leader    Ready    <none>                 1m   v1.32.5+k3s1   192.168.178.100   <none>        Debian GNU/Linux 12 (bookworm)   6.12.25+rpt-rpi-v8   containerd://2.0.5-k3s1.32
+```
+
 ### Bootstrapping agent nodes
 
 Bootstrapping agent nodes is super straightforward now.
 All you need is the IP address of the leader node, everything else is the same as for the leader node.
 
 ```shell
-task bootstrap-agent -- --ip <IP_ADDRESS> --user <USER> --server-ip <LEADER_IP> --ssh-key <SSH_KEY>
+# These are identical to the values above
+export IP_ADDRESS=<IP_ADDRESS>  # IP address of the agent node
+export USER=<USER>  # SSH user to connect to the node
+export SSH_KEY=<SSH_KEY>  # Path to the SSH private key to use for authentication
+
+export LEADER_IP=<LEADER_IP>  # IP address of the leader
+
+task bootstrap-agent -- --ip "$IP_ADDRESS" --user "$USER" --server-ip "$LEADER_IP" --ssh-key "$SSH_KEY"
 ```
 
-## Setting up core
+## Populating the cluster
 
-Now it's time to get some core functionality up and running.
-This will include the following services:
+After confirming that the cluster is up and running, you can start populating it with services.
+This repository comes with a setup for Flux to manage your cluster declaratively.
 
-- Grafana
-- Prometheus
-- Loki
-- fluent-bit
-- cloudflared
+The `infrastructure/` directory contains the Flux configuration that will set up:
 
-This will give you a solid logging and monitoring stack to work with.
-Additionally, it will set up a cloudflared tunnel to your Grafana instance, so you can access it from outside your network.
+- [Prometheus](https://prometheus.io/) - a powerful monitoring and alerting toolkit
+- [Loki](https://grafana.com/oss/loki/) - a log aggregation system
+- [fluent-bit](https://fluentbit.io/) - a lightweight log processor and forwarder
+- [metallb](https://metallb.universe.tf/) - a load balancer to provide you with a stable IP address for your services
 
-This tunnel will be used to set up DNS records as we install more services to give you super easy ingress.
+### Extended configuration
+
+There are some additional tools that you can set up to enhance your homelab experience.
+These require accounts on external services, but they can be very useful:
+
+- [cloudflare-ingress-controller](https://github.com/STRRL/cloudflare-tunnel-ingress-controller) - an ingress controller
+  for [Cloudflare tunnels](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) to expose our services to the internet without having to open ports on your router
+- [cert-manager](https://cert-manager.io/) - a tool to manage TLS certificates for your services
