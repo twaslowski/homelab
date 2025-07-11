@@ -39,7 +39,7 @@ config:
     [OUTPUT]
         name  loki
         match kube.*
-        host  loki.logging.svc.cluster.local
+        host  loki.monitoring.svc.cluster.local
         labels job=fluent-bit, namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_name=$kubernetes['container_name'], app=$kubernetes['labels']['app'], service=$kubernetes['labels']['service']
 
   customParsers: |
