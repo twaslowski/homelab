@@ -2,7 +2,7 @@ resource "helm_release" "postgres" {
   name       = "postgres"
   chart      = "../../charts/postgres-cluster"
   repository = "https://twaslowski.github.io/homelab"
-  version    = "0.3.2"
+  version    = "0.3.3"
 
   values = [
     templatefile("${path.module}/config/values/postgres.values.yaml", {

@@ -24,6 +24,9 @@ backups:
     global:
       repo1Path: ""
 
+monitoring:
+  enabled: true
+
 restore:
   performRestore: false
   clusterName: ""

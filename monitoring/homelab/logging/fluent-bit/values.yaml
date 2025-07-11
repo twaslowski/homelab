@@ -1,5 +1,5 @@
 # values.yaml for fluent-bit Helm chart
-namespace: fluent-bit
+namespace: monitoring
 
 fullnameOverride: "fluent-bit"
 

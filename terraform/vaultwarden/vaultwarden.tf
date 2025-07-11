@@ -18,5 +18,5 @@ resource "helm_release" "vaultwarden" {
   values = [file("${path.module}/config/values/vaultwarden.values.yaml")]
 
   wait    = true
-  timeout = 180
+  timeout = 120
 }

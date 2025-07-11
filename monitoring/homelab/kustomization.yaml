@@ -3,7 +3,4 @@ kind: Kustomization
 resources:
   - prometheus
   - logging
-  - postgres-operator
-  - metallb
-  - cloudflared
-  - repository
+  - namespace.yaml
