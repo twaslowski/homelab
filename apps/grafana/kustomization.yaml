@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: grafana
 resources:
   - namespace.yaml
-  - repository.yaml
   - release.yaml
 configMapGenerator:
   - name: grafana-values
