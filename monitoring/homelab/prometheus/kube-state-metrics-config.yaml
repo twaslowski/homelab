@@ -1,11 +1,26 @@
 # source: https://github.com/fluxcd/flux2-monitoring-example/tree/main/monitoring/controllers/kube-prometheus-stack
 kube-state-metrics:
-  # For kube-prometheus-stacks that are already installed and configured with
-  # custom collectors, commenting out the collectors and extraArgs below will
-  # retain any existing kube-state-metrics configuration.
-  collectors: [ ]
+  # Enable standard Kubernetes resource collectors
+  collectors:
+    - nodes
+    - pods
+    - deployments
+    - replicasets
+    - services
+    - endpoints
+    - persistentvolumes
+    - persistentvolumeclaims
+    - configmaps
+    - secrets
+    - namespaces
+    - ingresses
+    - jobs
+    - cronjobs
+    - daemonsets
+    - statefulsets
   extraArgs:
-    - --custom-resource-state-only=true
+    # Remove the custom-resource-state-only flag to enable standard metrics
+    # - --custom-resource-state-only=true
   rbac:
     extraRules:
       - apiGroups:
