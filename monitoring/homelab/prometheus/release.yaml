@@ -41,3 +41,8 @@ spec:
       enabled: true
       defaultDashboardsEnabled: true
       adminPassword: flux
+      ingress:
+        enabled: true
+        ingressClassName: "cloudflare-tunnel"
+        hosts:
+          - "grafana-b.twaslowski.com"
