@@ -17,4 +17,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: flux-kube-state-metrics-config
-      namespace: prometheus
