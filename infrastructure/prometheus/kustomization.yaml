@@ -7,6 +7,6 @@ resources:
 configMapGenerator:
   - name: flux-kube-state-metrics-config
     files:
-      - kube-state-metrics-config.yaml
+      - values.yaml=kube-state-metrics-config.yaml
 configurations:
   - kustomizeconfig.yaml
