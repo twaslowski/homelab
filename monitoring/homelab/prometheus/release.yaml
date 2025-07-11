@@ -39,8 +39,10 @@ spec:
             app.kubernetes.io/component: monitoring
     grafana:
       enabled: true
-      defaultDashboardsEnabled: true
+      defaultDashboardsEnabled: false
       adminPassword: flux
+      nodeSelector:
+        kubernetes.io/hostname: homelab-leader
       ingress:
         enabled: true
         ingressClassName: "cloudflare-tunnel"
