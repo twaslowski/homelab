@@ -4,3 +4,9 @@ resources:
   - namespace.yaml
   - prometheus-server.yaml
   - kube-state-agent.yaml
+configMapGenerator:
+  - name: flux-kube-state-metrics-config
+    files:
+      - kube-state-metrics-config.yaml
+configurations:
+  - kustomizeconfig.yaml
