@@ -8,5 +8,5 @@ ingress:
 
 database:
   type: postgresql
-  existingSecret: postgres-vaultwarden-postgres-pguser-vaultwarden
+  existingSecret: vaultwarden-db-pguser-vaultwarden
   existingSecretKey: uri
