@@ -20,14 +20,22 @@ tasks:
           --tags "project=homelab created-by=bootstrap"
 
   bootstrap-flux:
-    desc: Setup Flux for GitOps
+    desc: Setup Flux for GitOps and create
     cmds:
       - |
         flux bootstrap github \
-          --owner=twaslowski \
+          --owner=<your-account> \
           --repository=homelab \
           --branch=main \
-          --path=clusters/homelab \
+          --path=clusters/minimal \
           --personal \
           --token=${GITHUB_TOKEN} \
+          --context=homelab
+
+        age-keygen -o age.key
+        grep "public key" age.key | sed 's/# public key: //' > clusters/homelab/.sops.pub.age
+
+        kubectl create secret generic sops-age \
+          --namespace=flux-system \
+          --from-file=age.key=age.key \
           --context=homelab
