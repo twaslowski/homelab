@@ -7,3 +7,4 @@ resources:
   - postgres-operator
   - metallb
   - cloudflared
+  - helmrepository

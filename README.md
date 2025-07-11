@@ -2,8 +2,37 @@
 
 This repository includes scripts and configuration to set up a k3s multi-node cluster on one or several nodes.
 
+It also includes a set of core services that are useful for a homelab setup and will give you a solid foundation
+to build upon.
+
+## Table of Contents
+
+- [homelab](#homelab)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+    - [Installed software](#installed-software)
+    - [Preparing your nodes](#preparing-your-nodes)
+    - [Raspberry Pi](#raspberry-pi)
+  - [Set up your cluster](#set-up-your-cluster)
+    - [Bootstrapping the leader node](#bootstrapping-the-leader-node)
+    - [Bootstrapping agent nodes](#bootstrapping-agent-nodes)
+  - [Setting up core](#setting-up-core)
+
 ## Prerequisites
 
+### Installed software
+
+[You need the following software installed on your local machine:
+
+- [k3sup](https://github.com/alexellis/k3sup) - a utility to install and manage k3s clusters
+- [kubectl](https://kubernetes.io/docs/tasks/tools/) - the Kubernetes command-line tool
+- [flux](https://fluxcd.io/docs/installation/) - a tool to manage Kubernetes clusters declaratively
+
+Optional, but recommended:
+- [task](https://taskfile.dev/) - a task runner to manage the setup of your cluster
+- [age](https://age-encryption.org/) - a simple, modern and secure file encryption tool
+- An AWS Account to set up reliable storage for backups, external secrets management and more.
+]([[source](https://github.com/fluent/fluent-bit/issues/9730#issuecomment-2705240923)])
 ### Preparing your nodes
 
 There's a few things you need to do before installing k3s.
@@ -27,12 +56,21 @@ cgroup_memory=1 cgroup_enable=memory
 sudo reboot
 ```
 
-## Set up your cluster
-
-Clone this repository to your:
+Additionally, for fluent-bit to work properly on Raspberry Pi, you may need to add the following line to your
+`/boot/firmware/config.txt` file:
 
 ```shell
-git clone git@github.com:twaslowski/homelab.git && cd homelab
+kernel=kernel8.img
+```
+
+## Set up your cluster
+
+You're now ready to set up your k3s cluster.
+
+First, you should fork this repository to your own GitHub account, and then clone it to your local machine:
+
+```shell
+git clone git@github.com:<your-account>/homelab.git && cd homelab
 ```
 
 Additionally, ensure you have `task` installed on your system. You can find installation instructions
