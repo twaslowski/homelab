@@ -4,7 +4,7 @@ metadata:
   name: vaultwarden-db
   namespace: vaultwarden-dr
 spec:
-  datasource:
+  dataSource:
     pgbackrest:
       stanza: db
       repo:
