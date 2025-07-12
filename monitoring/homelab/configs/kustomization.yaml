@@ -6,7 +6,8 @@ resources:
 configMapGenerator:
   - name: flux-grafana-dashboards
     files:
-      - dashboards/flux.json
+      - dashboards/flux-cluster.json
+      - dashboards/flux-control-plane.json
       - dashboards/global.json
       - dashboards/nodes.json
     options:
@@ -15,10 +16,3 @@ configMapGenerator:
         app.kubernetes.io/part-of: flux
         app.kubernetes.io/component: monitoring
         kustomize.toolkit.fluxcd.io/substitute: disabled
-  - name: flux-grafana-datasources
-    files:
-      - datasources/loki.yaml
-    options:
-      labels:
-        app.kubernetes.io/part-of: flux
-        app.kubernetes.io/component: monitoring

@@ -49,6 +49,14 @@ spec:
         ingressClassName: cloudflare-tunnel
         hosts:
           - grafana.twaslowski.com
+      datasources:
+        enabled: true
+        datasources:
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki.monitoring:3100
+            isDefault: false
 sops:
   age:
     - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
