@@ -3,8 +3,4 @@ kind: Kustomization
 namespace: vaultwarden-dr
 resources:
   - postgres-cluster.yaml
-secretGenerator:
-  - name: vaultwarden-db-pgbackrest-secret
-    files:
-      - s3.conf=s3.enc.yaml
-    type: Opaque
+  - secret.yaml
