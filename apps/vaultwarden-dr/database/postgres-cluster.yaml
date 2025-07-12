@@ -6,7 +6,7 @@ metadata:
 spec:
   dataSource:
     postgresCluster:
-      name: vaultwarden-db
+      clusterName: vaultwarden-db
       clusterNamespace: vaultwarden
       repoName: repo1
       options:
