@@ -7,7 +7,7 @@ spec:
   dataSource:
     postgresCluster:
       name: vaultwarden-db
-      namespace: vaultwarden
+      clusterNamespace: vaultwarden
       repoName: repo1
       options:
         - "--full"
