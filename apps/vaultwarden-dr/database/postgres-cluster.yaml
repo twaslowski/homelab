@@ -9,6 +9,8 @@ spec:
       name: vaultwarden-db
       namespace: vaultwarden
       repoName: repo1
+      options:
+        - "--full"
 #    pgbackrest:
 #      stanza: db
 #      configuration:
