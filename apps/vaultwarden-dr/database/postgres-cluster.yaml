@@ -5,19 +5,23 @@ metadata:
   namespace: vaultwarden-dr
 spec:
   dataSource:
-    pgbackrest:
-      stanza: db
-      configuration:
-        - secret:
-            name: vaultwarden-db-pgbackrest-secret
-      global:
-        repo1-path: /pgbackrest/vaultwarden/vaultwarden-db/repo1
-      repo:
-        name: repo1
-        s3:
-          bucket: 246770851643-homelab-backrest-backups
-          endpoint: s3.eu-central-1.amazonaws.com
-          region: eu-central-1
+    postgresCluster:
+      name: vaultwarden-db
+      namespace: vaultwarden
+      repoName: repo1
+#    pgbackrest:
+#      stanza: db
+#      configuration:
+#        - secret:
+#            name: vaultwarden-db-pgbackrest-secret
+#      global:
+#        repo1-path: /pgbackrest/vaultwarden/vaultwarden-db/repo1
+#      repo:
+#        name: repo1
+#        s3:
+#          bucket: 246770851643-homelab-backrest-backups
+#          endpoint: s3.eu-central-1.amazonaws.com
+#          region: eu-central-1
   instances:
     - dataVolumeClaimSpec:
         accessModes:
