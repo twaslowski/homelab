@@ -4,4 +4,4 @@ resources:
   - prometheus
   - logging
   - namespace.yaml
-  - configs
+  - grafana
