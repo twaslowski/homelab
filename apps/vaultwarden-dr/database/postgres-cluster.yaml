@@ -9,8 +9,6 @@ spec:
       clusterName: vaultwarden-db
       clusterNamespace: vaultwarden
       repoName: repo1
-      options:
-        - "--full"
 #    pgbackrest:
 #      stanza: db
 #      configuration:
