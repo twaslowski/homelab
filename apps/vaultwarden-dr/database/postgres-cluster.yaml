@@ -6,39 +6,18 @@ metadata:
 spec:
   dataSource:
     pgbackrest:
+      stanza: db
       configuration:
         - secret:
             name: vaultwarden-db-pgbackrest-secret
       global:
         repo1-path: /pgbackrest/vaultwarden/vaultwarden-db/repo1
-        repo1-retention-full: "30"
-        repo1-retention-full-type: time
-      stanza: db
       repo:
         name: repo1
         s3:
           bucket: 246770851643-homelab-backrest-backups
           endpoint: s3.eu-central-1.amazonaws.com
           region: eu-central-1
-  backups:
-    pgbackrest:
-      configuration:
-        - secret:
-            name: vaultwarden-db-pgbackrest-secret
-      global:
-        repo1-path: /pgbackrest/vaultwarden/vaultwarden-db/repo1
-        repo1-retention-full: "30"
-        repo1-retention-full-type: time
-      manual:
-        options:
-          - --type=full
-        repoName: repo1
-      repos:
-        - name: repo1
-          s3:
-            bucket: 246770851643-homelab-backrest-backups
-            endpoint: s3.eu-central-1.amazonaws.com
-            region: eu-central-1
   instances:
     - dataVolumeClaimSpec:
         accessModes:
