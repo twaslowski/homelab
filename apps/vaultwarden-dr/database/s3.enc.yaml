@@ -1,0 +1,11 @@
+[global]
+repo1-s3-key        = ENC[AES256_GCM,data:xwysujvOA3hVv1SL9bc1TjBclmg=,iv:3kgCD+EY7pRSO1001oXvaiw0rmIF7rMGKsJV/om7kGc=,tag:EJeBdnKjnXYNjDRLgYZ6mw==,type:str]
+repo1-s3-key-secret = ENC[AES256_GCM,data:hrNdvjkbv3SDg3EYv8yyGAHa733ZrCjC6CWaBkMl/YkfAB/y5rm82w==,iv:scKy8VyOGEY/OGtn3pwJ50qR5OZ5t01jgRjtFIdvyi0=,tag:s8pI8zv0ZNm5yIgtDGGsig==,type:str]
+
+[sops]
+age__list_0__map_recipient = age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
+age__list_0__map_enc       = -----BEGIN AGE ENCRYPTED FILE-----\nYWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxV2NlSm90dkNZaE5hZ3pG\nNHk4OXlzRWRVT2c2SktkbjArWnVndEUzMXhjCk41ZDE3eUdGOVBWaFpyYnRrMXR0\nZU1PNUs1NHZJUnppeVpISm4rU1V4U00KLS0tIDNEck4rNjhKSEpCb3ArcDVqb2tC\ncDZKNzZta01EVFBtWjlmNi9HZXd6NGsKGNSfmXmUmRl+Sy+KJ/l8HP3opzqOHbab\nCso4x9CTGm9ve/xv84ZDc/N6vEIDl4NOC3Yi3EwpXMn2GN9aVyM60w==\n-----END AGE ENCRYPTED FILE-----\n
+lastmodified               = 2025-07-12T13:07:12Z
+mac                        = ENC[AES256_GCM,data:KRorBcVOzQE6SuIkKv6f9EILOBv86uUzLUq3ojII5E12+1ZI/jiTmoQhp4UgF7rAYdAgAE0aGB0ieeKc4vfnVYvHJmf2Osap2Y7iAl2wq7YvegxoHzoiEI3xXrm7a5wpVWXxhYRjRHvsqvdS/pYkWBWM/3taGWCva1UvAlFazBI=,iv:3KVVWyNF/rJDB948rJLAafWg5C42H0gXLC9qaSNbRKU=,tag:WzH51a22HIZzp7Jl85cY8A==,type:str]
+encrypted_regex            = repo1*
+version                    = 3.10.2
