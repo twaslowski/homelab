@@ -6,6 +6,13 @@ metadata:
 spec:
   dataSource:
     pgbackrest:
+      configuration:
+        - secret:
+            name: vaultwarden-db-pgbackrest-secret
+      global:
+        repo1-path: /pgbackrest/vaultwarden/vaultwarden-db/repo1
+        repo1-retention-full: "30"
+        repo1-retention-full-type: time
       stanza: db
       repo:
         name: repo1
