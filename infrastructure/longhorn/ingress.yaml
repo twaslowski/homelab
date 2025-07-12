@@ -6,7 +6,8 @@ metadata:
 spec:
   ingressClassName: "cloudflare-tunnel"
   rules:
-    - http:
+    - host: "longhorn.twaslowski.com"
+      http:
         paths:
           - pathType: Prefix
             path: "/"
