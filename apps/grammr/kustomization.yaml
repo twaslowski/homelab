@@ -4,3 +4,4 @@ resources:
   - git-repository.yaml
   - helm-repository.yaml
   - dev.yaml
+  - prod.yaml
