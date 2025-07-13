@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: grammr-infra
+  name: grammr
   namespace: flux-system
 spec:
   interval: 1m
