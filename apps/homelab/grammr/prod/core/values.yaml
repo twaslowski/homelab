@@ -1,0 +1,36 @@
+fullnameOverride: core
+
+environmentVariables:
+  - name: DATASOURCE_URL
+    valueFrom:
+      secretKeyRef:
+        name: grammr-db-pguser-grammr
+        key: jdbc-uri
+  - name: ALLOWED_ORIGIN
+    value: https://grammr.app
+  - name: ANKI_EXPORTER_URL
+    value: http://anki-exporter.grammr:8000
+  - name: SPRING_PROFILES_ACTIVE
+    value: runtime
+  - name: JWT_PUBLIC_KEY
+    valueFrom:
+      configMapKeyRef:
+        name: clerk-jwt-public-key
+        key: jwt-key.pub
+
+ingress:
+  enabled: true
+  className: cloudflare-tunnel
+  host: server-prod.grammr.app
+  paths:
+    - /api/
+    - /actuator/health
+
+languages:
+  - code: ru
+    morphology:
+      enabled: true
+      uri: http://morphology-ru.grammr:8000/morphological-analysis
+    inflection:
+      enabled: true
+      uri: http://inflection-ru.grammr:8000/inflect

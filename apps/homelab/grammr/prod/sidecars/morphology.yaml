@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: morphology
+  namespace: grammr
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: morphology
+      version: "0.5.0"
+      sourceRef:
+        kind: HelmRepository
+        name: grammr
+        namespace: flux-system
+      interval: 15m
+  values:
+    languages:
+      - code: "ru"
+        model: "ru_core_news_md"

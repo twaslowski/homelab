@@ -1,0 +1,57 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: grammr-db
+  namespace: grammr
+spec:
+#  dataSource:
+#    pgbackrest:
+#      stanza: db
+#      configuration:
+#        - secret:
+#            name: grammr-db-pgbackrest-secret
+#      global:
+#        repo1-path: /pgbackrest/grammr/grammr-db/repo1
+#      repo:
+#        name: repo1
+#        s3:
+#          bucket: 246770851643-homelab-backrest-backups
+#          endpoint: s3.eu-central-1.amazonaws.com
+#          region: eu-central-1
+  backups:
+    pgbackrest:
+      configuration:
+        - secret:
+            name: grammr-db-pgbackrest-secret
+      global:
+        repo1-path: /pgbackrest/grammr/grammr-db/repo1
+        repo1-retention-full: "30"
+        repo1-retention-full-type: time
+      manual:
+        options:
+          - --type=full
+        repoName: repo1
+      repos:
+        - name: repo1
+          s3:
+            bucket: 246770851643-homelab-backrest-backups
+            endpoint: s3.eu-central-1.amazonaws.com
+            region: eu-central-1
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      name: instance1
+      replicas: 1
+  port: 5432
+  postgresVersion: 17
+  users:
+    - databases:
+        - grammr
+      name: grammr
+      options: SUPERUSER
+      password:
+        type: AlphaNumeric
