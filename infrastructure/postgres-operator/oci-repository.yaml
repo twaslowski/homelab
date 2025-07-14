@@ -1,9 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: pgo
-  namespace: postgres-operator
-spec:
-  interval: 24h
-  url: oci://registry.developers.crunchydata.com/crunchydata/pgo
-
