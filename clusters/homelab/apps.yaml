@@ -7,6 +7,7 @@ spec:
   dependsOn:
     - name: infrastructure
     - name: networking
+    - name: apps
   interval: 1h
   retryInterval: 1m
   timeout: 5m
