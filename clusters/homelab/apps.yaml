@@ -4,6 +4,9 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: infrastructure
+    - name: networking
   interval: 1h
   retryInterval: 1m
   timeout: 5m

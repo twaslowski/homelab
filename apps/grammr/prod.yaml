@@ -5,8 +5,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - shared
-    - dev
+    - name: shared
+    - name: dev
   interval: 1h
   retryInterval: 1m
   timeout: 5m
