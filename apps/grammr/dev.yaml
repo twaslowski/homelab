@@ -4,13 +4,15 @@ metadata:
   name: grammr-dev
   namespace: flux-system
 spec:
+  dependsOn:
+    - shared
   interval: 1h
   retryInterval: 1m
   timeout: 5m
   sourceRef:
     kind: GitRepository
     name: grammr
-  path: ./deploy
+  path: ./deploy/dev
   prune: true
   wait: true
   decryption:
