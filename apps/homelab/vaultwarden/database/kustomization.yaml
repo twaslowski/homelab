@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: vaultwarden
 resources:
   - postgres.yaml
+  - podmonitor.yaml
