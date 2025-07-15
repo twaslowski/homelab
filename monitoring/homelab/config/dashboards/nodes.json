@@ -18,42 +18,6 @@
           "type": "dashboard"
         },
         "type": "dashboard"
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "#5c4ee5",
-        "name": "terraform",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "terraform"
-          ],
-          "type": "tags"
-        }
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "red",
-        "name": "oncall",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "oncall"
-          ],
-          "type": "tags"
-        }
       }
     ]
   },
@@ -61,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2,
+  "id": 27,
   "links": [],
   "panels": [
     {
@@ -140,7 +104,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum by (cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"192.168.178.100:9100\"}[$__rate_interval])))",
+          "expr": "avg(sum by (cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=~\"$instance:.*\"}[$__rate_interval])))",
           "instant": true,
           "interval": "$resolution",
           "legendFormat": "",
@@ -153,7 +117,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -209,11 +173,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "prometheus"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(node_memory_MemTotal_bytes{instance=\"$instance\"} - node_memory_MemAvailable_bytes{instance=\"$instance\"}) / sum(node_memory_MemTotal_bytes{instance=\"$instance\"})",
+          "expr": "sum(node_memory_MemTotal_bytes{instance=~\"$instance:.*\"} - node_memory_MemAvailable_bytes{instance=~\"$instance:.*\"}) / sum(node_memory_MemTotal_bytes{instance=~\"$instance:.*\"})",
           "instant": true,
           "interval": "$resolution",
           "legendFormat": "",
@@ -276,7 +240,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(kube_pod_info{instance=\"$instance\"})",
+          "expr": "sum(kube_pod_info{instance=~\"$instance:.*\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -415,7 +379,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "kube_pod_info{instance=\"$instance\"}",
+          "expr": "kube_pod_info{node=\"homelab-agent\"}",
           "format": "table",
           "interval": "",
           "legendFormat": "",
@@ -564,7 +528,7 @@
             "uid": "${datasource}"
           },
           "exemplar": false,
-          "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=~\"$instance:.*\"}[$__rate_interval]))",
           "instant": true,
           "interval": "$resolution",
           "legendFormat": "",
@@ -628,7 +592,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(machine_cpu_cores{instance=\"$instance\"})",
+          "expr": "sum(machine_cpu_cores{instance=~\"$instance:.*\"})",
           "interval": "$resolution",
           "legendFormat": "",
           "refId": "A"
@@ -691,7 +655,7 @@
             "uid": "${datasource}"
           },
           "exemplar": false,
-          "expr": "sum(node_memory_MemTotal_bytes{instance=\"$instance\"} - node_memory_MemAvailable_bytes{instance=\"$instance\"})",
+          "expr": "sum(node_memory_MemTotal_bytes{instance=~\"$instance:.*\"} - node_memory_MemAvailable_bytes{instance=~\"$instance:.*\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -755,7 +719,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "machine_memory_bytes{instance=\"$instance\"}",
+          "expr": "machine_memory_bytes{instance=~\"$instance:.*\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -827,7 +791,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_time_seconds{instance=\"$instance\"} - node_boot_time_seconds{instance=\"$instance\"}",
+          "expr": "node_time_seconds{instance=~\"$instance:.*\"} - node_boot_time_seconds{instance=~\"$instance:.*\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -942,7 +906,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "avg(rate(node_cpu_seconds_total{instance=\"$instance\"}[$__rate_interval]) * 100) by (mode)",
+          "expr": "avg(rate(node_cpu_seconds_total{instance=~\"$instance:.*\"}[$__rate_interval]) * 100) by (mode)",
           "hide": false,
           "instant": false,
           "interval": "$resolution",
@@ -1044,7 +1008,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_MemTotal_bytes{instance=\"$instance\"} - node_memory_MemFree_bytes{instance=\"$instance\"} - (node_memory_Cached_bytes{instance=\"$instance\"} + node_memory_Buffers_bytes{instance=\"$instance\"})",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$instance:.*\"} - node_memory_MemFree_bytes{instance=~\"$instance:.*\"} - (node_memory_Cached_bytes{instance=~\"$instance:.*\"} + node_memory_Buffers_bytes{instance=~\"$instance:.*\"})",
           "instant": false,
           "interval": "$resolution",
           "legendFormat": "RAM Used",
@@ -1056,7 +1020,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_MemTotal_bytes{instance=\"$instance\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "RAM Total",
@@ -1068,7 +1032,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_Cached_bytes{instance=\"$instance\"}",
+          "expr": "node_memory_Cached_bytes{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "RAM Cache",
@@ -1080,7 +1044,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_Buffers_bytes{instance=\"$instance\"}",
+          "expr": "node_memory_Buffers_bytes{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "RAM Buffer",
@@ -1092,7 +1056,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_MemFree_bytes{instance=\"$instance\"}",
+          "expr": "node_memory_MemFree_bytes{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "RAM Free",
@@ -1104,7 +1068,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"} - node_memory_SwapFree_bytes{instance=\"$instance\"}",
+          "expr": "node_memory_SwapTotal_bytes{instance=~\"$instance:.*\"} - node_memory_SwapFree_bytes{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "SWAP Used",
@@ -1116,7 +1080,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "node_memory_SwapTotal_bytes{instance=\"$instance\"}",
+          "expr": "node_memory_SwapTotal_bytes{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "SWAP Total",
@@ -1314,7 +1278,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{instance=\"$node\", image!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{instance=~\"$instance\", image!=\"\"}) by (pod)",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -1424,7 +1388,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(node_cpu_core_throttles_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_cpu_core_throttles_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "Nb of cpu core throttles",
           "range": true,
@@ -1538,7 +1502,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_load1{instance=\"$instance\"}",
+          "expr": "node_load1{instance=~\"$instance:.*\"}",
           "interval": "$resolution",
           "legendFormat": "1m",
           "range": true,
@@ -1551,7 +1515,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_load5{instance=\"$instance\"}",
+          "expr": "node_load5{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "5m",
@@ -1565,7 +1529,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_load15{instance=\"$instance\"}",
+          "expr": "node_load15{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "15m",
@@ -1664,7 +1628,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_context_switches_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "rate(node_context_switches_total{instance=~\"$instance:.*\"}[$__rate_interval])",
           "interval": "$resolution",
           "intervalFactor": 1,
           "legendFormat": "Context switches",
@@ -1678,7 +1642,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_intr_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "rate(node_intr_total{instance=~\"$instance:.*\"}[$__rate_interval])",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "Interrupts",
@@ -1780,7 +1744,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_filefd_maximum{instance=\"$instance\"}",
+          "expr": "node_filefd_maximum{instance=~\"$instance:.*\"}",
           "instant": false,
           "interval": "$resolution",
           "legendFormat": "Maximum file descriptors",
@@ -1793,7 +1757,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_filefd_allocated{instance=\"$instance\"}",
+          "expr": "node_filefd_allocated{instance=~\"$instance:.*\"}",
           "hide": false,
           "instant": false,
           "interval": "$resolution",
@@ -1896,7 +1860,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_timex_estimated_error_seconds{instance=\"$instance\"}",
+          "expr": "node_timex_estimated_error_seconds{instance=~\"$instance:.*\"}",
           "instant": false,
           "interval": "$resolution",
           "intervalFactor": 1,
@@ -1910,7 +1874,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_timex_maxerror_seconds{instance=\"$instance\"}",
+          "expr": "node_timex_maxerror_seconds{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "intervalFactor": 1,
@@ -2024,7 +1988,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(node_network_receive_bytes_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_network_receive_bytes_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "In",
           "range": true,
@@ -2037,7 +2001,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "- sum(rate(node_network_transmit_bytes_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "- sum(rate(node_network_transmit_bytes_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "Out",
           "range": true,
@@ -2135,7 +2099,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(node_network_receive_errs_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_network_receive_errs_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "In",
           "refId": "A"
@@ -2147,7 +2111,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "- sum(rate(node_network_transmit_errs_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "- sum(rate(node_network_transmit_errs_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "Out",
           "range": true,
@@ -2246,7 +2210,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(node_network_receive_packets_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_network_receive_packets_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "In",
           "range": true,
@@ -2259,7 +2223,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "- sum(rate(node_network_transmit_packets_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "- sum(rate(node_network_transmit_packets_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "Out",
           "range": true,
@@ -2357,7 +2321,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(node_network_receive_drop_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_network_receive_drop_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "In",
@@ -2369,7 +2333,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "- sum(rate(node_network_transmit_drop_total{instance=\"$instance\"}[$__rate_interval]))",
+          "expr": "- sum(rate(node_network_transmit_drop_total{instance=~\"$instance:.*\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "Out",
@@ -2468,7 +2432,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_netstat_Tcp_CurrEstab{instance=\"$instance\"}",
+          "expr": "node_netstat_Tcp_CurrEstab{instance=~\"$instance:.*\"}",
           "instant": false,
           "interval": "$resolution",
           "legendFormat": "TCP Currently Established",
@@ -2583,7 +2547,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_nf_conntrack_entries{instance=\"$instance\"}",
+          "expr": "node_nf_conntrack_entries{instance=~\"$instance:.*\"}",
           "instant": false,
           "interval": "$resolution",
           "legendFormat": "NF Conntrack entries",
@@ -2596,7 +2560,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_nf_conntrack_entries_limit{instance=\"$instance\"}",
+          "expr": "node_nf_conntrack_entries_limit{instance=~\"$instance:.*\"}",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "NF Conntrack limit",
@@ -2823,7 +2787,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(kubelet_volume_stats_capacity_bytes{instance=\"$instance\"}) by (persistentvolumeclaim)",
+          "expr": "sum(kubelet_volume_stats_capacity_bytes{instance=~\"$instance:.*\"}) by (persistentvolumeclaim)",
           "format": "table",
           "hide": false,
           "interval": "",
@@ -3086,7 +3050,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=\"$instance\"} * 100) / node_filesystem_size_bytes{instance=\"$instance\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$instance:.*\"} * 100) / node_filesystem_size_bytes{instance=~\"$instance:.*\"})",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "{{ mountpoint }}",
@@ -3187,7 +3151,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - (node_filesystem_files_free{instance=\"$instance\"} / node_filesystem_files{instance=\"$instance\"} * 100)",
+          "expr": "100 - (node_filesystem_files_free{instance=~\"$instance:.*\"} / node_filesystem_files{instance=~\"$instance:.*\"} * 100)",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "{{ mountpoint }}",
@@ -3288,7 +3252,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_disk_read_bytes_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "rate(node_disk_read_bytes_total{instance=~\"$instance:.*\"}[$__rate_interval])",
           "interval": "$resolution",
           "legendFormat": "{{device}}",
           "range": true,
@@ -3388,7 +3352,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_disk_written_bytes_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "rate(node_disk_written_bytes_total{instance=~\"$instance:.*\"}[$__rate_interval])",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "{{device}}",
@@ -3489,7 +3453,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_disk_reads_completed_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "rate(node_disk_reads_completed_total{instance=~\"$instance:.*\"}[$__rate_interval])",
           "interval": "$resolution",
           "legendFormat": "{{device}}",
           "range": true,
@@ -3589,7 +3553,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_disk_writes_completed_total{instance=\"$instance\"}[$__rate_interval])",
+          "expr": "rate(node_disk_writes_completed_total{instance=~\"$instance:.*\"}[$__rate_interval])",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "{{device}}",
@@ -3690,7 +3654,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_disk_io_now{instance=\"$instance\"}[$__rate_interval]) ",
+          "expr": "rate(node_disk_io_now{instance=~\"$instance:.*\"}[$__rate_interval]) ",
           "interval": "$resolution",
           "legendFormat": "{{device}}",
           "range": true,
@@ -3790,7 +3754,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(node_filesystem_device_error{instance=\"$instance\"}) by (mountpoint)",
+          "expr": "sum(node_filesystem_device_error{instance=~\"$instance:.*\"}) by (mountpoint)",
           "interval": "$resolution",
           "legendFormat": "{{ mountpoint }}",
           "range": true,
@@ -3812,8 +3776,8 @@
     "list": [
       {
         "current": {
-          "text": "prometheus",
-          "value": "feqbtnp2oqc5ce"
+          "text": "Prometheus",
+          "value": "prometheus"
         },
         "includeAll": false,
         "name": "datasource",
@@ -3867,46 +3831,24 @@
       },
       {
         "current": {
-          "text": "homelab-leader",
-          "value": "homelab-leader"
+          "text": "192.168.178.100",
+          "value": "192.168.178.100"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(kube_node_info, node)",
-        "includeAll": false,
-        "name": "node",
-        "options": [],
-        "query": {
-          "query": "label_values(kube_node_info, node)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 2,
-        "regex": "",
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${datasource}"
-        },
-        "definition": "label_values(node_uname_info{nodename=~\"(?i:($node)(\\.[a-z0-9.]+)?)\"}, instance)",
-        "hide": 2,
+        "definition": "label_values(node_time_seconds,instance)",
         "includeAll": false,
         "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(node_uname_info{nodename=~\"(?i:($node)(\\.[a-z0-9.]+)?)\"}, instance)",
-          "refId": "StandardVariableQuery"
+          "qryType": 1,
+          "query": "label_values(node_time_seconds,instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
-        "regex": "",
+        "regex": "/(.*):.*/",
         "sort": 1,
         "type": "query"
       }
@@ -3920,5 +3862,5 @@
   "timezone": "",
   "title": "Kubernetes / Views / Nodes",
   "uid": "k8s_views_nodes",
-  "version": 16
+  "version": 1
 }
