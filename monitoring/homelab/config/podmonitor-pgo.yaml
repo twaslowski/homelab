@@ -3,7 +3,7 @@ kind: PodMonitor
 metadata:
   name: cloudnative-pg-monitor
   labels:
-    app.kubernetes.io/part-of: flux
+    app.kubernetes.io/part-of: infrastructure
     app.kubernetes.io/component: monitoring
 spec:
   namespaceSelector:

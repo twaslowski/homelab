@@ -3,6 +3,9 @@ kind: PodMonitor
 metadata:
   name: pg-podmonitor
   namespace: vaultwarden
+  labels:
+    app.kubernetes.io/part-of: vaultwarden
+    app.kubernetes.io/component: monitoring
 spec:
   selector:
     matchLabels:
