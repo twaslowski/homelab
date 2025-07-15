@@ -12,6 +12,9 @@ configMapGenerator:
       - dashboards/flux-control-plane.json
       - dashboards/global.json
       - dashboards/nodes.json
+      - dashboards/pods.json
+      - dashboards/namespaces.json
+      - dashboards/cloudnative-pg.json
     options:
       labels:
         grafana_dashboard: "1"
