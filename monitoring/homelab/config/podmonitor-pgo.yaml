@@ -1,19 +1,19 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
-  name: postgres-operator
+  name: cloudnative-pg-monitor
   labels:
     app.kubernetes.io/part-of: flux
     app.kubernetes.io/component: monitoring
 spec:
   namespaceSelector:
     matchNames:
-      - postgres-operator
+      - cnpg-system
   selector:
     matchExpressions:
-      - key: app
-        operator: Exists
+      - key: app.kubernetes.io/name
+        operator: In
         values:
-          - postgres-operator.crunchydata.com/control-plane
+          - cloudnative-pg
   podMetricsEndpoints:
     - port: metrics

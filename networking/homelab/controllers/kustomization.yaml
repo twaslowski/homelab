@@ -4,4 +4,3 @@ resources:
   - cloudflared
   - metallb
   - cert-manager
-  - config
