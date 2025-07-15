@@ -24,6 +24,8 @@ metadata:
   name: infrastructure-config
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: infrastructure
   interval: 1h
   retryInterval: 1m
   timeout: 5m
