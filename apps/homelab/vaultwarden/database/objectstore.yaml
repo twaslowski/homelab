@@ -1,0 +1,18 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: backup-store
+  namespace: vaultwarden
+spec:
+  configuration:
+    destinationPath: s3://246770851643-homelab-backrest-backups/vaultwarden/prod/
+    endpointURL: https://s3.eu-central-1.amazonaws.com
+    s3Credentials:
+      accessKeyId:
+        name: barman-aws-creds
+        key: access_key_id
+      secretAccessKey:
+        name: barman-aws-creds
+        key: access_secret_key
+    wal:
+      compression: gzip
