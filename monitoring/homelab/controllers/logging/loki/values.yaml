@@ -25,7 +25,7 @@ chunksCache:
   enabled: false
 
 minio:
-  enabled: true
+  enabled: false
 
 deploymentMode: SingleBinary
 
