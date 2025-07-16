@@ -1,12 +1,12 @@
-# This is not actually included as of now, but can trigger a backup via `kubectl apply -f backup.yaml`
 apiVersion: postgresql.cnpg.io/v1
-kind: Backup
+kind: ScheduledBackup
 metadata:
-  name: manual-backup-n
+  name: scheduled-backup
   namespace: vaultwarden
 spec:
   cluster:
     name: vaultwarden-pg
   method: plugin
+  schedule: "0 */6 * * *"
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
