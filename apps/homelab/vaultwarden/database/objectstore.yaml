@@ -5,7 +5,7 @@ metadata:
   namespace: vaultwarden
 spec:
   configuration:
-    destinationPath: s3://246770851643-homelab-backrest-backups/vaultwarden/prod/
+    destinationPath: s3://246770851643-eu-central-1-homelab-cluster-storage/backups/vaultwarden/vaultwarden-pg/
     endpointURL: https://s3.eu-central-1.amazonaws.com
     s3Credentials:
       accessKeyId:
