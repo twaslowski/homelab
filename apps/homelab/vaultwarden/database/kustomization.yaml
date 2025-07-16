@@ -4,3 +4,5 @@ namespace: vaultwarden
 resources:
   - postgres.yaml
   - podmonitor.yaml
+  - objectstore.yaml
+  - secret.yaml
