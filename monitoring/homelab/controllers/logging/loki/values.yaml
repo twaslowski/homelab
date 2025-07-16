@@ -40,7 +40,7 @@ minio:
   enabled: false
 deploymentMode: SingleBinary
 singleBinary:
-  replicas: 1
+  replicas: 2
 # Zero out replica counts of other deployment modes
 backend:
   replicas: 0
