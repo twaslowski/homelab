@@ -16,22 +16,31 @@ loki:
   limits_config:
     allow_structured_metadata: true
     volume_enabled: true
+    # 14 days
+    retention_period: 336h
   ruler:
     enable_api: true
-
+  storage:
+    type: s3
+    bucketNames:
+      chunks: 246770851643-eu-central-1-homelab-cluster-storage
+      ruler: 246770851643-eu-central-1-homelab-cluster-storage
+      admin: 246770851643-eu-central-1-homelab-cluster-storage
+    s3:
+      endpoint: https://s3.eu-central-1.amazonaws.com
+      region: eu-central-1
+      secretAccessKey: ENC[AES256_GCM,data:nShAfCP+fbsy+ECX9xY4jKk86GhjMJdKuV70v2UYsGgXinC8wMzAhg==,iv:ydzkgi17x67q0cNWxC3RjfuVlA3MpG3pViCV82VcAWc=,tag:qcHNe8faZbqDYi6cn+mfEg==,type:str]
+      accessKeyId: ENC[AES256_GCM,data:yqQ4HqRfdJMXA4vtYD8Snezzi18=,iv:PGDyluCeKPKYGX5b+vexBvBlhfONm1fWX5GYDxzu1y0=,tag:JfRppJksQZSsn6IM8GXN2w==,type:str]
+      s3ForcePathStyle: true
 # the chunksCache does not work well on Raspberry Pi
 # in any case, the performance benefits it offers likely are not relevant at this scale
 chunksCache:
   enabled: false
-
 minio:
-  enabled: true
-
+  enabled: false
 deploymentMode: SingleBinary
-
 singleBinary:
   replicas: 1
-
 # Zero out replica counts of other deployment modes
 backend:
   replicas: 0
@@ -39,7 +48,6 @@ read:
   replicas: 0
 write:
   replicas: 0
-
 ingester:
   replicas: 0
 querier:
@@ -58,3 +66,18 @@ bloomCompactor:
   replicas: 0
 bloomGateway:
   replicas: 0
+sops:
+  age:
+    - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBXWW1jOUdsVnJKUW0vZ3Ew
+        MzYvaDRsOGVsWS9YcGkxQmFFVDBpOU5PQmlFCmdHc29oVkVhSDZlWi80YVFhMm9j
+        dkdCUUFoTTBHbWNLT3g0a1lLSFE0cUUKLS0tIGlET2tUdzBHZFllcFFTL240VG9Y
+        My9qOCthZHlUT25wUHFHM281cjlRckUKbMddlDtMDhIGW91tWR7yJKK3Oa8LmaIt
+        LnGe+F+SoTqQdXgxYYQjEblJL1kVk8uf70ezrEl2fr8ysWm6/l+hkw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-07-16T11:42:45Z"
+  mac: ENC[AES256_GCM,data:DT1C237zOP29RdZa12XJQdEfxflCOH0hFdCFRLo2cxT5gnoMzzZniMawz2SlePlhJGEnvP84ufli5l8oaJSnCPC06my00r2MlT1QEDBHKBD0hKgIbSnvVenYVcRdxdzmXyrdbq766unQwLxMYgQbpE7k/o7qntbZtHQ8jwfg/rc=,iv:p7ML1yspd70HOxBNSmF6VjQJUzJU/9VgGS11l97fmcA=,tag:mxhiYHB1u6ez4MbLnV4b0Q==,type:str]
+  encrypted_regex: secretAccessKey|accessKeyId
+  version: 3.10.2
