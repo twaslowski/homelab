@@ -10,9 +10,9 @@ spec:
     s3Credentials:
       accessKeyId:
         name: barman-aws-creds
-        key: access_key_id
+        key: aws_access_key_id
       secretAccessKey:
         name: barman-aws-creds
-        key: access_secret_key
+        key: aws_access_secret_key
     wal:
       compression: gzip

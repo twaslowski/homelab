@@ -4,23 +4,19 @@ metadata:
   name: vaultwarden-pg
   namespace: vaultwarden
 spec:
-  instances: 1
-
+  instances: 2
   bootstrap:
     initdb:
       database: vaultwarden
       owner: vaultwarden
       secret:
         name: pg-secret
-
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: backup-store
-
   storage:
     size: 1Gi
-
   monitoring:
     enablePodMonitor: true
