@@ -4,7 +4,7 @@ namespace: monitoring
 fullnameOverride: "fluent-bit"
 
 flush: 1
-logLevel: debug
+logLevel: info
 
 config:
   inputs: |
@@ -39,8 +39,9 @@ config:
     [OUTPUT]
         name  loki
         match kube.*
-        host  loki.monitoring.svc.cluster.local
-        labels job=fluent-bit, namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_name=$kubernetes['container_name'], app=$kubernetes['labels']['app'], service=$kubernetes['labels']['service']
+        host  loki
+        port  3100
+        labels namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_name=$kubernetes['container_name'], app=$kubernetes['labels']['app'], service=$kubernetes['labels']['service']
 
   customParsers: |
     [PARSER]
