@@ -15,9 +15,10 @@ tasks:
     cmds:
       - | 
         aws cloudformation deploy --stack-name=bootstrap \
-          --template-file bootstrap/aws.yaml \
+          --template-file aws/aws.yaml \
           --capabilities CAPABILITY_NAMED_IAM \
           --tags "project=homelab created-by=bootstrap"
+        aws cloudformation describe-stacks --stack-name bootstrap --query "Stacks[0].Outputs"
 
   bootstrap-flux:
     desc: Setup Flux for GitOps and create

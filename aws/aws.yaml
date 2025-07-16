@@ -3,12 +3,12 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Homelab AWS account boostrap
 
 Resources:
-  TerraformStateS3Bucket:
+  StorageBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      BucketName: !Sub "${AWS::AccountId}-${AWS::Region}-terraform-state"
+      BucketName: !Sub "${AWS::AccountId}-${AWS::Region}-homelab-cluster-storage"
       AccessControl: Private
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
@@ -24,3 +24,40 @@ Resources:
           - ObjectOwnership: BucketOwnerEnforced
       VersioningConfiguration:
         Status: Enabled
+
+  HomelabStorageUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: homelab-storage-user
+
+  HomelabStorageUserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: homelab-storage-user-s3-access
+      Users:
+        - !Ref HomelabStorageUser
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+              - s3:DeleteObject
+              - s3:ListBucket
+            Resource:
+              - !GetAtt StorageBucket.Arn
+              - !Sub "${StorageBucket.Arn}/*"
+
+  HomelabStorageUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref HomelabStorageUser
+
+Outputs:
+  HomelabStorageUserAccessKeyId:
+    Description: Access Key ID for homelab-storage-user
+    Value: !Ref HomelabStorageUserAccessKey
+  HomelabStorageUserSecretAccessKey:
+    Description: Secret Access Key for homelab-storage-user
+    Value: !GetAtt HomelabStorageUserAccessKey.SecretAccessKey
