@@ -8,7 +8,6 @@ configMapGenerator:
   - name: flux-grafana-dashboards
     files:
       - dashboards/flux-cluster.json
-      - dashboards/flux-logs.json
       - dashboards/flux-control-plane.json
       - dashboards/global.json
       - dashboards/nodes.json

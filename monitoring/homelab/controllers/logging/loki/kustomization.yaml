@@ -3,9 +3,13 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - release.yaml
+  - s3-release.yaml
 configMapGenerator:
   - name: loki-values
     files:
       - values.yaml=values.yaml
+  - name: loki-s3-values
+    files:
+      - values.yaml=s3-values.yaml
 configurations:
   - kustomizeconfig.yaml
