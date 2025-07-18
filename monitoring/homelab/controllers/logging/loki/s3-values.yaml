@@ -42,7 +42,11 @@ loki:
 deploymentMode: SingleBinary
 singleBinary:
   replicas: 1
+  affinity: {}
   resources:
+    requests:
+      cpu: "200m"
+      memory: 500Mi
     limits:
       cpu: "1"
       memory: 3Gi
