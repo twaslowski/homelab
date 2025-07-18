@@ -3,7 +3,6 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Backup
 metadata:
   name: manual-backup-n
-  namespace: vaultwarden
 spec:
   cluster:
     name: vaultwarden-pg

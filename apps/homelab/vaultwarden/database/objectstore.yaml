@@ -2,7 +2,6 @@ apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
   name: backup-store
-  namespace: vaultwarden
 spec:
   configuration:
     destinationPath: s3://246770851643-eu-central-1-homelab-cluster-storage/backups/vaultwarden/vaultwarden-pg/

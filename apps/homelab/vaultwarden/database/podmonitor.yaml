@@ -2,7 +2,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: vaultwarden-pg-monitor
-  namespace: vaultwarden
   labels:
     app.kubernetes.io/part-of: vaultwarden
     app.kubernetes.io/component: monitoring

@@ -2,7 +2,6 @@ apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
   name: scheduled-backup
-  namespace: vaultwarden
 spec:
   cluster:
     name: vaultwarden-pg
