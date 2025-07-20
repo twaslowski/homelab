@@ -14,8 +14,9 @@ spec:
         parameters:
           barmanObjectName: backup-store
           serverName: vaultwarden-pg
-  nodeSelector:
-    kubernetes.io/hostname: homelab-leader
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: homelab-leader
   storage:
     size: 1Gi
   monitoring:
