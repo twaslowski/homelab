@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: vaultwarden-pg-monitor
+  labels:
+    app.kubernetes.io/part-of: vaultwarden-dr
+    app.kubernetes.io/component: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+      - vaultwarden
+  selector:
+    matchExpressions:
+      - key: "cnpg.io/cluster"
+        operator: In
+        values:
+          - vaultwarden-pg
+  podMetricsEndpoints:
+    - port: metrics

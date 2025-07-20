@@ -1,0 +1,20 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: vaultwarden-pg
+spec:
+  instances: 2
+  bootstrap:
+    recovery:
+      source: source
+  externalClusters:
+    - name: source
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: backup-store
+          serverName: vaultwarden-pg
+  storage:
+    size: 1Gi
+  monitoring:
+    enablePodMonitor: true

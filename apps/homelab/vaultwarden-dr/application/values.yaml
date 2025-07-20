@@ -1,12 +1,12 @@
-domain: https://warden-dr.twaslowski.com
+domain: https://warden.twaslowski.com
 
 ingress:
   class: "cloudflare-tunnel"
   enabled: true
-  hostname: warden-dr.twaslowski.com
+  hostname: warden.twaslowski.com
   tls: false
 
 database:
   type: postgresql
-  existingSecret: vaultwarden-db-pguser-vaultwarden
+  existingSecret: pg-secret
   existingSecretKey: uri
