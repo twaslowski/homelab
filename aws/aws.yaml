@@ -54,6 +54,19 @@ Resources:
     Properties:
       UserName: !Ref HomelabStorageUser
 
+  HomelabSecret:
+    Type: AWS::SecretsManager::Secret
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Name: /homelab/bootstrap
+      Description: Stable secret store for homelab
+      SecretString: |
+        {
+          "exampleKey1": "exampleValue1",
+          "exampleKey2": "exampleValue2"
+        }
+
 Outputs:
   HomelabStorageUserAccessKeyId:
     Description: Access Key ID for homelab-storage-user
