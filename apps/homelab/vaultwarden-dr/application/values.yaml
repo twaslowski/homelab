@@ -1,9 +1,9 @@
-domain: https://warden.twaslowski.com
+domain: https://warden-dr.twaslowski.com
 
 ingress:
   class: "cloudflare-tunnel"
   enabled: true
-  hostname: warden.twaslowski.com
+  hostname: warden-dr.twaslowski.com
   tls: false
 
 database:
