@@ -1,11 +1,4 @@
 # Values reference: https://grafana.com/docs/loki/latest/setup/install/helm/reference/
-global:
-  extraArgs:
-    - -config.expand-env=true
-  extraEnvFrom:
-    secretRef:
-      name: loki-s3-credentials
-
 loki:
   server:
     http_listen_port: 3100
@@ -67,13 +60,11 @@ singleBinary:
   affinity: { }
   resources:
     requests:
-      cpu: 200m
+      cpu: 100m
       memory: 500Mi
     limits:
       cpu: "1"
-      memory: 3Gi
-  nodeSelector:
-    kubernetes.io/hostname: homelab-leader
+      memory: 2Gi
   extraEnvFrom:
     - secretRef:
         name: loki-s3-credentials

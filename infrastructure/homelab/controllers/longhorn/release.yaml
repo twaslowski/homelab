@@ -13,3 +13,6 @@ spec:
         kind: HelmRepository
         name: longhorn
       interval: 15m
+  values:
+    persistence:
+      defaultClassReplicaCount: 2
