@@ -1,0 +1,21 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: grammr-pg
+spec:
+  instances: 2
+  bootstrap:
+    initdb:
+      database: grammr
+      owner: grammr
+      secret:
+        name: pg-secret
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: backup-store
+  storage:
+    size: 1Gi
+  monitoring:
+    enablePodMonitor: true

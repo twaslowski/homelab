@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: grammr-pg-monitor
+  labels:
+    app.kubernetes.io/part-of: grammr
+    app.kubernetes.io/component: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+      - grammr-dev
+  selector:
+    matchExpressions:
+      - key: "cnpg.io/cluster"
+        operator: In
+        values:
+          - grammr-pg
+  podMetricsEndpoints:
+    - port: metrics

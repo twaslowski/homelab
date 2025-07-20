@@ -6,4 +6,5 @@ resources:
   - sidecars
   - core
   - certificate.yaml
-  - monitoring
+  - secret.yaml
+  - namespace.yaml
