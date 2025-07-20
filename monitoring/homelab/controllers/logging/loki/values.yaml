@@ -1,4 +1,11 @@
 # Values reference: https://grafana.com/docs/loki/latest/setup/install/helm/reference/
+global:
+  extraArgs:
+    - -config.expand-env=true
+  extraEnvFrom:
+    secretRef:
+      name: loki-s3-credentials
+
 loki:
   server:
     http_listen_port: 3100
@@ -32,8 +39,8 @@ loki:
         bucket_name: 246770851643-eu-central-1-homelab-cluster-storage
         endpoint: s3.amazonaws.com
         region: eu-central-1
-        access_key_id: ENC[AES256_GCM,data:3AlrJ4/nBV3u/ag9sSKtQ+ZMY1c=,iv:EmaIrDsnFWpBat9zGg6f/l5A46mtgZQKo1uq100DwT4=,tag:RP7xAy5bSR8cGE1WbMApNA==,type:str]
-        secret_access_key: ENC[AES256_GCM,data:7PPdbXBRDgkneXoKY8nmQzx4Ik9qdVQbR9Rqui2bGxOUhX9AjjmDmA==,iv:RKUU2OyAurpJwS4wLBYYgey6cPw68hLXf8U/8jZtnpQ=,tag:F5Y6TdOtoBdFVvKODpurHw==,type:str]
+        access_key_id: ${AWS_ACCESS_KEY_ID}
+        secret_access_key: ${AWS_SECRET_ACCESS_KEY}
         dualstack_enabled: false
         storage_class: STANDARD
         max_retries: 5
@@ -45,8 +52,8 @@ loki:
         bucket_name: 246770851643-eu-central-1-homelab-cluster-storage
         endpoint: s3.amazonaws.com
         region: eu-central-1
-        access_key_id: ENC[AES256_GCM,data:tYyeiBr6a5gs+9gfFlVMyyw4mqs=,iv:HMfRVLP0jJM9JBj9SxwMui1LjGJU+hESoGKruou5nvA=,tag:aJ61vN8wDKqDNv7BcprrSw==,type:str]
-        secret_access_key: ENC[AES256_GCM,data:G0Qf5xoVoktXOHo06l4S9fo8lZ/2Nxx9hIQAYTVwNIOhrvhfmZchsQ==,iv:ck0kA0zm0Xz7/+ZRjYxKp6Tm2wP+S6hVbSuWNFou9iY=,tag:E6aPU6oFPVdDHnQ9UPHdIw==,type:str]
+        access_key_id: ${AWS_ACCESS_KEY_ID}
+        secret_access_key: ${AWS_SECRET_ACCESS_KEY}
         dualstack_enabled: false
         storage_class: STANDARD
         max_retries: 5
@@ -67,6 +74,12 @@ singleBinary:
       memory: 3Gi
   nodeSelector:
     kubernetes.io/hostname: homelab-leader
+  extraEnvFrom:
+    - secretRef:
+        name: loki-s3-credentials
+  extraArgs:
+    - -config.expand-env=true
+
 minio:
   enabled: false
 # the chunksCache does not work well on Raspberry Pi
@@ -97,18 +110,4 @@ bloomCompactor:
   replicas: 0
 bloomGateway:
   replicas: 0
-sops:
-  age:
-    - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYVTRLbmhvOWo3M2NsSFJ2
-        SUNuQ01weVRoeTJMSSsxRVJOcWZxMW5SamlRClBwd3dqM2grMlU3bUllQkhNODZl
-        VmZodUNidHNFbFI1bTRXbEgyZXgyZGcKLS0tIDEyQkJvcDFpV0xSVlNwM1l3OUlH
-        Q2ZQRVFqZjRpMkpzaDVrbGw3RUVuZzQKQ+vXMFiX8scZ0w7OtZlI8KAmP+M0HcCM
-        cl5JuqwYgnbQuv8NaYde358ny3vkq+RicyLF/RsyEsrp6G5FhfU38A==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-07-20T10:55:57Z"
-  mac: ENC[AES256_GCM,data:ebAF0yjLc3s4r8SR7ZyOEHoTGcHRM0mz+l/b5t10DYU4APqsTbam1Dkm8ivJyKDOqIQShwn2f2V/Q36G5qJxyEq2ZjZhSW4GR81wB29QJvlVYrRWyqUkJ5GrNlG8Bqut8fTubvEZ9p0nGX4BRKsNJGIBw/b+TMK2QXOk7fqmuQ0=,iv:mEuEXapZFgUWmLfdcF5IWvCIqCTzbEmmOwbWVXn9Z5c=,tag:ARSFseyavoPXu3N9LkbI9Q==,type:str]
-  encrypted_regex: access_key_id|secret_access_key
-  version: 3.10.2
+
