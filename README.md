@@ -84,7 +84,7 @@ Running `task bootstrap-leader` will set up your leader node. This will install 
 to point to the new cluster. You will need to provide several parameters in order for this command to work:
 
 ```shell
-export IP_ADDRESS=<IP_ADDRESS>  # IP address of the leader node
+export IP_ADDRESS=<IP_ADDRESS>  # IP address of the leader node, alternatively HOST can be provided as well
 export USER=<USER>  # SSH user to connect to the node
 export SSH=<SSH_KEY>  # Path to the SSH private key to use for authentication
 

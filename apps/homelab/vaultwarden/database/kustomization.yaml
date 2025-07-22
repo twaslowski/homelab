@@ -5,4 +5,5 @@ resources:
   - postgres.yaml
   - podmonitor.yaml
   - objectstore.yaml
+  - scheduled-backup.yaml
   - secret.yaml

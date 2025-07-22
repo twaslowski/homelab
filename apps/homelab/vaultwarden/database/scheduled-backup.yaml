@@ -6,6 +6,6 @@ spec:
   cluster:
     name: vaultwarden-pg
   method: plugin
-  schedule: "0 */6 * * *"
+  schedule: "0 0 */6 * * *"
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
