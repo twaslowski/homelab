@@ -8,7 +8,7 @@ configMapGenerator:
     files:
       - values.yaml=values.yaml
 secretGenerator:
-  - name: core-values-secret
+  - name: paperless-values
     files:
       - values.yaml=values.enc.yaml
 configurations:

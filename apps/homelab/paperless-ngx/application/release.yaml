@@ -8,10 +8,12 @@ spec:
     spec:
       chart: paperless-ngx
       version: "0.24.1"
-      chartRef:
+      sourceRef:
         kind: HelmRepository
         name: paperless-ngx
       interval: 15m
   valuesFrom:
     - kind: ConfigMap
+      name: paperless-values
+    - kind: Secret
       name: paperless-values
