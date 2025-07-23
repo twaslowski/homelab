@@ -39,13 +39,17 @@ postgresql:
   enabled: false
 persistence:
   data:
-    enabled: false
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 500Mi
   media:
-    enabled: false
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 10Gi
   consume:
     enabled: true
     accessMode: ReadWriteOnce
-    size: 4Gi
+    size: 1Gi
   export:
     enabled: true
     accessMode: ReadWriteOnce
