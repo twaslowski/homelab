@@ -1,0 +1,52 @@
+env:
+  TZ: "Europe/Berlin"
+  PAPERLESS_OCR_LANG: "deu+eng"
+  PAPERLESS_URL: "https://paperless.twaslowski.com"
+
+  # Database settings
+  PAPERLESS_DBENGINE: postgresql
+  PAPERLESS_DBHOST: paperless-pg-rw
+  PAPERLESS_DBNAME: paperless_ngx
+  PAPERLESS_DBUSER:
+    valueFrom:
+      secretKeyRef:
+        name: pg-secret
+        key: username
+  PAPERLESS_DBPASS:
+    valueFrom:
+      secretKeyRef:
+        name: pg-secret
+        key: password
+
+# Kubernetes specifics
+controller:
+  strategy: RollingUpdate
+nodeSelector:
+  kubernetes.io/hostname: homelab-leader
+
+ingress:
+  main:
+    enabled: true
+    ingressClassName: "cloudflare-tunnel"
+    hosts:
+      - host: paperless.twaslowski.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+# Persistence settings
+postgresql:
+  enabled: false
+persistence:
+  data:
+    enabled: false
+  media:
+    enabled: false
+  consume:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 4Gi
+  export:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Gi

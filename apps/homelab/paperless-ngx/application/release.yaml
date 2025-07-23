@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: paperless-ngx
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: paperless-ngx
+      version: "0.24.1"
+      chartRef:
+        kind: HelmRepository
+        name: paperless-ngx
+      interval: 15m
+  valuesFrom:
+    - kind: ConfigMap
+      name: paperless-values
