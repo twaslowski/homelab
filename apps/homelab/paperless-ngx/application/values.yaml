@@ -47,8 +47,10 @@ persistence:
     accessMode: ReadWriteOnce
     size: 10Gi
   consume:
-    enabled: false
+    enabled: true
     accessMode: ReadWriteOnce
     size: 500Mi
   export:
-    enabled: false
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 500Mi
