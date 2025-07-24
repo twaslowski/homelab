@@ -1,0 +1,17 @@
+env:
+  SECRET_KEY: ENC[AES256_GCM,data:dz2ypCpVpRgyZdjMEDMIfPKwnaH2qL9kzxepbD+wAok=,iv:85spi20+A7PR6VaAi/Q3x+0kmG/lbirmHoArXJsMYGA=,tag:GgwAjIoBTwid27n/YOHu8Q==,type:str]
+sops:
+  age:
+    - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6TzZBSzlTSkhKNjVQRFdu
+        RWhTNHgrRmlFdUh3a1luUC9VQ3V1YnVBOG1NCkhRUU52TXo3UlQ1K09mS0ltc3pI
+        a3J6TktQSkdqV0EveFRHMzBvUWJjdDAKLS0tIHJpMzFwN01qckZnNzRVUS9CTnI0
+        aDRUQ1N6L3U4MjJLc0hMK3lrL0xVNk0KW9rhor1ol7Ao9ACfamBP8uteghAwUPxj
+        NW4HunaLPtOfRTZZZeGa3lhlNt4P4nmteAcOqOHo+wK4T9dG8ZNxyg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-07-24T12:49:26Z"
+  mac: ENC[AES256_GCM,data:P+PLZxVAGMnreuOG/V6z8wpX0PJf1VioKO0J1TAVgZDqX6Kzpu0bZpjYnvfjBoTymvk6pqswGmI4HZidZ7FpNOfzG5LpOVuaRjbaClfs2EoJLNzoRhofejYiKesuwCNmcn7lXoRQ/Thvx0jUSwlEq6ky22gPcGEXm9ZFNyqfxL0=,iv:Hr6AXiOQkeWMg8aXQAFoJtFEHlpouJnlu1XJB2oBZog=,tag:PM7Z+wUGa30rXJ2WlIIXOA==,type:str]
+  encrypted_regex: env
+  version: 3.10.2

@@ -1,0 +1,42 @@
+env:
+  TZ: "Europe/Berlin"
+  DB_ENGINE: "django.db.backends.postgresql"
+  POSTGRES_HOST: "tandoor-pg-rw"
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: "tandoor"
+  POSTGRES_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: pg-secret
+        key: password
+  POSTGRES_DB: "tandoor"
+
+controller:
+  strategy: RollingUpdate
+
+ingress:
+  main:
+    enabled: true
+    ingressClassName: "cloudflare-tunnel"
+    hosts:
+      - host: tandoor.twaslowski.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+
+persistence:
+  media:
+    enabled: true
+    size: 2Gi
+    accessMode: ReadWriteOnce
+  config:
+    enabled: true
+    size: 50Mi
+    accessMode: ReadWriteOnce
+  django-js-reverse:
+    enabled: false
+  static:
+    enabled: false
+
+postgresql:
+  enabled: false

@@ -100,3 +100,11 @@ configMaps:
                 keywords: "password manager"
                 url: "https://warden.twaslowski.com"
                 target: "_blank"
+              
+              - name: "Tandoor"
+                subtitle: "Recipe Manager & Meal Planning"
+                icon: "fa-solid fa-bowl-food"
+                keywords: "recipe manager meal planning"
+                url: "https://tandoor.twaslowski.com"
+                target: "_blank"
+

@@ -1,0 +1,11 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: scheduled-backup
+spec:
+  cluster:
+    name: tandoor-pg
+  method: plugin
+  schedule: "0 0 */6 * * *"
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

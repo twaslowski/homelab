@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: tandoor-pg-monitor
+  labels:
+    app.kubernetes.io/part-of: tandoor
+    app.kubernetes.io/component: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+      - tandoor
+  selector:
+    matchExpressions:
+      - key: "cnpg.io/cluster"
+        operator: In
+        values:
+          - tandoor-pg
+  podMetricsEndpoints:
+    - port: metrics

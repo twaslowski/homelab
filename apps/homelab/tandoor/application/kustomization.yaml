@@ -3,12 +3,13 @@ kind: Kustomization
 resources:
   - release.yaml
 configMapGenerator:
-  - name: paperless-values
+  - name: tandoor-values
     files:
       - values.yaml=values.yaml
 secretGenerator:
-  - name: paperless-secrets
+  - name: tandoor-secrets
     files:
       - values.yaml=values.enc.yaml
+    type: Opaque
 configurations:
   - kustomizeconfig.yaml

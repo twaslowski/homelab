@@ -1,19 +1,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: paperless-ngx
+  name: tandoor
 spec:
   interval: 15m
   chart:
     spec:
-      chart: paperless-ngx
-      version: "0.24.1"
+      chart: tandoor
+      version: "0.9.9"
       sourceRef:
         kind: HelmRepository
-        name: paperless-ngx
+        name: gabe565
+        namespace: flux-system
       interval: 15m
   valuesFrom:
     - kind: ConfigMap
-      name: paperless-values
+      name: tandoor-values
     - kind: Secret
-      name: paperless-secrets
+      name: tandoor-secrets

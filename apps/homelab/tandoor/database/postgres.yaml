@@ -1,0 +1,24 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: tandoor-pg
+spec:
+  instances: 2
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: homelab-leader
+  bootstrap:
+    initdb:
+      database: tandoor
+      owner: tandoor
+      secret:
+        name: pg-secret
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: backup-store
+  storage:
+    size: 2Gi
+  monitoring:
+    enablePodMonitor: true
