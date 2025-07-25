@@ -6,3 +6,4 @@ resources:
   - prometheus.yaml
   - vaultwarden.yaml
   - gabe565.yaml
+  - grammr.yaml

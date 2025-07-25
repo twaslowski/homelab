@@ -5,3 +5,5 @@ resources:
   - db
   - sidecars
   - core
+  - namespace.yaml
+  - pg-secret.yaml

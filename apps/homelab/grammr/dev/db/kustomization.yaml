@@ -5,3 +5,4 @@ resources:
   - podmonitor.yaml
   - objectstore.yaml
   - secret.yaml
+  - scheduled-backup.yaml
