@@ -40,6 +40,10 @@ spec:
         podMonitorSelector:
           matchLabels:
             app.kubernetes.io/component: monitoring
+        thanos:
+          objectStorageConfig:
+            name: thanos-config
+            key: thanos-config.yaml
         storageSpec:
           volumeClaimTemplate:
             spec:
