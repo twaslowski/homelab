@@ -3,7 +3,7 @@ alertmanager:
 
 prometheus:
   prometheusSpec:
-    retention: 14d
+    retention: 7d
     resources:
       requests:
         cpu: 200m
@@ -14,10 +14,6 @@ prometheus:
     podMonitorSelector:
       matchLabels:
         app.kubernetes.io/component: monitoring
-    thanos:
-      objectStorageConfig:
-        name: thanos-config
-        key: thanos-config.yaml
     storageSpec:
       volumeClaimTemplate:
         spec:
