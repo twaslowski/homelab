@@ -12,7 +12,7 @@ env:
   POSTGRES_DB: "tandoor"
 
 controller:
-  strategy: RollingUpdate
+  strategy: Recreate
 
 securityContext:
   runAsUser: 0
