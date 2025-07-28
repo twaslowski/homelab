@@ -19,6 +19,9 @@ securityContext:
   fsGroup: 0
   runAsGroup: 0
 
+nodeSelector:
+  kubernetes.io/hostname: homelab-leader
+
 ingress:
   main:
     enabled: true
@@ -27,7 +30,15 @@ ingress:
       - host: tandoor.twaslowski.com
         paths:
           - path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
+            service:
+              port: 8080
+          - path: /static
+            service:
+              port: 80
+          - path: /media
+            service:
+              port: 80
 
 persistence:
   media:
