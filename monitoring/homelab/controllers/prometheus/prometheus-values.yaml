@@ -1,0 +1,45 @@
+alertmanager:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    retention: 14d
+    resources:
+      requests:
+        cpu: 200m
+        memory: 200Mi
+    nodeSelector:
+      kubernetes.io/hostname: homelab-leader
+    podMonitorNamespaceSelector: { }
+    podMonitorSelector:
+      matchLabels:
+        app.kubernetes.io/component: monitoring
+    thanos:
+      objectStorageConfig:
+        name: thanos-config
+        key: thanos-config.yaml
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 8Gi
+
+grafana:
+  enabled: true
+  defaultDashboardsTimezone: Europe/Berlin
+  defaultDashboardsEnabled: false
+  nodeSelector:
+    kubernetes.io/hostname: homelab-leader
+  ingress:
+    enabled: true
+    ingressClassName: cloudflare-tunnel
+    hosts:
+      - grafana.twaslowski.com
+  sidecar:
+    datasources:
+      enabled: true
+      label: grafana_datasource
+      searchNamespace: monitoring

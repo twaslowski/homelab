@@ -5,12 +5,15 @@ resources:
   - repository.yaml
   - release.yaml
 configMapGenerator:
-  - name: flux-kube-state-metrics-config
+  - name: kube-state-metrics-config
     files:
-      - kube-state-metrics-config.yaml
-    options:
-      labels:
-        app.kubernetes.io/part-of: flux
-        app.kubernetes.io/component: monitoring
+      - kube-state-metrics-config.yaml=kube-state-metrics-config.yaml
+  - name: kube-prometheus-stack-values
+    files:
+      - values.yaml=prometheus-values.yaml
+secretGenerator:
+  - name: kube-prometheus-stack-secrets
+    files:
+      - values.yaml=prometheus-values.enc.yaml
 configurations:
   - kustomizeconfig.yaml

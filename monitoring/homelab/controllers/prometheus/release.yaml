@@ -21,66 +21,10 @@ spec:
           kind: PrometheusRule
   valuesFrom:
     - kind: ConfigMap
-      name: flux-kube-state-metrics-config
+      name: kube-state-metrics-config
       valuesKey: kube-state-metrics-config.yaml
+    - kind: ConfigMap
+      name: kube-prometheus-stack-values
+    - kind: Secret
+      name: kube-prometheus-stack-secrets
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
-  values:
-    alertmanager:
-      enabled: false
-    prometheus:
-      prometheusSpec:
-        retention: 14d
-        resources:
-          requests:
-            cpu: 200m
-            memory: 200Mi
-        nodeSelector:
-          kubernetes.io/hostname: homelab-leader
-        podMonitorNamespaceSelector: { }
-        podMonitorSelector:
-          matchLabels:
-            app.kubernetes.io/component: monitoring
-        thanos:
-          objectStorageConfig:
-            name: thanos-config
-            key: thanos-config.yaml
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: longhorn
-              accessModes: [ "ReadWriteOnce" ]
-              resources:
-                requests:
-                  storage: 8Gi
-    grafana:
-      enabled: true
-      defaultDashboardsTimezone: Europe/Berlin
-      defaultDashboardsEnabled: false
-      adminPassword: ENC[AES256_GCM,data:lWYifPiKBzTRqrw474IqIC2RWuyqyg==,iv:4bF1UYNnOjHjiqNvvO0ApJ7A2ZoVefAvmVpfnfUq2Rk=,tag:K1HuiWIGgXWVONX9CtiG7g==,type:str]
-      nodeSelector:
-        kubernetes.io/hostname: homelab-leader
-      ingress:
-        enabled: true
-        ingressClassName: cloudflare-tunnel
-        hosts:
-          - grafana.twaslowski.com
-      sidecar:
-        datasources:
-          enabled: true
-          label: grafana_datasource
-          searchNamespace: monitoring
-sops:
-  age:
-    - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVazY5azB3WkZUL0s5aWU4
-        R3pIWGFSY1B1SjZoZXM5dmpYZjh6VzJuanlnCnZtbjREdE5kUVF3Y215c0FvRkhp
-        dlBwQ204OGEvNGVVbnB6ZDF0MUpGZG8KLS0tIGtSQXFOdmFFNlUwOTZrK1JpNGdM
-        UTlLY1drUkEyOEpOU3h3bDRtQ2ZtVFUKDOv78HhP/3ePz8AKzvC9lQD5cjiiPoO7
-        H5rFOOyxI42gs1uHJQoRAdlwZ9qMRzMXcaMPSTme+a4MU8J7S5PQxg==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-07-11T14:10:02Z"
-  mac: ENC[AES256_GCM,data:pMTMjrPzDBAq8Cko7bNQRf8WHf666Z6bvgedC9Sep4u93LDfeOWQ6ulUGelOk09q3GBWfaRZh4x5U3RKOSXPI6zGtlp3REWOJb4zHhkcZPlYG/Md1O2MQZ5AcfnYKxzLi+YxZKTrW5VOGuGUH+5F0Hm4rG23o8RuAWmaY5RrDxc=,iv:/tNhdNt36agydd2lxVXE5IQ/S7NNkDFgacK604oq6zs=,tag:fNM1lMDnIFNlmZ6vHZDpBw==,type:str]
-  encrypted_regex: adminPassword
-  version: 3.10.2
