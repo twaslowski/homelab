@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - release.yaml
   - jwt-public-key-cm.yaml
+  - clerk-secret.yaml
 configMapGenerator:
   - name: core-values-cm
     files:
