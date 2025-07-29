@@ -17,11 +17,6 @@ environmentVariables:
       configMapKeyRef:
         name: clerk-jwt-public-key
         key: jwt-key.pub
-  - name: CLERK_SECRET_KEY
-    valueFrom:
-      secretKeyRef:
-        name: clerk-secret
-        key: secret-key
 
 ingress:
   enabled: true
