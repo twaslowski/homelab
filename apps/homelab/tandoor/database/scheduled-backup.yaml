@@ -6,6 +6,6 @@ spec:
   cluster:
     name: tandoor-pg
   method: plugin
-  schedule: "0 0 */6 * * *"
+  schedule: "0 0 3 * * *"
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
