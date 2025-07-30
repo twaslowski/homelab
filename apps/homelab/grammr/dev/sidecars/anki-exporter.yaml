@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: anki-exporter
-      version: "0.2.0"
+      version: "0.3.1"
       sourceRef:
         kind: HelmRepository
         name: grammr
