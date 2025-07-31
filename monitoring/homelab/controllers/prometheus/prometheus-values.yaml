@@ -3,6 +3,7 @@ alertmanager:
 
 prometheus:
   prometheusSpec:
+    affinity: { }
     retention: 7d
     resources:
       requests:
@@ -13,8 +14,6 @@ prometheus:
         existingSecret:
           name: thanos-config
           key: thanos-config.yaml
-    nodeSelector:
-      kubernetes.io/role: control-plane
     podMonitorNamespaceSelector: { }
     podMonitorSelector:
       matchLabels:
@@ -29,6 +28,7 @@ prometheus:
               storage: 8Gi
 
 grafana:
+  affinity: { }
   enabled: true
   defaultDashboardsTimezone: Europe/Berlin
   defaultDashboardsEnabled: false
