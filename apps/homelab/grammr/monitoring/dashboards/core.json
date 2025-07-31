@@ -18,13 +18,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 10,
+  "id": 8,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "loki",
-        "uid": "ceqj72f4j7pj4e"
+        "uid": "P8E80F9AEF21F6940"
       },
       "fieldConfig": {
         "defaults": {},
@@ -48,12 +48,12 @@
         "sortOrder": "Descending",
         "wrapLogMessage": false
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.1.0",
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "ceqj72f4j7pj4e"
+            "uid": "P8E80F9AEF21F6940"
           },
           "direction": "backward",
           "editorMode": "code",
@@ -222,5 +222,5 @@
   "timezone": "browser",
   "title": "core",
   "uid": "8ea55a6b-5b56-404b-89e8-c43c5f1e998f",
-  "version": 3
+  "version": 1
 }

@@ -7,11 +7,13 @@ This directory contains the Flux configuration that replaces the Terraform setup
 The following Terraform resources have been migrated to Flux:
 
 ### Infrastructure Components
+
 - **Namespaces**: All required namespaces (logging, grafana, prometheus, postgres-operator, cloudflare-tunnel-ingress-controller)
 - **Helm Repositories**: Chart sources for Grafana, Prometheus, Fluent, and Cloudflare
 - **Cloudflared**: Cloudflare Tunnel Ingress Controller
 
 ### Applications
+
 - **Grafana**: Observability dashboard with persistence and ingress
 - **Prometheus**: Metrics collection and monitoring
 - **Logging Stack**: Fluent Bit for log collection and Loki for log aggregation
