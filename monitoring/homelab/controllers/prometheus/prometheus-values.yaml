@@ -3,8 +3,9 @@ alertmanager:
 
 prometheus:
   prometheusSpec:
-    affinity: { }
     retention: 7d
+    nodeSelector:
+      kubernetes.io/hostname: homelab-leader
     resources:
       requests:
         cpu: 200m
@@ -28,12 +29,11 @@ prometheus:
               storage: 8Gi
 
 grafana:
-  affinity: { }
   enabled: true
   defaultDashboardsTimezone: Europe/Berlin
   defaultDashboardsEnabled: false
   nodeSelector:
-    kubernetes.io/role: control-plane
+    kubernetes.io/hostname: homelab-leader
   ingress:
     enabled: true
     ingressClassName: cloudflare-tunnel
