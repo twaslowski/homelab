@@ -24,6 +24,44 @@ Resources:
           - ObjectOwnership: BucketOwnerEnforced
       VersioningConfiguration:
         Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireLogFolder
+            Prefix: fake/
+            Status: Enabled
+            ExpirationInDays: 14
+          - Id: ExpireBackupFolder
+            Prefix: backup/
+            Status: Enabled
+            ExpirationInDays: 30
+
+  PrometheusBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub "${AWS::AccountId}-${AWS::Region}-homelab-cluster-prometheus-storage"
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireItems
+            Status: Enabled
+            ExpirationInDays: 14
+
 
   HomelabStorageUser:
     Type: AWS::IAM::User
@@ -48,6 +86,8 @@ Resources:
             Resource:
               - !GetAtt StorageBucket.Arn
               - !Sub "${StorageBucket.Arn}/*"
+              - !GetAtt PrometheusBucket.Arn
+              - !Sub "${PrometheusBucket.Arn}/*"
 
   HomelabStorageUserAccessKey:
     Type: AWS::IAM::AccessKey

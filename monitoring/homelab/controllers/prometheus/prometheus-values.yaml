@@ -8,8 +8,13 @@ prometheus:
       requests:
         cpu: 200m
         memory: 200Mi
+    thanos:
+      objectStorageConfig:
+        existingSecret:
+          name: thanos-config
+          key: thanos-config.yaml
     nodeSelector:
-      kubernetes.io/hostname: homelab-leader
+      kubernetes.io/role: control-plane
     podMonitorNamespaceSelector: { }
     podMonitorSelector:
       matchLabels:
@@ -28,7 +33,7 @@ grafana:
   defaultDashboardsTimezone: Europe/Berlin
   defaultDashboardsEnabled: false
   nodeSelector:
-    kubernetes.io/hostname: homelab-leader
+    kubernetes.io/role: control-plane
   ingress:
     enabled: true
     ingressClassName: cloudflare-tunnel
