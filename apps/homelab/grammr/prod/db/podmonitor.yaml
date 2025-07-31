@@ -17,3 +17,23 @@ spec:
           - grammr-pg
   podMetricsEndpoints:
     - port: metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: grammr-db-exporter-monitor
+  labels:
+    app.kubernetes.io/part-of: grammr
+    app.kubernetes.io/component: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+      - grammr
+  selector:
+    matchExpressions:
+      - key: "app.kubernetes.io/name"
+        operator: In
+        values:
+          - db-monitor
+  podMetricsEndpoints:
+    - port: http
