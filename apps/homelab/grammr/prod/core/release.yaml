@@ -19,3 +19,6 @@ spec:
       name: core-values-cm
     - kind: Secret
       name: core-values-secret
+  values:
+    image:
+      tag: 3.9.0
