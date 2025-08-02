@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: grammr
 resources:
   - db
-  - sidecars
   - core
+  - ../base/sidecars
   - namespace.yaml
   - pg-secret.yaml
