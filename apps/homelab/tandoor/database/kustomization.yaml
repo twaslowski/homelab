@@ -3,6 +3,5 @@ kind: Kustomization
 resources:
   - postgres.yaml
   - podmonitor.yaml
-  - objectstore.yaml
-  - scheduled-backup.yaml
+  - backup.yaml
   - barman-secret.yaml

@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: paperless-ngx
 resources:
   - namespace.yaml
-  - pg-secret.yaml
+  - external-secret.yaml
   - database
   - application
