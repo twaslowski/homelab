@@ -1,0 +1,32 @@
+env:
+  TZ: "Europe/Berlin"
+  MEMOS_DRIVER: "postgres"
+  MEMOS_DSN:
+    valueFrom:
+      secretKeyRef:
+        name: pg-secret
+        key: uri
+
+controller:
+  strategy: RollingUpdate
+
+ingress:
+  main:
+    enabled: true
+    ingressClassName: "cloudflare-tunnel"
+    hosts:
+      - host: memos.twaslowski.com
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 8080
+
+persistence:
+  data:
+    enabled: true
+    size: 1Gi
+    accessMode: ReadWriteOnce
+
+postgresql:
+  enabled: false
