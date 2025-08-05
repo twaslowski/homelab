@@ -20,7 +20,7 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              port: 8080
+              port: 5230
 
 persistence:
   data:
