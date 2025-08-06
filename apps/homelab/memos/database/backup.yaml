@@ -24,6 +24,6 @@ spec:
         key: aws_access_key_id
       secretAccessKey:
         name: barman-aws-creds
-        key: aws_access_secret_key
+        key: aws_secret_access_key
     wal:
       compression: gzip
