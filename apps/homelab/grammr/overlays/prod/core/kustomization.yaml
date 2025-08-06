@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: grammr
 resources:
-  - release.yaml
+  - ../../../base/core
   - jwt-public-key-cm.yaml
 configMapGenerator:
   - name: core-values-cm

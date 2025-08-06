@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - objectstore.yaml
+  - ../../../base/db
+patches:
+  - target:
+      kind: PodMonitor
+      name: grammr-monitor
+      version: v1
+      group: monitoring.coreos.com
+    path: patch.yaml

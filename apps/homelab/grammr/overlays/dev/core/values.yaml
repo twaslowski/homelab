@@ -1,5 +1,10 @@
 fullnameOverride: core
 
+image:
+  tag: latest
+  repository: grammrapp/grammr-core
+  pullPolicy: Always
+
 environmentVariables:
   - name: DATASOURCE_URL
     valueFrom:
@@ -7,7 +12,7 @@ environmentVariables:
         name: pg-secret
         key: jdbc-uri
   - name: ALLOWED_ORIGIN
-    value: https://grammr.app
+    value: https://dev.grammr.app
   - name: ANKI_EXPORTER_URL
     value: http://anki-exporter:8000
   - name: SPRING_PROFILES_ACTIVE
@@ -21,7 +26,7 @@ environmentVariables:
 ingress:
   enabled: true
   className: cloudflare-tunnel
-  host: server-prod.grammr.app
+  host: server-dev.grammr.app
   paths:
     - /api/
     - /actuator/health
