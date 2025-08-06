@@ -1,0 +1,24 @@
+datasources:
+  - name: CloudWatch
+    type: cloudwatch
+    jsonData:
+      authType: keys
+      defaultRegion: eu-central-1
+    secureJsonData:
+      accessKey: ENC[AES256_GCM,data:Jz1n4oxXWq4faPsJ1Ph+/ArW+sw=,iv:3oCT2BNEyczQaM9R6dl7oPDfCBKyQA3vxx8sam7SNP0=,tag:oMunzzOl284V9Cycfs225Q==,type:str]
+      secretKey: ENC[AES256_GCM,data:6rcNJUXkcjWoA1GDHO9TMrzV0ClHgKQCLgX3zp6VQIttrSTqxHTamg==,iv:C6alLteZpT7hg6Ri8VNnRYwhlYeffRlfF+pDf4gnSg4=,tag:dCdrahPVBy+JABTEMGPaJA==,type:str]
+sops:
+  age:
+    - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBEbktvdTladkJtR3gzREQ3
+        Q2ZlNDc0NTV1WlZGaFJxbzJGZ0RNWk80dmtFClJZRnVTbHI5aXNhOTVRaDZIUjRX
+        dFNncXZiTllhVXpEYXlvaFllbHBDK3MKLS0tIFR5aHlwWGE3dXB2bXlzeDFsYjg0
+        S0dOdVNiZU93OHpaQnhWdFN5MU5OK2MKuMC3tLuaWXV2nY4Su3/7uMnrGOyZqBA/
+        RSsFpTngAJRgdgHKlmBBbOf/xegB8f7ubvN6fTzHwuL8hQhGa+jpfA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-08-06T15:08:20Z"
+  mac: ENC[AES256_GCM,data:q18CnYc52+r4KntSO0Kh9ivKcOHb50SgCz/mjh14eqW6FuZTN9o81GeZvxS6wsMqkcYkL3RVyk6qNyzCG2CowfTarsaVU59zGfEEti1WxLrqqlq+YPUwevbWhLpPrq/wdSPXd5X8vZVTcslCvt485dHdNpyRDE1KuxWLbsTPc3g=,iv:gErL/kDpytDrVqEa1DUjvcZIcJsV0N8dxd0mPddAaMc=,tag:EMAGE9kYyFlb4zYj8pPGyA==,type:str]
+  encrypted_regex: secureJsonData
+  version: 3.10.2
