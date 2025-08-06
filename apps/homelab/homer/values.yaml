@@ -108,3 +108,10 @@ configMaps:
                 url: "https://tandoor.twaslowski.com"
                 target: "_blank"
 
+              - name: "Memos"
+                subtitle: "Note-taking & knowledge base"
+                icon: "fa-solid fa-book"
+                keywords: "note taking organization knowledge"
+                url: "https://memos.twaslowski.com"
+                target: "_blank"
+
