@@ -9,21 +9,3 @@ spec:
   schedule: "0 0 3 * * *"
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
----
-apiVersion: barmancloud.cnpg.io/v1
-kind: ObjectStore
-metadata:
-  name: backup-store
-spec:
-  configuration:
-    destinationPath: s3://246770851643-eu-central-1-homelab-cluster-storage/backups/grammr/grammr/
-    endpointURL: https://s3.eu-central-1.amazonaws.com
-    s3Credentials:
-      accessKeyId:
-        name: barman-aws-creds
-        key: aws_access_key_id
-      secretAccessKey:
-        name: barman-aws-creds
-        key: aws_secret_access_key
-    wal:
-      compression: gzip
