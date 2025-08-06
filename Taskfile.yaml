@@ -25,14 +25,20 @@ tasks:
     cmds:
       - |
         flux bootstrap github \
-          --owner=<your-account> \
+          --components-extra=image-reflector-controller,image-automation-controller \
+          --owner=twaslowski \
           --repository=homelab \
           --branch=main \
-          --path=clusters/minimal \
+          --path=clusters/homelab \
           --personal \
           --token=${GITHUB_TOKEN} \
+          --read-write-key \
           --context=homelab
 
+  bootstrap-sops-age:
+    desc: Setup SOPS with age encryption
+    cmds:
+      - |
         age-keygen -o age.key
         grep "public key" age.key | sed 's/# public key: //' > clusters/homelab/.sops.pub.age
 

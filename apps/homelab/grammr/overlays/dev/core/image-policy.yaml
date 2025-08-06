@@ -1,0 +1,29 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: grammr-latest
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: grammr-core
+  policy:
+    alphabetical:
+      order: asc
+  filterTags:
+    pattern: '^latest$'
+    extract: '$0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: grammr-core
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 1h
+  git:
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
