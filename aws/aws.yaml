@@ -107,6 +107,62 @@ Resources:
           "exampleKey2": "exampleValue2"
         }
 
+  GrafanaUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: homelab-grafana-user
+
+  GrafanaUserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: homelab-grafana-cloudwatch-access
+      Users:
+        - !Ref GrafanaUser
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowReadingMetricsFromCloudWatch
+            Effect: Allow
+            Action:
+              - cloudwatch:DescribeAlarmsForMetric
+              - cloudwatch:DescribeAlarmHistory
+              - cloudwatch:DescribeAlarms
+              - cloudwatch:ListMetrics
+              - cloudwatch:GetMetricData
+              - cloudwatch:GetInsightRuleReport
+            Resource: "*"
+          - Sid: AllowReadingResourceMetricsFromPerformanceInsights
+            Effect: Allow
+            Action: pi:GetResourceMetrics
+            Resource: "*"
+          - Sid: AllowReadingLogsFromCloudWatch
+            Effect: Allow
+            Action:
+              - logs:DescribeLogGroups
+              - logs:GetLogGroupFields
+              - logs:StartQuery
+              - logs:StopQuery
+              - logs:GetQueryResults
+              - logs:GetLogEvents
+            Resource: "*"
+          - Sid: AllowReadingTagsInstancesRegionsFromEC2
+            Effect: Allow
+            Action:
+              - ec2:DescribeTags
+              - ec2:DescribeInstances
+              - ec2:DescribeRegions
+            Resource: "*"
+          - Sid: AllowReadingResourcesForTags
+            Effect: Allow
+            Action: tag:GetResources
+            Resource: "*"
+
+  GrafanaUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref GrafanaUser
+
+
 Outputs:
   HomelabStorageUserAccessKeyId:
     Description: Access Key ID for homelab-storage-user
@@ -114,3 +170,9 @@ Outputs:
   HomelabStorageUserSecretAccessKey:
     Description: Secret Access Key for homelab-storage-user
     Value: !GetAtt HomelabStorageUserAccessKey.SecretAccessKey
+  GrafanaUserAccessKeyId:
+    Description: Access Key ID for homelab-grafana-user
+    Value: !Ref GrafanaUserAccessKey
+  GrafanaUserSecretAccessKey:
+    Description: Secret Access Key for homelab-grafana-user
+    Value: !GetAtt GrafanaUserAccessKey.SecretAccessKey
