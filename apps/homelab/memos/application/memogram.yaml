@@ -52,6 +52,8 @@ spec:
               value: memos:5230
             - name: DATA
               value: /tmp/data.txt
+            - name: ALLOWED_USERNAMES
+              value: violin_tobi,someoneelse09
             - name: BOT_TOKEN
               valueFrom:
                 secretKeyRef:

@@ -1,6 +1,7 @@
 env:
   TZ: "Europe/Berlin"
   MEMOS_DRIVER: "postgres"
+  MEMOS_INSTANCE_URL: "https://memos.twaslowski.com"
   MEMOS_DSN:
     valueFrom:
       secretKeyRef:
