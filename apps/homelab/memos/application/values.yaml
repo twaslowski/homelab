@@ -1,3 +1,7 @@
+image:
+  repository: twaslowski/memos
+  tag: "canary"
+
 env:
   TZ: "Europe/Berlin"
   MEMOS_DRIVER: "postgres"
