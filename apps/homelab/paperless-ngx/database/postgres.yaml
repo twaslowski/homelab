@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: paperless-pg
 spec:
-  instances: 2
+  instances: 1
   affinity:
     nodeSelector:
       kubernetes.io/hostname: homelab-leader
