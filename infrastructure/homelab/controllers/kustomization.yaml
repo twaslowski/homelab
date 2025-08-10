@@ -5,4 +5,5 @@ resources:
   - cloudnative-pg
   - cert-manager
   - repository
+  - cloudflared
   - s3-secret.yaml
