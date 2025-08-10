@@ -12,7 +12,10 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: grafana
+        namespace: flux-system
       interval: 15m
   valuesFrom:
     - kind: ConfigMap
+      name: grafana-k8s-monitoring-values
+    - kind: Secret
       name: grafana-k8s-monitoring-values

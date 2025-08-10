@@ -1,0 +1,41 @@
+destinations:
+  - name: grafana-cloud-metrics
+    auth:
+      password: ENC[AES256_GCM,data:sPCUKNJKAee6znLeEGtSK6Scb4IFnsvnADs36JLx+Z/p1Mr49cad1+AO7IhK87MrW2pxRjRiedeeq6QnyuyoTu6or8raYxO07E8mfniydGdfgO0yUElZdQ3Tg7APwrFF0QyY46Auw7kX6sI1kqirot6DlbLmgH7XN8iTNmIhuJ8A22kvvYOX6NY43BTwqZ6VF6CwsD0hA/+tdsHSSyFMKTCrPVAKdLV9,iv:MuNYphyDZPbLUv2UGY7Q7nyVSsrwsYNVIJk5BWBZO5w=,tag:ODaHIN/YOHBhW6zpAgkOfA==,type:str]
+  - name: grafana-cloud-logs
+    auth:
+      password: ENC[AES256_GCM,data:g/luPrdIz/KESi3h3h1/4VeQx5IncmJ0ypzqFJkwddouqra/0mlsbd9L3IYM+2InS6zv5VeG7LSCKQgVIuKy8CXIDwdbfRUhoD7GVXj6TMkALWtNi+oNgbAZQK5vnLzDN9fgCKvvstJyj41JrUA0qz2+CAHQGTui1NRVf4hHWfSkVq+eySIbZmZhQTr+NqHhsQAFNwl6wy1jYHTaki+dcoW2fc5bxjF2,iv:ZhzHVyHxCyq37UPPaj6s03m1gc050bKj2WiFAD032bw=,tag:m5Ra+usLfVuEcBZ5MgJb3A==,type:str]
+  - name: grafana-cloud-otlp-endpoint
+    auth:
+      password: ENC[AES256_GCM,data:hY2xkxpWQcAaiMKwExm2x38A9pSuSBPIPt060F70ngj0X76dOXuFjaNXjiJVPZmXh/uPl1bSIpGtaeDN+4hdlycjsVHkD3ipnJT/kLrGJa7/hEGzLsxo1/JfX0vErqN4twvLnVOenYwhLikb26rnk0Pz4+99mvsHh+AROGOFAqGmJMac9Tbg7SUs1DdQ6qFrN+oPwbfghq3k6PXqjq+2aPWl8yFYRUQ7,iv:3TPgADIyPaTPUUXz2BavCL5deW48pM7IF3FGqDOnLqI=,tag:exoDjshRedCOKLf0KH65jQ==,type:str]
+alloy-metrics:
+  remoteConfig:
+    auth:
+      password: ENC[AES256_GCM,data:Fbgn1WzORJzk7G5g/yi2VwL42f/pyChyQQcLy7i6W15uUnw50AphOG6STqTuGL9f+P3qXGD8kzv+Yw4LcQf5dfQeJ9BxX/oaZi6OfSxG+ufjDdNjN63DBfHNJfLPWpMSihoBUfM426oBmH9H2zHWtjP/bhJIEbDGqvZwiN1jkBMjmhqHAGbtVYGhxIPtfVeLLVpBDtruj/PxqHQDe70SSJdqT7qL4Vv9,iv:GxoL+IiijOp3c1yDUeDh8Xjjs93+Qphu2pdR7DxtDIY=,tag:dVR9XqSUJ3xPXvGK6ddsJg==,type:str]
+alloy-singleton:
+  remoteConfig:
+    auth:
+      password: ENC[AES256_GCM,data:zmfOQrLxR25T4hAd8J/0rKEY6sQokmOsggTaN10pmBV0VQFWbpCAk+I9FYZ8iyQLVRZJUiysZ4NtIpBKklLF8qJyU+KrDLI1frFxlhvVCJNCNSqQSqx5o7BqOBsV7vgz+YGOmLftLGTc8/V8uBiJsD+SkTDst+RogFhGuio+AjIPbKCVbpo/EGaZRh9B47oHeWozbzZOYmoFXeGS4eJajyyAR/UoSV/n,iv:XY5tJqmO69mAmIlyRLYghjUHGrjUprP3nc32ZI5R5B8=,tag:KJmDzROhP8kAMoyioZ6TvQ==,type:str]
+alloy-logs:
+  remoteConfig:
+    auth:
+      password: ENC[AES256_GCM,data:jCzi0j9FNUSKE5Yep6Dabi+tVL1xAq6381F4gxQJ74wixNNejLT25ElMzUsB9M+J4rH03UwyVFLjoenS6wPYwHTdkASGHGU0d7cIsuiAn1Bg9YGtpAXCEQn7PpU37+9ukJp1nJfENuN6eQGbbqxTDW2QBf4LIPsx/n6x8Dvky8ImKWb+67vYn51Bcz5V5xq38qn82pLT40VaAi2CrlFXgWbfE1cEtucw,iv:6gCWC6vWDCQ9wxPqYzA/flIRcQZbM9cSVrcy2jFc9q8=,tag:0Y/6xyF1gno60T9pk2iaFA==,type:str]
+alloy-receiver:
+  remoteConfig:
+    auth:
+      password: ENC[AES256_GCM,data:1HW/unYWuvDWQRZJXkQpQDShmcAeWYmpI7++KU1v9riyqu7m/WVw3R86OjjBkOv61azwNZOJrfghWz00kPzNZ6wkkQVw9Rnf9jfLMCm8Kjpbt2o1wZOOaAEOkXKgPCmU4XrNzGjLcD5Z3M2eirX9cIeucvma8lt1eGE3Rp3i/dKMVBGFGYXs6VVbJNDHRAi3ZtHEgXntIFp+yNfAIb8C4A1RS77D5Alx,iv:gmcEGJAW0Ay9tERSXWO+eTHxflzjyx9L3AebRJzf1l8=,tag:4Y/A9iXA/ONaoHRcfyLCUQ==,type:str]
+sops:
+  age:
+    - recipient: age1a5juyrapd78njp023e8hf0nmzvgwz2h47kcdvum4kh8m8ww4n9fqveqfzl
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxMU5DbVJZWVpzV0FQQ0dk
+        YnRnTzkxNm00Y0RuSk9WcDRsakd2TStZdkNzCjhJZ1RLV1Q2Z1pOY0M3eUdRblRI
+        dTVXYXJxQm1qRXNUQVVhMmg3VEhmTVEKLS0tIE05SDFoRkNhU00zRlJpbHhCYzZC
+        NERzdFNIKzQ3a0JHUlVsOEJhQXFFRTQK6kET6mANUsjMiSdZvavsagpkXD3mt3W6
+        CE65HpCX8HFzAqmiv93oyjQo26zO5Z137+7BaOWPCfmecqt4eQfwNQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-08-10T13:08:36Z"
+  mac: ENC[AES256_GCM,data:sZZMVZykLBSFUbm3OEAHEPxN7Y697etXngiIN+q9h1L4bK6gfcYfI3uoYfCkMdbSEqh2tcv1tzzp/2VZhapXBYK7YadYLJ3OXhZYVLNHOJGoDsVzRAbHxUAOTod128uBdjnoewiyHxespYlVt8ydPfYj02bpTWt8sstPACJORiU=,iv:hEOcO41xzZN0KOMv5/DzvsrIHqLcR64NSG9Uzba8xHk=,tag:sq9VDyMfUcAveZUPIT9BwQ==,type:str]
+  encrypted_regex: password
+  version: 3.10.2
