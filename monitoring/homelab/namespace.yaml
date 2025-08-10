@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: monitoring
+  name: grafana
   labels:
     app.kubernetes.io/component: monitoring
     pod-security.kubernetes.io/enforce: privileged
