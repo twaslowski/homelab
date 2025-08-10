@@ -4,13 +4,3 @@ namespace: grafana
 resources:
   - namespace.yaml
   - release.yaml
-configMapGenerator:
-  - name: grafana-k8s-monitoring-values
-    files:
-      - values.yaml=values.yaml
-secretGenerator:
-  - name: grafana-k8s-monitoring-values
-    files:
-      - values.yaml=values.enc.yaml
-configurations:
-  - kustomizeconfig.yaml
