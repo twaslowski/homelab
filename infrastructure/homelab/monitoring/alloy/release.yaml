@@ -41,8 +41,6 @@ spec:
           password: ENC[AES256_GCM,data:Hdp6U9dvZrIRMWgcVCpaweTfEQIv9jjvIh0kg4v89kRkhjKOodXHJS7pSd13roofgAE1zyJuYIas4VzMsedppKESb2CFSX5StLYnTm4A6hQ+zOTZ62q+LPKcC2rcRFW9BEtpqEuh5PQurD77FqD7qVUugvjgPgZBXv+W9CPRRTUUkhtrtTIQDUJ1+oU41yVjQgfyqCvsy1k4pUgIRXUU9hnK45My72r9,iv:7ez5pK1rJalkNRnZCTWOiMg/4dV5vF2ynhPLj+5S7dY=,tag:aWdpgRB/NKjMmYinbKBkaw==,type:str]
         metrics:
           enabled: true
-        logs:
-          enabled: true
         traces:
           enabled: true
     annotationAutodiscovery:
