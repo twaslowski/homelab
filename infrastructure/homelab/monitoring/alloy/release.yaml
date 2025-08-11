@@ -53,6 +53,8 @@ spec:
           app.kubernetes.io/name: kube-state-metrics
     clusterEvents:
       enabled: true
+    prometheusOperatorObjects:
+      enabled: true
     podLogs:
       enabled: true
     applicationObservability:
