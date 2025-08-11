@@ -49,6 +49,10 @@ spec:
       enabled: true
     clusterMetrics:
       enabled: true
+      kube-state-metrics:
+        discoveryType: pod
+        labelMatchers:
+          app.kubernetes.io/name: kube-state-metrics
     clusterEvents:
       enabled: true
     podLogs:

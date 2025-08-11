@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: default
 resources:
   - alloy/release.yaml
-  - kube-state-metrics/release.yaml
+  - kube-state-metrics
