@@ -55,8 +55,6 @@ spec:
       enabled: true
     prometheusOperatorObjects:
       enabled: true
-    podLogs:
-      enabled: true
     applicationObservability:
       enabled: true
       receivers:
@@ -126,38 +124,6 @@ spec:
           type: basic
           username: "1141969"
           password: ENC[AES256_GCM,data:NJegwFd+wwQCWQr/0KUtFWyhkePCOB/UqoPj/mzB7iNUvPZFH6icFGdEp9R4sLUreww7rPSZKRBo/PRpH3VAg26hl+9pEu9HHt1rUPCTlYfBN2QMyGsxYvnldpythoIDKT9pxwx1wTCuWqspM3tDkUqr7TdPDowH5YquVi6axE05VCd09VqfBZ5e3eD98Tr8oC6X9NzBNYuiajntdNWdmQmmiXpbHn/7,iv:qD0zrSsmlPJAqVTBtPb5TD7Jl95B5wXh8uh7oVjUrAc=,tag:rwBwfk+3adny0532SNyB9Q==,type:str]
-    alloy-logs:
-      enabled: true
-      alloy:
-        extraEnv:
-          - name: GCLOUD_RW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: alloy-logs-remote-cfg-grafana-k8s-monitoring
-                key: password
-          - name: CLUSTER_NAME
-            value: homelab
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
-          - name: GCLOUD_FM_COLLECTOR_ID
-            value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-logs-$(NODE_NAME)
-      remoteConfig:
-        enabled: true
-        url: https://fleet-management-prod-011.grafana.net
-        auth:
-          type: basic
-          username: "1141969"
-          password: ENC[AES256_GCM,data:ce5mw4L5GQ7f5Jpkdt4IemtHT2iHsDdbIWe5192SzOJuurlrh703d3Yl42MSMz+8BU+6mI7jf25X0DP3+LEDbXLuJebER7q1WMYQSfnDCEwIWl70NynZ/k8SrpCVodsADgle+Eull0p9d2DbO+3U/+kArvItJ9x2wuBesW0V2omAK3cYtzEtEGacydluRPU2CAawxMbsJQnFMi8nAp40I7oT5gOjPz4Q,iv:MO2C9CbGKDCAt+6YkhlxOFRpzcEUi8AXobB+IK8YRH8=,tag:jch8B33RRoTYHDNcwTexOg==,type:str]
     alloy-receiver:
       enabled: true
       alloy:
