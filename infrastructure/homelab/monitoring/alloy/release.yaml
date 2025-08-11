@@ -45,6 +45,8 @@ spec:
           enabled: true
         traces:
           enabled: true
+    annotationAutodiscovery:
+      enabled: true
     clusterMetrics:
       enabled: true
     clusterEvents:

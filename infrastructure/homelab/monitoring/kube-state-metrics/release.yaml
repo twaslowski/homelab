@@ -16,6 +16,8 @@ spec:
       interval: 15m
   values:
     collectors: [ ]
+    customLabels:
+      - k8s.grafana.com/scrape: "true"
     extraArgs:
       - --custom-resource-state-only=true
     rbac:
