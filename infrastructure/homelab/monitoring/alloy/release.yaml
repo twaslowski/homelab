@@ -51,13 +51,19 @@ spec:
         extraMetricProcessingRules: |-
           rule {
             source_labels = ["__name__"]
-            regex         = "kube_secret_*"
+            regex         = "kube_secret_.*"
             action        = "drop"
           }
           
           rule {
             source_labels = ["__name__"]
             regex         = "kube_replicaset_.*"
+            action        = "drop"
+          }
+          
+          rule {
+            source_labels = ["uid", "pod"]
+            regex         = "kube_pod.*"
             action        = "drop"
           }
           
