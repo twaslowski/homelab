@@ -50,16 +50,35 @@ spec:
       kube-state-metrics:
         extraMetricProcessingRules: |-
           rule {
-            action = "labeldrop"
-            match = "{__name__=~\"kube_pod_.*\"}"
-            labeldrop = ["pod", "uid"]
+            source_labels = ["__name__"]
+            regex         = "cnpg_pg_settings_setting"
+            action        = "drop"
           }
-
+        
           rule {
-            action = "labeldrop"
-            match = "{__name__=~\"node_filesystem.*\"}"
-            labelkeep = ["mountpoint", "device"]
+            source_labels = ["__name__"]
+            regex         = "kube_secret_*"
+            action        = "drop"
           }
+          
+          rule {
+            source_labels = ["__name__"]
+            regex         = "kube_replicaset_.*"
+            action        = "drop"
+          }
+          
+          rule {
+            source_labels = ["mountpoint"]
+            regex         = "node_filesystem_*"
+            action        = "drop"
+          }
+          
+          rule {
+            regex  = "id"
+            action = "labeldrop"
+          }
+          
+          forward_to = argument.metrics_destinations.value
 
     clusterEvents:
       enabled: true
