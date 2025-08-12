@@ -4,9 +4,6 @@ metadata:
   name: paperless-pg
 spec:
   instances: 2
-  affinity:
-    nodeSelector:
-      kubernetes.io/hostname: homelab-leader
   bootstrap:
     recovery:
       source: origin
@@ -26,7 +23,7 @@ spec:
 #        barmanObjectName: backup-store
 
   storage:
-    size: 6Gi
+    size: 8Gi
     storageClass: local-path
   monitoring:
     enablePodMonitor: true
