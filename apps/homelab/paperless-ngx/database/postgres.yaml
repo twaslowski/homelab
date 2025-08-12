@@ -3,22 +3,30 @@ kind: Cluster
 metadata:
   name: paperless-pg
 spec:
-  instances: 1
+  instances: 2
   affinity:
     nodeSelector:
       kubernetes.io/hostname: homelab-leader
   bootstrap:
-    initdb:
-      database: paperless_ngx
-      owner: paperless-ngx
-      secret:
-        name: pg-secret
-  plugins:
-    - name: barman-cloud.cloudnative-pg.io
-      isWALArchiver: true
-      parameters:
-        barmanObjectName: backup-store
+    recovery:
+      source: origin
+
+  externalClusters:
+    - name: origin
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: backup-store
+          serverName: paperless-pg
+
+#  plugins:
+#    - name: barman-cloud.cloudnative-pg.io
+#      isWALArchiver: true
+#      parameters:
+#        barmanObjectName: backup-store
+
   storage:
-    size: 8Gi
+    size: 6Gi
+    storageClass: local-path
   monitoring:
     enablePodMonitor: true

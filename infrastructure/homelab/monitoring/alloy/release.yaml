@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: grafana-k8s-monitoring
+  namespace: default
 spec:
   interval: 15m
   chart:
@@ -43,12 +44,38 @@ spec:
           enabled: true
         traces:
           enabled: true
+
     clusterMetrics:
       enabled: true
+      kube-state-metrics:
+        extraMetricProcessingRules: |-
+          rule {
+            action = "labeldrop"
+            match = "{__name__=~\"kube_pod_.*\"}"
+            labeldrop = ["pod", "uid"]
+          }
+
+          rule {
+            action = "labeldrop"
+            match = "{__name__=~\"node_filesystem.*\"}"
+            labelkeep = ["mountpoint", "device"]
+          }
+
     clusterEvents:
       enabled: true
+
     prometheusOperatorObjects:
       enabled: true
+      crds:
+        deploy: true
+      podMonitors:
+        enabled: true
+        extraMetricProcessingRules: |-
+          rule {
+            action = "drop"
+            drop_metrics = ["cnpg_pg_settings_setting"]
+          }
+
     alloy-metrics:
       enabled: true
       alloy:
