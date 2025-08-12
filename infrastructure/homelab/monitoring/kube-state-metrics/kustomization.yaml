@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - release.yaml
+  - podmonitor.yaml
 configMapGenerator:
   - name: kube-state-metrics-values
     files:
