@@ -51,12 +51,6 @@ spec:
         extraMetricProcessingRules: |-
           rule {
             source_labels = ["__name__"]
-            regex         = "cnpg_pg_settings_setting"
-            action        = "drop"
-          }
-        
-          rule {
-            source_labels = ["__name__"]
             regex         = "kube_secret_*"
             action        = "drop"
           }
@@ -68,20 +62,22 @@ spec:
           }
           
           rule {
-            source_labels = ["mountpoint"]
-            regex         = "node_filesystem_*"
-            action        = "drop"
-          }
-          
-          rule {
             regex  = "id"
             action = "labeldrop"
           }
-          
-          forward_to = argument.metrics_destinations.value
 
     clusterEvents:
       enabled: true
+
+    nodeExporter:
+      deploy: true
+      enabled: true
+      extraMetricProcessingRules: |-
+        rule {
+            source_labels = ["__name__"]
+            regex         = "kube_replicaset_.*"
+            action        = "drop"
+        }
 
     prometheusOperatorObjects:
       enabled: true
@@ -91,8 +87,9 @@ spec:
         enabled: true
         extraMetricProcessingRules: |-
           rule {
-            action = "drop"
-            drop_metrics = ["cnpg_pg_settings_setting"]
+            source_labels = ["__name__"]
+            regex         = "cnpg_pg_settings_setting"
+            action        = "drop"
           }
 
     alloy-metrics:
