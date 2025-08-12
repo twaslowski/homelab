@@ -43,31 +43,12 @@ spec:
           enabled: true
         traces:
           enabled: true
-    annotationAutodiscovery:
-      enabled: true
     clusterMetrics:
       enabled: true
-      kube-state-metrics:
-        discoveryType: pod
-        labelMatchers:
-          app.kubernetes.io/name: kube-state-metrics
     clusterEvents:
       enabled: true
     prometheusOperatorObjects:
       enabled: true
-    applicationObservability:
-      enabled: true
-      receivers:
-        otlp:
-          grpc:
-            enabled: true
-            port: 4317
-          http:
-            enabled: true
-            port: 4318
-        zipkin:
-          enabled: true
-          port: 9411
     alloy-metrics:
       enabled: true
       alloy:

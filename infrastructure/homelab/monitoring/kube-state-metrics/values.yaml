@@ -1,6 +1,4 @@
 collectors: [ ]
-podAnnotations:
-  k8s.grafana.com/scrape: "true"
 extraArgs:
   - --custom-resource-state-only=true
 rbac:
