@@ -5,4 +5,4 @@ resources:
   - database
   - application
   - namespace.yaml
-  - pg-secret.yaml
+  - external-secret.yaml
