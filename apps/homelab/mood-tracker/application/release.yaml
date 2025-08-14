@@ -16,5 +16,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: mood-tracker-values
-    - kind: Secret
-      name: mood-tracker-secrets
