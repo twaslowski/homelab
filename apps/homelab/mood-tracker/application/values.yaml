@@ -1,5 +1,5 @@
 image:
-  tag: "latest"
+  tag: "1.0.0"
 
 telegramToken:
   existingSecret:
@@ -10,6 +10,8 @@ datasource:
   existingSecret:
     name: pg-secret
     key: jdbc-uri
+
+configurationUrl: "https://moody.twaslowski.com/configure"
 
 ingress:
   enabled: true

@@ -57,7 +57,7 @@ config:
         host  logs-prod-012.grafana.net
         http_user ${HTTP_USER}
         http_passwd ${HTTP_PASSWD}
-        labels namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_name=$kubernetes['container_name'], app=$kubernetes['labels']['app'], service=$kubernetes['labels']['service']
+        labels job=fluent-bit, namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_name=$kubernetes['container_name'], app=$kubernetes['labels']['app'], service=$kubernetes['labels']['service']
 
   customParsers: |
     [PARSER]
