@@ -24,6 +24,5 @@ spec:
 
   storage:
     size: 8Gi
-    storageClass: local-path
   monitoring:
     enablePodMonitor: true

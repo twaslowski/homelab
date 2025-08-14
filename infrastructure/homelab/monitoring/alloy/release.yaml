@@ -62,8 +62,8 @@ spec:
           }
           
           rule {
-            source_labels = ["uid", "pod"]
-            regex         = "kube_pod.*"
+            source_labels = ["uid"]
+            regex         = "kube_pod_.*"
             action        = "drop"
           }
           

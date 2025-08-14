@@ -8,7 +8,7 @@ tasks:
   bootstrap-agent:
     desc: Setup an agent node with k3sup
     cmds:
-      - k3sup join {{ .CLI_ARGS }}
+      - k3sup join --ip $AGENT_IP --user $USER --server-ip $LEADER_IP --ssh-key $SSH_KEY
 
   bootstrap-aws:
     desc: Setup AWS account bootstrap

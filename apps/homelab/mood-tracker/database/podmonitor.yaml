@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: mood-tracker-pg-monitor
+  labels:
+    app.kubernetes.io/part-of: mood-tracker
+    app.kubernetes.io/component: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+      - mood-tracker
+  selector:
+    matchExpressions:
+      - key: "cnpg.io/cluster"
+        operator: In
+        values:
+          - mood-tracker-pg
+  podMetricsEndpoints:
+    - port: metrics

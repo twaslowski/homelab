@@ -6,5 +6,6 @@ resources:
   - gabe565.yaml
   - grafana.yaml
   - grammr.yaml
+  - mood-tracker.yaml
   - prometheus.yaml
   - vaultwarden.yaml
