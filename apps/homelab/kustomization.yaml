@@ -4,6 +4,7 @@ resources:
   - grammr
   - homer
   - memos
+  - mood-tracker
   - paperless-ngx
   - tandoor
   - vaultwarden
