@@ -62,9 +62,22 @@ spec:
           }
           
           rule {
-            source_labels = ["uid"]
+            source_labels = ["__name__"]
             regex         = "kube_pod_.*"
-            action        = "drop"
+            target_label  = "uid"
+            action        = "labeldrop"
+          }
+          
+          rule {
+            source_labels = ["__name__"]
+            regex         = "kube_pod_.*"
+            target_label  = "pod"
+            action        = "labeldrop"
+          }
+          
+          rule {
+            regex  = "mountpoint"
+            action = "labeldrop"
           }
           
           rule {
@@ -84,6 +97,17 @@ spec:
             regex         = "kube_replicaset_.*"
             action        = "drop"
         }
+        
+        rule {
+            regex  = "mountpoint"
+            action = "labeldrop"
+          }
+        
+        rule {
+          regex  = "id"
+          action = "labeldrop"
+        }
+
 
     prometheusOperatorObjects:
       enabled: true
