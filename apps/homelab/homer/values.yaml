@@ -67,6 +67,9 @@ configMaps:
           - name: "LinkedIn"
             icon: "fa-brands fa-linkedin"
             url: "https://linkedin.com/in/twaslowski"
+          - name: "CV"
+            icon: "fa-solid fa-file"
+            url: "https://twaslowski.github.io/cv/main.pdf"
         
         services:
           - name: "Health"
@@ -81,8 +84,23 @@ configMaps:
                 icon: "fa-solid fa-chart-line"
                 subtitle: "Monitoring & Analytics"
                 keywords: "monitoring"
-                url: "https://grafana.twaslowski.com"
+                url: "https://twaslowski.grafana.net"
                 target: "_blank"
+        
+          - name: "My own projects"
+            icon: "fa-solid fa-code"
+            items:
+              - name: "grammr"
+                subtitle: "Reference toolkit for language-learning"
+                icon: "fa-solid fa-language"
+                keywords: "language learning grammar reference"
+                url: "https://grammr.app"
+                target: "_blank" # optional html tag target attribute
+              - name: "mood tracker"
+                subtitle: "Telegram mood tracker bot"
+                icon: "fa-solid fa-cloud"
+                keywords: "mood tracker telegram"
+                url: "https://moody.twaslowski.com"
         
           - name: "Apps"
             icon: "fa-solid fa-rocket"
