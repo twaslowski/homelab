@@ -4,6 +4,7 @@ metadata:
   name: paperless-pg
 spec:
   instances: 2
+
   bootstrap:
     recovery:
       source: origin
@@ -16,13 +17,13 @@ spec:
           barmanObjectName: backup-store
           serverName: paperless-pg
 
-#  plugins:
-#    - name: barman-cloud.cloudnative-pg.io
-#      isWALArchiver: true
-#      parameters:
-#        barmanObjectName: backup-store
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: backup-store-dr
 
   storage:
-    size: 8Gi
+    size: 4Gi
   monitoring:
     enablePodMonitor: true
