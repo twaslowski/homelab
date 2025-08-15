@@ -62,21 +62,17 @@ spec:
           }
           
           rule {
-            source_labels = ["__name__"]
-            regex         = "kube_pod_.*"
-            target_label  = "uid"
-            action        = "labeldrop"
+            regex  = "uid"
+            action = "labeldrop"
           }
           
           rule {
-            source_labels = ["__name__"]
-            regex         = "kube_pod_.*"
-            target_label  = "pod"
-            action        = "labeldrop"
+            regex  = "pod"
+            action = "labeldrop"
           }
           
           rule {
-            regex  = "mountpoint"
+            regex  = "container_id"
             action = "labeldrop"
           }
           
@@ -93,12 +89,6 @@ spec:
       enabled: true
       extraMetricProcessingRules: |-
         rule {
-            source_labels = ["__name__"]
-            regex         = "kube_replicaset_.*"
-            action        = "drop"
-        }
-        
-        rule {
             regex  = "mountpoint"
             action = "labeldrop"
           }
@@ -108,6 +98,10 @@ spec:
           action = "labeldrop"
         }
 
+        rule {
+          regex  = "id"
+          action = "device"
+        }
 
     prometheusOperatorObjects:
       enabled: true
@@ -118,8 +112,8 @@ spec:
         extraMetricProcessingRules: |-
           rule {
             source_labels = ["__name__"]
-            regex         = "cnpg_pg_settings_setting"
-            action        = "drop"
+            regex         = "gotk_.*"
+            action        = "keep"
           }
 
     alloy-metrics:
