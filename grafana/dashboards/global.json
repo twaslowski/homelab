@@ -102,7 +102,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -257,7 +257,7 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -396,7 +396,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -502,7 +502,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -707,7 +707,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -770,7 +770,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -926,7 +926,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1078,7 +1078,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1197,7 +1197,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1333,7 +1333,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1470,7 +1470,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1479,7 +1479,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (namespace)\n+ on (namespace)\n(sum(rate(windows_container_cpu_usage_seconds_total{container_id!=\"\", cluster=\"$cluster\"}[$__rate_interval]) * on (container_id) group_left (container, pod, namespace) max by ( container, container_id, pod, namespace) (kube_pod_container_info{container_id!=\"\", cluster=\"$cluster\"}) OR kube_namespace_created{cluster=\"$cluster\"} * 0) by (namespace))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (namespace)",
           "format": "time_series",
           "hide": false,
           "interval": "$resolution",
@@ -1578,7 +1578,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1587,7 +1587,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{image!=\"\", cluster=\"$cluster\"}) by (namespace)\n+ on (namespace)\n(sum(windows_container_memory_usage_commit_bytes{container_id!=\"\", cluster=\"$cluster\"} * on (container_id) group_left (container, pod, namespace) max by ( container, container_id, pod, namespace) (kube_pod_container_info{container_id!=\"\", cluster=\"$cluster\"}) OR kube_namespace_created{cluster=\"$cluster\"} * 0) by (namespace))",
+          "expr": "sum(container_memory_working_set_bytes{image!=\"\", cluster=\"$cluster\"}) by (namespace)",
           "interval": "$resolution",
           "legendFormat": "{{ namespace }}",
           "range": true,
@@ -1685,7 +1685,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1805,7 +1805,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -1931,7 +1931,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2042,7 +2042,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2161,7 +2161,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2279,7 +2279,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2386,7 +2386,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2493,7 +2493,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2607,7 +2607,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2748,7 +2748,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2934,7 +2934,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -2943,7 +2943,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_network_receive_bytes_total{cluster=\"$cluster\"}[$__rate_interval])) by (namespace)\n+ on (namespace)\n(sum(rate(windows_container_network_receive_bytes_total{container_id!=\"\", cluster=\"$cluster\"}[$__rate_interval]) * on (container_id) group_left (container, pod, namespace) max by ( container, container_id, pod, namespace) (kube_pod_container_info{container_id!=\"\", cluster=\"$cluster\"}) OR kube_namespace_created{cluster=\"$cluster\"} * 0) by (namespace))",
+          "expr": "sum(rate(container_network_receive_bytes_total{cluster=\"$cluster\"}[$__rate_interval])) by (namespace)",
           "interval": "$resolution",
           "legendFormat": "Received : {{ namespace }}",
           "range": true,
@@ -3047,7 +3047,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -3188,7 +3188,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
@@ -3330,7 +3330,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-16890666601",
       "targets": [
         {
           "datasource": {
