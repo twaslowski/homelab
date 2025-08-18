@@ -31,10 +31,7 @@ spec:
       app.kubernetes.io/instance: memogram
       app.kubernetes.io/name: memogram
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       labels:
