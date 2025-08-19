@@ -1,6 +1,7 @@
 image:
   repository: twaslowski/memos
   tag: "canary"
+  pullPolicy: Always
 
 env:
   TZ: "Europe/Berlin"

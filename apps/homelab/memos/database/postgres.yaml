@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: memos-pg
 spec:
-  instances: 1
+  instances: 2
   affinity:
     nodeSelector:
       kubernetes.io/hostname: homelab-leader
