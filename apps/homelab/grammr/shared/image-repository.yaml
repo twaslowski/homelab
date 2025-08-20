@@ -5,5 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   image: grammrapp/grammr-core
-  interval: 5m
-  provider: generic
+  interval: 1m

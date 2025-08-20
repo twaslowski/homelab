@@ -1,7 +1,7 @@
 fullnameOverride: core
 
 image:
-  tag: latest
+  tag: sha-7da21fb  # {"$imagepolicy": "flux-system:grammr-core"}
   repository: grammrapp/grammr-core
   pullPolicy: Always
 

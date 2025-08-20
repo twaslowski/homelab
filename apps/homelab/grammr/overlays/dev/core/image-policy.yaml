@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: grammr-latest
+  name: grammr-core
   namespace: flux-system
 spec:
   imageRepositoryRef:
@@ -9,21 +9,31 @@ spec:
   policy:
     alphabetical:
       order: asc
-  filterTags:
-    pattern: '^latest$'
-    extract: '$0'
+    filterTags:
+      pattern: '^sha-[a-f0-9]+$'
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: grammr-core
+  name: update-grammr-core-dev
+  namespace: flux-system
 spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  interval: 1h
+  interval: 1m
   git:
+    checkout:
+      ref:
+        branch: main
     commit:
       author:
-        email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
+        email: fluxcdbot@users.noreply.github.com
+      messageTemplate: |
+        Update grammr-core to {{ .Updated.Image }}
+    push:
+      branch: main
+  update:
+    path: ./apps/homelab/grammr/overlays/dev/core/values.yaml
+    strategy: Setters
