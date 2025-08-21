@@ -52,7 +52,9 @@ persistence:
   django-js-reverse:
     enabled: false
   static:
-    enabled: false
+    enabled: true
+    size: 50Mi
+    accessMode: ReadWriteMany
 
 postgresql:
   enabled: false
