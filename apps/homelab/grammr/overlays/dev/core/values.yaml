@@ -1,10 +1,8 @@
 fullnameOverride: core
-
 image:
-  tag: sha-7da21fb  # {"$imagepolicy": "flux-system:grammr-core"}
+  tag: grammrapp/grammr-core:dev-20250821165848-97a3446 # {"$imagepolicy": "flux-system:grammr-core"}
   repository: grammrapp/grammr-core
   pullPolicy: Always
-
 environmentVariables:
   - name: DATASOURCE_URL
     valueFrom:
@@ -22,7 +20,6 @@ environmentVariables:
       configMapKeyRef:
         name: clerk-jwt-public-key
         key: jwt-key.pub
-
 ingress:
   enabled: true
   className: cloudflare-tunnel
@@ -30,7 +27,6 @@ ingress:
   paths:
     - /api/
     - /actuator/health
-
 languages:
   - code: ru
     morphology:
