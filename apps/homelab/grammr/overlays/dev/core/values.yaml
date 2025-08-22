@@ -1,7 +1,7 @@
 fullnameOverride: core
 image:
-  tag: grammrapp/grammr-core:dev-20250821165848-97a3446 # {"$imagepolicy": "flux-system:grammr-core"}
-  repository: grammrapp/grammr-core
+  tag: dev-20250821165848-97a3446 # {"$imagepolicy": "flux-system:grammr-develop:tag"}
+  repository: grammrapp/grammr-core # {"$imagepolicy": "flux-system:grammr-develop:name"}
   pullPolicy: Always
 environmentVariables:
   - name: DATASOURCE_URL
