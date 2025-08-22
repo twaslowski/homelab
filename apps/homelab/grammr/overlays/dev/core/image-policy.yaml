@@ -1,15 +1,19 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: grammr-core
+  name: grammr-develop
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: grammr-core
   filterTags:
-    pattern: '^sha-[a-f0-9]+$'
+    pattern: '^dev-(?P<ts>\d{14})-[0-9a-f]{7,40}$'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: update-grammr-core-dev
@@ -28,7 +32,7 @@ spec:
         name: fluxcdbot
         email: fluxcdbot@users.noreply.github.com
       messageTemplate: |
-        Update grammr-core to {{ .Updated.Image }}
+        chore(grammr): automated image update
     push:
       branch: main
   update:
