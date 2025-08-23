@@ -1,6 +1,6 @@
 fullnameOverride: core
 image:
-  tag: dev-20250823090257-dbcdd0c # {"$imagepolicy": "flux-system:grammr-develop:tag"}
+  tag: dev-20250823143605-b871e5e # {"$imagepolicy": "flux-system:grammr-develop:tag"}
   repository: grammrapp/grammr-core # {"$imagepolicy": "flux-system:grammr-develop:name"}
   pullPolicy: Always
 environmentVariables:
