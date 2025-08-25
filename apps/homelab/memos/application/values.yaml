@@ -33,6 +33,3 @@ persistence:
     enabled: true
     size: 1Gi
     accessMode: ReadWriteOnce
-
-postgresql:
-  enabled: false

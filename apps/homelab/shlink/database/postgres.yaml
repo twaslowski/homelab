@@ -1,0 +1,24 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: shlink-pg
+spec:
+  instances: 2
+
+  bootstrap:
+    initdb:
+      database: shlink
+      owner: shlink
+      secret:
+        name: pg-secret
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: backup-store
+
+  storage:
+    size: 2Gi
+  monitoring:
+    enablePodMonitor: true

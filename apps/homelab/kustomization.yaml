@@ -6,5 +6,6 @@ resources:
   - memos
   - mood-tracker
   - paperless-ngx
+  - shlink
   - tandoor
   - vaultwarden

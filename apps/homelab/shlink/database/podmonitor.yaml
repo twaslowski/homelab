@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: shlink-pg-monitor
+  labels:
+    app.kubernetes.io/part-of: shlink
+    app.kubernetes.io/component: monitoring
+spec:
+  namespaceSelector:
+    matchNames:
+      - shlink
+  selector:
+    matchExpressions:
+      - key: "cnpg.io/cluster"
+        operator: In
+        values:
+          - shlink-pg
+  podMetricsEndpoints:
+    - port: metrics
