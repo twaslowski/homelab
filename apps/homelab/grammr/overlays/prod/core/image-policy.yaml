@@ -1,23 +1,20 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: grammr-develop
+  name: grammr-prod
   namespace: flux-system
 spec:
   imageRepositoryRef:
     name: grammr-core
     namespace: flux-system
-  filterTags:
-    pattern: '^dev-(?P<ts>\d{14})-[0-9a-f]{7,40}$'
-    extract: '$ts'
   policy:
-    numerical:
-      order: asc
+    semver:
+      range: "3.x"
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
-  name: update-grammr-core-dev
+  name: update-grammr-core-prod
   namespace: flux-system
 spec:
   sourceRef:
@@ -38,5 +35,5 @@ spec:
     push:
       branch: main
   update:
-    path: ./apps/homelab/grammr/overlays/dev/core/values.yaml
+    path: ./apps/homelab/grammr/overlays/prod/core/values.yaml
     strategy: Setters

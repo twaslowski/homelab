@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: grammr
 resources:
   - ../../../base/core
+  - image-policy.yaml
   - jwt-public-key-cm.yaml
 configMapGenerator:
   - name: core-values-cm
