@@ -6,3 +6,6 @@ metadata:
 spec:
   image: grammrapp/grammr-core
   interval: 1m
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels: {}
