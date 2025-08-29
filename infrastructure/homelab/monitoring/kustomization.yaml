@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - alloy/release.yaml
   - fluent-bit
-  - kube-state-metrics
