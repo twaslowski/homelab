@@ -1,0 +1,30 @@
+alertmanager:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    retention: 14d
+    resources:
+      requests:
+        cpu: 200m
+        memory: 200Mi
+    thanos:
+      objectStorageConfig:
+        existingSecret:
+          name: thanos-config
+          key: thanos-config.yaml
+    podMonitorNamespaceSelector: { }
+    podMonitorSelector:
+      matchLabels:
+        app.kubernetes.io/component: monitoring
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 2Gi
+
+grafana:
+  enabled: false
