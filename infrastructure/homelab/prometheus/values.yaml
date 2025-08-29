@@ -2,6 +2,14 @@ alertmanager:
   enabled: false
 
 prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: cloudflare-tunnel
+    hosts:
+      - host: prometheus.twaslowski.com
+        paths:
+          - path: /
+            pathType: Prefix
   prometheusSpec:
     retention: 14d
     resources:
