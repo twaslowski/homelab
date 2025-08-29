@@ -8,8 +8,7 @@ prometheus:
     hosts:
       - prometheus.twaslowski.com
     paths:
-      - path: /
-        pathType: Prefix
+      - /
 
   prometheusSpec:
     routePrefix: /
