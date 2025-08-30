@@ -9,6 +9,15 @@ spec:
     matchNames:
       - flux-system
   selector:
-    matchExpressions: {}
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - source-controller
+          - kustomize-controller
+          - helm-controller
+          - notification-controller
+          - image-reflector-controller
+          - image-automation-controller
   podMetricsEndpoints:
     - port: http-prom

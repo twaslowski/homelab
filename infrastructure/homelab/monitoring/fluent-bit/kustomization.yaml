@@ -4,6 +4,7 @@ namespace: fluent-bit
 resources:
   - namespace.yaml
   - release.yaml
+  - repository.yaml
   - secret.yaml
 configMapGenerator:
   - name: fluent-bit-values
