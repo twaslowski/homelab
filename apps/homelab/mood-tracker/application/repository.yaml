@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: mood-tracker
-  namespace: flux-system
+  namespace: mood-tracker
 spec:
   interval: 1h
   url: https://twaslowski.github.io/open-mood-tracker

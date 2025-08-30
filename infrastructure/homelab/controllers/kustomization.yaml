@@ -9,5 +9,4 @@ resources:
   - k8up
   - longhorn
   - monitoring
-  - prometheus
   - repository
