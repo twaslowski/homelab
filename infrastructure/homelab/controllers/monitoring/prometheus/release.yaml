@@ -21,4 +21,7 @@ spec:
           kind: PrometheusRule
   valuesFrom:
     - kind: ConfigMap
+      name: kube-state-metrics-config
+      valuesKey: kube-state-metrics-config.yaml
+    - kind: ConfigMap
       name: kube-prometheus-stack-values
