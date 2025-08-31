@@ -25,7 +25,7 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: backup-store
-          serverName: grammr
+          serverName: grammr-pg
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
