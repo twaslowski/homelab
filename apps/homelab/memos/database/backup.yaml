@@ -27,3 +27,21 @@ spec:
         key: aws_secret_access_key
     wal:
       compression: gzip
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: backup-store-dr
+spec:
+  configuration:
+    destinationPath: s3://246770851643-eu-central-1-homelab-cluster-storage/backups/memos/memos-dr/
+    endpointURL: https://s3.eu-central-1.amazonaws.com
+    s3Credentials:
+      accessKeyId:
+        name: barman-aws-creds
+        key: aws_access_key_id
+      secretAccessKey:
+        name: barman-aws-creds
+        key: aws_secret_access_key
+    wal:
+      compression: gzip
