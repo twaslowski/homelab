@@ -20,14 +20,14 @@ spec:
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
-          barmanObjectName: backup-store
+          barmanObjectName: backup-store-dr
           serverName: vaultwarden-pg
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: backup-store-dr
+        barmanObjectName: backup-store
 
   storage:
     size: 4Gi
