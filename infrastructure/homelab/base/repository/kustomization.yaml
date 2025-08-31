@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - gabe565.yaml
+  - grammr.yaml
