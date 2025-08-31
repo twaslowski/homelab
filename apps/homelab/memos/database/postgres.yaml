@@ -5,11 +5,12 @@ metadata:
 spec:
   instances: 2
   bootstrap:
-#    initdb:
-#      database: memos
-#      owner: memos
-#      secret:
-#        name: pg-secret
+
+    initdb:
+      database: memos
+      owner: memos
+      secret:
+        name: pg-secret
 
   externalClusters:
     - name: origin

@@ -32,4 +32,4 @@ persistence:
   data:
     enabled: true
     size: 1Gi
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
