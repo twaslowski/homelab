@@ -61,7 +61,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 25,
+  "id": 0,
   "links": [],
   "panels": [
     {
@@ -132,7 +132,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -206,7 +206,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -271,7 +271,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -304,6 +304,9 @@
               "type": "auto"
             },
             "inspect": false,
+            "tooltip": {
+              "placement": "auto"
+            },
             "wrapHeaderText": false
           },
           "links": [
@@ -411,7 +414,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -560,7 +563,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -625,7 +628,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -689,7 +692,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -754,7 +757,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -827,7 +830,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -895,6 +898,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -943,7 +947,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1000,6 +1004,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1047,7 +1052,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1172,6 +1177,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1219,7 +1225,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1270,6 +1276,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1317,7 +1324,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1372,6 +1379,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1426,7 +1434,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2178,8 +2186,8 @@
     "list": [
       {
         "current": {
-          "text": "grafanacloud-twaslowski-prom",
-          "value": "grafanacloud-prom"
+          "text": "homelab-prometheus",
+          "value": "dewhe19r8a5tsc"
         },
         "includeAll": false,
         "name": "datasource",
@@ -2191,8 +2199,8 @@
       },
       {
         "current": {
-          "text": "homelab",
-          "value": "homelab"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -2278,8 +2286,8 @@
       },
       {
         "current": {
-          "text": "",
-          "value": ""
+          "text": "192.168.178.154:9100",
+          "value": "192.168.178.154:9100"
         },
         "datasource": {
           "type": "prometheus",
@@ -2302,12 +2310,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Kubernetes / Views / Nodes",
   "uid": "k8s_views_nodes",
-  "version": 1
+  "version": 3
 }

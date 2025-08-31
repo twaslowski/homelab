@@ -6,8 +6,18 @@ spec:
   instances: 2
 
   bootstrap:
+#    initdb:
+#      database: paperless_ngx
+#      owner: paperless-ngx
+#      secret:
+#        name: pg-secret
+
     recovery:
       source: origin
+      database: paperless-ngx
+      owner: paperless-ngx
+      secret:
+        name: pg-secret
 
   externalClusters:
     - name: origin

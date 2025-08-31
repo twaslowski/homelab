@@ -5,11 +5,19 @@ metadata:
 spec:
   instances: 2
   bootstrap:
+
 #    initdb:
 #      database: mood_tracker
 #      owner: mood-tracker
 #      secret:
 #        name: pg-secret
+
+    recovery:
+      source: origin
+      database: mood_tracker
+      owner: mood-tracker
+      secret:
+        name: pg-secret
 
   externalClusters:
     - name: origin
