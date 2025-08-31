@@ -5,16 +5,34 @@ metadata:
 spec:
   instances: 1
   bootstrap:
-    initdb:
+
+#    initdb:
+#      database: grammr
+#      owner: grammr
+#      secret:
+#        name: pg-secret
+
+    recovery:
+      source: origin
       database: grammr
       owner: grammr
       secret:
         name: pg-secret
+
+  externalClusters:
+    - name: origin
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: backup-store
+          serverName: grammr
+
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: backup-store
+        barmanObjectName: backup-store-dr
+
   storage:
     size: 1Gi
   monitoring:

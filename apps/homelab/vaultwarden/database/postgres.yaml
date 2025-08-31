@@ -8,6 +8,10 @@ spec:
   bootstrap:
     recovery:
       source: origin
+      database: vaultwarden
+      owner: vaultwarden
+      secret:
+        name: pg-secret
 
   #    initdb:
 #      database: vaultwarden
