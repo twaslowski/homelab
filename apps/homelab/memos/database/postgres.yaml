@@ -10,18 +10,13 @@ spec:
 #      owner: memos
 #      secret:
 #        name: pg-secret
+
     recovery:
       source: origin
-
-    roles:
-      - name: memos
-        ensure: present
-        login: true
-        createdb: true
-        superuser: false
-        passwordSecret:
-          name: pg-secret
-          key: password
+      database: memos
+      owner: memos
+      secret:
+        name: pg-secret
 
   externalClusters:
     - name: origin
