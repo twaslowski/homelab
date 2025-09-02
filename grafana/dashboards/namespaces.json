@@ -18,42 +18,6 @@
           "type": "dashboard"
         },
         "type": "dashboard"
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "#5c4ee5",
-        "name": "terraform",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "terraform"
-          ],
-          "type": "tags"
-        }
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "red",
-        "name": "oncall",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "oncall"
-          ],
-          "type": "tags"
-        }
       }
     ]
   },
@@ -61,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 29,
+  "id": 0,
   "links": [],
   "panels": [
     {
@@ -132,7 +96,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -207,7 +171,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -258,6 +222,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -311,7 +276,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -474,7 +439,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -576,7 +541,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -678,6 +643,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -725,7 +691,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -734,7 +700,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}[$__rate_interval])) by (pod)",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (pod)",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -778,6 +744,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -825,7 +792,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -834,7 +801,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{namespace=~\"$namespace\", image!=\"\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{namespace=~\"$namespace\", image!=\"\", cluster=\"$cluster\"}) by (pod)",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -882,6 +849,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -936,7 +904,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -945,7 +913,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{namespace=~\"$namespace\", image!=\"\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}[$__rate_interval])) by (pod) > 0",
+          "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{namespace=~\"$namespace\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (pod) > 0",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -1002,6 +970,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1055,7 +1024,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1120,6 +1089,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1173,7 +1143,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1227,6 +1197,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1280,7 +1251,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1334,6 +1305,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1387,7 +1359,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1440,6 +1412,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1488,7 +1461,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1582,6 +1555,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1630,7 +1604,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1638,7 +1612,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(kube_pod_container_info{namespace=~\"$namespace\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}) by (pod)",
+          "expr": "sum(kube_pod_container_info{namespace=~\"$namespace\", cluster=\"$cluster\"}) by (pod)",
           "interval": "",
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -1682,6 +1656,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1729,7 +1704,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1782,6 +1757,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1829,7 +1805,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1837,7 +1813,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(kube_deployment_status_replicas_unavailable{namespace=~\"$namespace\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}) by (deployment)",
+          "expr": "sum(kube_deployment_status_replicas_unavailable{namespace=~\"$namespace\", cluster=\"$cluster\"}) by (deployment)",
           "interval": "",
           "legendFormat": "{{ deployment }}",
           "range": true,
@@ -1883,6 +1859,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1930,7 +1907,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -1983,6 +1960,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2034,7 +2012,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2042,7 +2020,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "count(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\", pod=~\"${created_by}.*\", cluster=\"$cluster\"}[$__rate_interval])) by (image)",
+          "expr": "count(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (image)",
           "interval": "",
           "legendFormat": "{{ image }}",
           "range": true,
@@ -2099,6 +2077,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2147,7 +2126,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2198,6 +2177,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2246,7 +2226,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2309,6 +2289,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2357,7 +2338,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2422,6 +2403,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2469,7 +2451,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2536,6 +2518,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2583,7 +2566,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2650,6 +2633,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2697,7 +2681,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2764,6 +2748,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2811,7 +2796,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286",
       "targets": [
         {
           "datasource": {
@@ -2855,8 +2840,8 @@
     "list": [
       {
         "current": {
-          "text": "grafanacloud-prom",
-          "value": "grafanacloud-prom"
+          "text": "homelab-prometheus",
+          "value": "dewhe19r8a5tsc"
         },
         "includeAll": false,
         "name": "datasource",
@@ -2868,8 +2853,8 @@
       },
       {
         "current": {
-          "text": "homelab",
-          "value": "homelab"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -2893,10 +2878,10 @@
         "allValue": ".*",
         "current": {
           "text": [
-            "All"
+            "mood-tracker"
           ],
           "value": [
-            "$__all"
+            "mood-tracker"
           ]
         },
         "datasource": {
@@ -2924,38 +2909,40 @@
         },
         "includeAll": false,
         "name": "resolution",
-        "options": [],
+        "options": [
+          {
+            "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": false,
+            "text": "15s",
+            "value": "15s"
+          },
+          {
+            "selected": true,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "3m",
+            "value": "3m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          }
+        ],
         "query": "1s, 15s, 30s, 1m, 3m, 5m",
         "type": "custom"
-      },
-      {
-        "allValue": ".*",
-        "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${datasource}"
-        },
-        "definition": "label_values(kube_pod_info{namespace=~\"$namespace\", cluster=\"$cluster\"},created_by_name)",
-        "description": "Can be used to filter on a specific deployment, statefulset or deamonset (only relevant panels).",
-        "includeAll": true,
-        "multi": true,
-        "name": "created_by",
-        "options": [],
-        "query": {
-          "query": "label_values(kube_pod_info{namespace=~\"$namespace\", cluster=\"$cluster\"},created_by_name)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 2,
-        "regex": "",
-        "sort": 1,
-        "type": "query"
       }
     ]
   },

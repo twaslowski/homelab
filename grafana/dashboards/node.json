@@ -18,42 +18,6 @@
           "type": "dashboard"
         },
         "type": "dashboard"
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "#5c4ee5",
-        "name": "terraform",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "terraform"
-          ],
-          "type": "tags"
-        }
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "hide": false,
-        "iconColor": "red",
-        "name": "oncall",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [
-            "oncall"
-          ],
-          "type": "tags"
-        }
       }
     ]
   },
@@ -132,7 +96,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -141,7 +105,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum by (cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"$node\", cluster=\"$cluster\"}[$__rate_interval])))",
+          "expr": "avg(sum by (cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval])))",
           "instant": true,
           "interval": "$resolution",
           "legendFormat": "",
@@ -206,7 +170,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -215,7 +179,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(node_memory_MemTotal_bytes{instance=\"$node\"} - node_memory_MemAvailable_bytes{instance=\"$node\"}) / sum(node_memory_MemTotal_bytes{instance=\"$node\"})",
+          "expr": "sum(node_memory_MemTotal_bytes{instance=~\"$instance\"} - node_memory_MemAvailable_bytes{instance=\"$instance\"}) / sum(node_memory_MemTotal_bytes{instance=\"$instance\"})",
           "instant": true,
           "interval": "$resolution",
           "legendFormat": "",
@@ -271,7 +235,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -414,7 +378,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -563,15 +527,16 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"node\", cluster=\"$cluster\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]))",
           "instant": true,
           "interval": "$resolution",
           "legendFormat": "",
@@ -628,7 +593,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -692,15 +657,16 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(node_memory_MemTotal_bytes{instance=\"node\", cluster=\"$cluster\"} - node_memory_MemAvailable_bytes{instance=\"node\", cluster=\"$cluster\"})",
+          "expr": "sum(node_memory_MemTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"} - node_memory_MemAvailable_bytes{instance=\"$instance\", cluster=\"$cluster\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -757,7 +723,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -830,15 +796,16 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "node_time_seconds{instance=\"node\", cluster=\"$cluster\"} - node_boot_time_seconds{instance=\"node\", cluster=\"$cluster\"}",
+          "expr": "node_time_seconds{instance=\"$instance\", cluster=\"$cluster\"} - node_boot_time_seconds{instance=\"$instance\", cluster=\"$cluster\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -947,7 +914,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -956,7 +923,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg(rate(node_cpu_seconds_total{instance=\"$node\", cluster=\"$cluster\"}[$__rate_interval]) * 100) by (mode)",
+          "expr": "avg(rate(node_cpu_seconds_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]) * 100) by (mode)",
           "hide": false,
           "instant": false,
           "interval": "$resolution",
@@ -1052,7 +1019,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1061,7 +1028,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "node_memory_MemTotal_bytes{instance=\"$node\", cluster=\"$cluster\"} - node_memory_MemFree_bytes{instance=\"$node\", cluster=\"$cluster\"} - (node_memory_Cached_bytes{instance=\"$node\", cluster=\"$cluster\"} + node_memory_Buffers_bytes{instance=\"$node\", cluster=\"$cluster\"})",
+          "expr": "node_memory_MemTotal_bytes{instance=\"$instance\", cluster=\"$cluster\"} - node_memory_MemFree_bytes{instance=\"$instance\", cluster=\"$cluster\"} - (node_memory_Cached_bytes{instance=\"$instance\", cluster=\"$cluster\"} + node_memory_Buffers_bytes{instance=\"$instance\", cluster=\"$cluster\"})",
           "instant": false,
           "interval": "$resolution",
           "legendFormat": "RAM Used",
@@ -1225,7 +1192,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1324,7 +1291,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1434,7 +1401,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1443,7 +1410,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(node_cpu_core_throttles_total{instance=\"$node\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_cpu_core_throttles_total{instance=\"$instance\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "Nb of cpu core throttles",
           "range": true,
@@ -1500,6 +1467,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1547,7 +1515,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1556,7 +1524,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(node_network_receive_bytes_total{instance=\"$node\", cluster=\"$cluster\"}[$__rate_interval]))",
+          "expr": "sum(rate(node_network_receive_bytes_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]))",
           "interval": "$resolution",
           "legendFormat": "In",
           "range": true,
@@ -1626,6 +1594,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1674,7 +1643,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1710,6 +1679,9 @@
             },
             "filterable": false,
             "inspect": false,
+            "tooltip": {
+              "placement": "auto"
+            },
             "wrapHeaderText": false
           },
           "mappings": [],
@@ -1775,7 +1747,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -1890,6 +1862,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1938,7 +1911,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -2004,6 +1977,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2052,7 +2026,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -2061,7 +2035,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - ((sum(node_filesystem_avail_bytes{instance=\"$node\", cluster=\"$cluster\"}) * 100) / sum(node_filesystem_size_bytes{instance=\"$node\", cluster=\"$cluster\"}))",
+          "expr": "100 - ((sum(node_filesystem_avail_bytes{instance=\"$instance\", cluster=\"$cluster\"}) * 100) / sum(node_filesystem_size_bytes{instance=\"$instance\", cluster=\"$cluster\"}))",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "{{ mountpoint }}",
@@ -2106,6 +2080,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -2154,7 +2129,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16890666601",
+      "pluginVersion": "12.2.0-17245430286.patch1",
       "targets": [
         {
           "datasource": {
@@ -2163,7 +2138,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "100 - (sum(node_filesystem_files_free{instance=\"$node\", cluster=\"$cluster\"}) / sum(node_filesystem_files{instance=\"$node\", cluster=\"$cluster\"}) * 100)",
+          "expr": "100 - (sum(node_filesystem_files_free{instance=\"$instance\", cluster=\"$cluster\"}) / sum(node_filesystem_files{instance=\"$instance\", cluster=\"$cluster\"}) * 100)",
           "hide": false,
           "interval": "$resolution",
           "legendFormat": "{{ mountpoint }}",
@@ -2264,8 +2239,8 @@
       },
       {
         "current": {
-          "text": "homelab-leader",
-          "value": "homelab-leader"
+          "text": "homelab-agent",
+          "value": "homelab-agent"
         },
         "datasource": {
           "type": "prometheus",
@@ -2286,8 +2261,8 @@
       },
       {
         "current": {
-          "text": "192.168.178.154:9100",
-          "value": "192.168.178.154:9100"
+          "text": "192.168.178.100:9100",
+          "value": "192.168.178.100:9100"
         },
         "datasource": {
           "type": "prometheus",
@@ -2317,5 +2292,5 @@
   "timezone": "",
   "title": "Kubernetes / Views / Nodes",
   "uid": "k8s_views_nodes",
-  "version": 3
+  "version": 5
 }
