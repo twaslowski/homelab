@@ -6,26 +6,26 @@ spec:
   instances: 2
 
   bootstrap:
-#    initdb:
-#      database: paperless_ngx
-#      owner: paperless-ngx
-#      secret:
-#        name: pg-secret
-
-    recovery:
-      source: origin
-      database: paperless-ngx
+    initdb:
+      database: paperless_ngx
       owner: paperless-ngx
       secret:
         name: pg-secret
 
-  externalClusters:
-    - name: origin
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters:
-          barmanObjectName: backup-store-dr
-          serverName: paperless-pg
+#    recovery:
+#      source: origin
+#      database: paperless-ngx
+#      owner: paperless-ngx
+#      secret:
+#        name: pg-secret
+
+#  externalClusters:
+#    - name: origin
+#      plugin:
+#        name: barman-cloud.cloudnative-pg.io
+#        parameters:
+#          barmanObjectName: backup-store-dr
+#          serverName: paperless-pg
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
