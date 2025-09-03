@@ -83,5 +83,5 @@ spec:
           volumes:
             - name: paperless-media
               persistentVolumeClaim:
-                claimName: paperless-ngx-data
+                claimName: paperless-ngx-media
 
