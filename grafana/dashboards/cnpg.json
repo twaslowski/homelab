@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 28,
+  "id": 0,
   "links": [
     {
       "asDropdown": false,
@@ -74,7 +74,7 @@
         },
         "viewMode": "list"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Alerts",
       "type": "alertlist"
     },
@@ -99,7 +99,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Health",
       "type": "text"
     },
@@ -124,7 +124,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Overview",
       "type": "text"
     },
@@ -149,7 +149,7 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Storage",
       "type": "text"
     },
@@ -174,14 +174,14 @@
         "content": "",
         "mode": "markdown"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Backups",
       "type": "text"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Cluster Replication Health represents the availability of replica servers available to replace the primary in case of a failure.",
       "fieldConfig": {
@@ -254,12 +254,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "(max(cnpg_pg_replication_streaming_replicas{namespace=~\"$namespace\", pod=~\"$instances\"}) - sum(cnpg_pg_replication_is_wal_receiver_up{namespace=~\"$namespace\", pod=~\"$instances\"})) + (clamp_max(max(cnpg_pg_replication_streaming_replicas{namespace=~\"$namespace\", pod=~\"$instances\"}), 1) - 1)",
@@ -274,7 +274,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "High lag indicates issue with replication. Network or storage interfaces may not have enough bandwidth to handle incoming traffic and replication at the same time.",
       "fieldConfig": {
@@ -379,12 +379,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(cnpg_pg_replication_lag{namespace=~\"$namespace\",pod=~\"$instances\"}) + max(cnpg_pg_stat_replication_write_lag_seconds{namespace=~\"$namespace\",pod=~\"$instances\"}) + max(cnpg_pg_stat_replication_flush_lag_seconds{namespace=~\"$namespace\",pod=~\"$instances\"}) + max(cnpg_pg_stat_replication_replay_lag_seconds{namespace=~\"$namespace\",pod=~\"$instances\"})",
@@ -397,7 +397,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "",
           "hide": false,
@@ -412,7 +412,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Low disk space or low inode count will result in data loss.",
       "fieldConfig": {
@@ -529,12 +529,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max((max(max by(persistentvolumeclaim) (1 - kubelet_volume_stats_available_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"} / kubelet_volume_stats_capacity_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"}))) OR (max by(persistentvolumeclaim) (kubelet_volume_stats_inodes_used{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"} / kubelet_volume_stats_inodes{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"})))",
@@ -550,7 +550,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -597,12 +597,12 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -622,7 +622,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -667,12 +667,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -689,7 +689,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "CPU Utilisation from Requests",
       "fieldConfig": {
@@ -756,12 +756,12 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", pod=~\"$instances\"}) / sum(kube_pod_container_resource_requests{job=\"kube-state-metrics\",  namespace=\"$namespace\", resource=\"cpu\", pod=~\"$instances\"})",
@@ -777,7 +777,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Memory Utilisation from Requests",
       "fieldConfig": {
@@ -844,12 +844,12 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", namespace=\"$namespace\",container!=\"\", image!=\"\", pod=~\"$instances\"}) / sum(max by(pod) (kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"$namespace\", resource=\"memory\", pod=~\"$instances\"}))",
@@ -865,7 +865,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -924,12 +924,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -946,7 +946,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1003,15 +1003,15 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "max(cnpg_pg_stat_replication_write_lag_seconds{namespace=~\"$namespace\",pod=~\"$instances\"})",
+          "expr": "max(cnpg_pg_stat_replication_write_lag_seconds{namespace=\"$namespace\", pod=~\"$instances\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1023,7 +1023,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1076,12 +1076,12 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1096,7 +1096,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1111,7 +1111,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1129,7 +1129,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Elapsed time since the last successful base backup.",
       "fieldConfig": {
@@ -1216,16 +1216,16 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "-(time() - max(cnpg_collector_last_available_backup_timestamp{namespace=\"$namespace\",pod=~\"$instances\"}))",
+          "expr": "-(time() - max(cnpg_collector_last_available_backup_timestamp{namespace=\"$namespace\", pod=~\"$cluster\"}))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -1238,7 +1238,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "High resource usage (CPU, Memory, DB Connections)",
       "fieldConfig": {
@@ -1343,12 +1343,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "(sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{ namespace=\"$namespace\", pod=~\"$instances\"}) / sum(kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"$namespace\", resource=\"cpu\", pod=~\"$instances\"}))",
@@ -1360,7 +1360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "(sum(container_memory_working_set_bytes{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", namespace=\"$namespace\",container!=\"\", image!=\"\", pod=~\"$instances\"}) / sum(max by(pod) (kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"$namespace\", resource=\"memory\", pod=~\"$instances\"})))",
@@ -1373,7 +1373,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": " (max(sum by (pod) (cnpg_backends_total{namespace=~\"$namespace\", pod=~\"$instances\"}) / sum by (pod) (cnpg_pg_settings_setting{name=\"max_connections\", namespace=~\"$namespace\", pod=~\"$instances\"})))",
@@ -1390,7 +1390,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Computes the time since the last known WAL archival in the primary.\nWe ensure to ignore the metric in the replicas by using (1 - cnpg_pg_replication_in_recovery ) as a multiplicative factor. It will be 0 for replicas, 1 for the primary.",
       "fieldConfig": {
@@ -1460,12 +1460,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1484,7 +1484,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1531,12 +1531,12 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -1557,7 +1557,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1614,12 +1614,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(cnpg_pg_stat_replication_flush_lag_seconds{namespace=~\"$namespace\",pod=~\"$instances\"})",
@@ -1634,7 +1634,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1691,12 +1691,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(cnpg_pg_stat_replication_replay_lag_seconds{namespace=~\"$namespace\",pod=~\"$instances\"})",
@@ -1711,7 +1711,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Base Backups are considered healthy when there has been at least one base backup in the last 24 hours.",
       "fieldConfig": {
@@ -1865,12 +1865,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "time() - max(cnpg_collector_last_available_backup_timestamp{namespace=\"$namespace\", pod=~\"$instances\"})",
@@ -1885,7 +1885,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Base Backups are considered healthy when there has been at least one base backup in the last 24 hours.",
       "fieldConfig": {
@@ -2039,12 +2039,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max((1 - cnpg_pg_replication_in_recovery{namespace=~\"$namespace\", pod=~\"$instances\"}) * (time() - timestamp(cnpg_pg_stat_archiver_seconds_since_last_archival{namespace=~\"$namespace\", pod=~\"$instances\"}) +\ncnpg_pg_stat_archiver_seconds_since_last_archival{namespace=~\"$namespace\", pod=~\"$instances\"}))",
@@ -2061,7 +2061,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Online if there is at least one ready operator pod",
       "fieldConfig": {
@@ -2142,12 +2142,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(kube_pod_status_ready{namespace=\"$operatorNamespace\", pod=~\"cloudnative-pg-operator.+|cnpg-controller-manager.+\", condition=\"true\"})",
@@ -2164,7 +2164,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
       "fieldConfig": {
@@ -2281,12 +2281,12 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "clamp_max(max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=\"backup\"}), 1)",
@@ -2298,7 +2298,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "clamp_max(max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=\"cluster\"}), 1)",
@@ -2310,7 +2310,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "clamp_max(max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=\"pooler\"}), 1)",
@@ -2322,7 +2322,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "clamp_max(max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=~\"scheduledbackup|scheduled-backup\"}), 1)",
@@ -2348,7 +2348,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2403,12 +2403,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2426,7 +2426,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Container memory working set",
       "fieldConfig": {
@@ -2480,12 +2480,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2503,7 +2503,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2558,12 +2558,12 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2600,7 +2600,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2667,12 +2667,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2722,7 +2722,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Instance",
       "transparent": true,
       "type": "text"
@@ -2748,7 +2748,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Status",
       "type": "text"
     },
@@ -2773,7 +2773,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Clustering / replicas",
       "type": "text"
     },
@@ -2798,7 +2798,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Zone",
       "type": "text"
     },
@@ -2823,7 +2823,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Connections",
       "type": "text"
     },
@@ -2848,7 +2848,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Max Connections",
       "type": "text"
     },
@@ -2874,7 +2874,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Wraparound",
       "type": "text"
     },
@@ -2899,7 +2899,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Started",
       "type": "text"
     },
@@ -2924,7 +2924,7 @@
         "content": "",
         "mode": "html"
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "title": "Version",
       "type": "text"
     },
@@ -2949,7 +2949,7 @@
         "content": "<table style=\"width:100%; height:100%;border:0px solid black;\">\n  <td style=\"text-align: center;vertical-align: middle;border:0px solid black; \"><p style=\"font-weight: bold;\">$instances</p>\n  </td>\n</table>",
         "mode": "html"
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "title": "",
@@ -2958,7 +2958,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2984,15 +2984,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-red"
+                "color": "dark-red",
+                "value": 0
               },
               {
                 "color": "green",
                 "value": 1
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -3008,6 +3008,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -3020,14 +3021,14 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3044,7 +3045,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -3074,15 +3075,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -3098,6 +3099,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -3110,14 +3112,14 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "1 - cnpg_pg_replication_in_recovery{namespace=~\"$namespace\",pod=~\"$instances\"} + cnpg_pg_replication_is_wal_receiver_up{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -3133,7 +3135,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -3147,15 +3149,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -3171,6 +3173,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -3183,14 +3186,14 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3207,7 +3210,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "This metric depends on exporting the: `topology.kubernetes.io/zone` label through kube-state-metrics (not enabled by default). Can be added by changing its configuration with:\n\n```yaml\nmetricLabelsAllowlist:\n  - nodes=[topology.kubernetes.io/zone]\n```",
       "fieldConfig": {
@@ -3220,11 +3223,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": 0
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -3240,6 +3243,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -3254,14 +3258,14 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3279,7 +3283,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3293,6 +3297,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -3309,6 +3314,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -3323,12 +3329,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
-          "unit": "short",
-          "unitScale": true
+          "unit": "short"
         },
         "overrides": []
       },
@@ -3350,18 +3356,19 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3378,7 +3385,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -3395,7 +3402,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -3407,8 +3415,7 @@
               }
             ]
           },
-          "unit": "percent",
-          "unitScale": true
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -3435,14 +3442,14 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3459,7 +3466,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3473,7 +3480,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "#EAB839",
@@ -3485,8 +3493,7 @@
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": []
       },
@@ -3499,6 +3506,12 @@
       "id": 8,
       "options": {
         "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
         "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
@@ -3516,14 +3529,14 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -3540,7 +3553,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -3553,12 +3566,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-blue"
+                "color": "dark-blue",
+                "value": 0
               }
             ]
           },
-          "unit": "dateTimeFromNow",
-          "unitScale": true
+          "unit": "dateTimeFromNow"
         },
         "overrides": []
       },
@@ -3574,6 +3587,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -3586,14 +3600,14 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -3613,7 +3627,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -3626,12 +3640,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-blue"
+                "color": "dark-blue",
+                "value": 0
               }
             ]
           },
-          "unit": "string",
-          "unitScale": true
+          "unit": "string"
         },
         "overrides": []
       },
@@ -3647,6 +3661,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -3659,14 +3674,14 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "repeat": "instances",
       "repeatDirection": "v",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -3689,7 +3704,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 15
       },
       "id": 41,
       "panels": [
@@ -3924,7 +3939,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -3975,7 +3990,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_settings_setting{name=\"max_connections\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -3991,7 +4006,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4044,7 +4059,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "max by (pod) (cnpg_pg_settings_setting{name=\"shared_buffers\",namespace=~\"$namespace\",pod=~\"$instances\"}) * max by (pod) (cnpg_pg_settings_setting{name=\"block_size\",namespace=~\"$namespace\",pod=~\"$instances\"})",
@@ -4060,7 +4075,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4113,7 +4128,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "max by (pod) (cnpg_pg_settings_setting{name=\"effective_cache_size\",namespace=~\"$namespace\",pod=~\"$instances\"}) * max by (pod) (cnpg_pg_settings_setting{name=\"block_size\",namespace=~\"$namespace\",pod=~\"$instances\"})",
@@ -4129,7 +4144,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -4182,7 +4197,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_settings_setting{name=\"work_mem\",namespace=~\"$namespace\",pod=~\"$instances\"} * 1024",
@@ -4198,7 +4213,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -4250,7 +4265,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_settings_setting{name=\"maintenance_work_mem\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -4266,7 +4281,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -4318,7 +4333,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_settings_setting{name=\"random_page_cost\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -4334,7 +4349,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -4386,7 +4401,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_settings_setting{name=\"seq_page_cost\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -4402,7 +4417,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -4455,7 +4470,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_settings_setting{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -4531,7 +4546,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 16
       },
       "id": 10,
       "panels": [],
@@ -4541,7 +4556,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -4573,6 +4588,7 @@
               "type": "log"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -4605,7 +4621,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 17
       },
       "id": 273,
       "options": {
@@ -4621,12 +4637,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{pod=~\"$instances\", namespace=~\"$namespace\"}) by (pod)",
@@ -4644,7 +4660,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -4675,6 +4691,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -4788,7 +4805,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 17
       },
       "id": 275,
       "options": {
@@ -4804,12 +4821,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-16677249643",
+      "pluginVersion": "12.2.0-17245430286.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(container_memory_working_set_bytes{pod=~\"$instances\", namespace=\"$namespace\", container!=\"\", image!=\"\"}) by (pod)",
@@ -4827,7 +4844,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -4884,7 +4901,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 24
       },
       "id": 39,
       "options": {
@@ -4903,7 +4920,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(cnpg_backends_total{namespace=~\"$namespace\",pod=~\"$instances\"}) by (pod)",
@@ -4915,7 +4932,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(cnpg_backends_total{namespace=~\"$namespace\",pod=~\"$instances\"}) by (state, pod)",
@@ -4930,7 +4947,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -4990,7 +5007,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 32
       },
       "id": 50,
       "options": {
@@ -5009,7 +5026,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -5022,7 +5039,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(rate(cnpg_pg_stat_database_xact_rollback{namespace=~\"$namespace\",pod=~\"$instances\"}[5m])) by (pod)",
@@ -5038,7 +5055,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -5100,7 +5117,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 32
       },
       "id": 4,
       "options": {
@@ -5119,7 +5136,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "max by (pod) (cnpg_backends_max_tx_duration_seconds{namespace=~\"$namespace\",pod=~\"$instances\"})",
@@ -5134,7 +5151,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -5195,7 +5212,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 37
+        "y": 40
       },
       "id": 55,
       "options": {
@@ -5214,7 +5231,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "rate(cnpg_pg_stat_database_deadlocks{datname=\"\",namespace=~\"$namespace\",pod=~\"$instances\"}[5m])",
@@ -5231,7 +5248,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "grafanacloud-prom"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -5292,7 +5309,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 40
       },
       "id": 54,
       "options": {
@@ -5311,7 +5328,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "cnpg_backends_waiting_total{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -5329,14 +5346,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 48
       },
       "id": 35,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -5395,7 +5412,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max by(persistentvolumeclaim) (1 - kubelet_volume_stats_available_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"} / kubelet_volume_stats_capacity_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"})",
@@ -5408,7 +5425,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max by(persistentvolumeclaim) (1 - kubelet_volume_stats_available_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"(${instances})-wal\"} / kubelet_volume_stats_capacity_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"(${instances})-wal\"})",
@@ -5425,7 +5442,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -5484,7 +5501,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max by(persistentvolumeclaim) (kubelet_volume_stats_inodes_used{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"} / kubelet_volume_stats_inodes{namespace=\"$namespace\", persistentvolumeclaim=~\"$instances\"})",
@@ -5497,7 +5514,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max by(persistentvolumeclaim) (kubelet_volume_stats_inodes_used{namespace=\"$namespace\", persistentvolumeclaim=~\"(${instances})-wal\"} / kubelet_volume_stats_inodes{namespace=\"$namespace\", persistentvolumeclaim=~\"(${instances})-wal\"})",
@@ -5514,7 +5531,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -5573,7 +5590,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "sum by (namespace,persistentvolumeclaim) (kubelet_volume_stats_used_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"(${instances})-tbs.*\"}) \n/\nsum by (namespace,persistentvolumeclaim) (kubelet_volume_stats_capacity_bytes{namespace=\"$namespace\", persistentvolumeclaim=~\"(${instances})-tbs.*\"}) \n*\non(namespace, persistentvolumeclaim) group_left(volume,pod)\nkube_pod_spec_volumes_persistentvolumeclaims_info{pod=~\"$instances\"}",
@@ -5590,7 +5607,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -5669,7 +5686,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5682,7 +5699,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5696,7 +5713,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5710,7 +5727,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5724,7 +5741,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5742,7 +5759,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -5821,7 +5838,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5834,7 +5851,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5852,7 +5869,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -5929,7 +5946,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -5946,7 +5963,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6026,7 +6043,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "rate(cnpg_pg_stat_database_temp_bytes{datname=\"\",namespace=~\"$namespace\",pod=~\"$instances\"}[5m])",
@@ -6049,14 +6066,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 49
       },
       "id": 37,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6135,7 +6152,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_collector_pg_wal_archive_status{value=\"ready\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -6146,7 +6163,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_collector_pg_wal_archive_status{value=\"done\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -6162,7 +6179,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6241,7 +6258,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "rate(cnpg_pg_stat_archiver_archived_count{namespace=~\"$namespace\",pod=~\"$instances\"}[5m])",
@@ -6252,7 +6269,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "rate(cnpg_pg_stat_archiver_failed_count{namespace=~\"$namespace\",pod=~\"$instances\"}[5m])",
@@ -6268,7 +6285,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -6349,7 +6366,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_stat_archiver_seconds_since_last_archival{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -6364,7 +6381,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6443,7 +6460,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "cnpg_collector_pg_wal{pod=~\"$instances\", namespace=~\"$namespace\", value=\"count\"}",
@@ -6466,14 +6483,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 50
       },
       "id": 18,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6557,7 +6574,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_pg_replication_lag{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -6573,7 +6590,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6653,7 +6670,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -6670,7 +6687,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6750,7 +6767,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -6767,7 +6784,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -6848,7 +6865,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -6872,14 +6889,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 51
       },
       "id": 231,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -6947,7 +6964,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_collector_collection_duration_seconds{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -6962,7 +6979,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -7041,7 +7058,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_collector_last_collection_error{namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -7063,14 +7080,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 52
       },
       "id": 239,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "fieldConfig": {
             "defaults": {
@@ -7150,7 +7167,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "cnpg_collector_first_recoverability_point{namespace=~\"$namespace\",pod=~\"$instances\"}*1000 > 0",
@@ -7173,14 +7190,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 53
       },
       "id": 293,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -7262,7 +7279,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "{__name__=~\"cnpg_pg_stat_(bgwriter|checkpointer)_checkpoints_req\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -7277,7 +7294,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "{__name__=~\"cnpg_pg_stat_(bgwriter|checkpointer)_checkpoints_timed\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -7294,7 +7311,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -7376,7 +7393,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "{__name__=~\"cnpg_pg_stat_(bgwriter_checkpoint|checkpointer)_write_time\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -7391,7 +7408,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "exemplar": true,
               "expr": "{__name__=~\"cnpg_pg_stat_(bgwriter_checkpoint|checkpointer)_sync_time\",namespace=~\"$namespace\",pod=~\"$instances\"}",
@@ -7415,14 +7432,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 54
       },
       "id": 794,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "Show the installed extensions and their versions",
           "fieldConfig": {
@@ -7573,14 +7590,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 55
       },
       "id": 696,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -7653,7 +7670,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -7671,7 +7688,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -7755,7 +7772,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -7773,7 +7790,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -7857,7 +7874,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -7875,7 +7892,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -7959,7 +7976,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -7977,7 +7994,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -8061,7 +8078,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -8079,7 +8096,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "",
           "fieldConfig": {
@@ -8180,7 +8197,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "sum(kube_pod_status_ready{namespace=\"$operatorNamespace\", pod=~\"cloudnative-pg-operator.+|cnpg-controller-manager.+\", condition=\"true\"})",
@@ -8197,7 +8214,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -8309,7 +8326,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=\"cluster\"})",
@@ -8325,7 +8342,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -8437,7 +8454,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=\"backup\"})",
@@ -8453,7 +8470,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -8565,7 +8582,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -8583,7 +8600,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "grafanacloud-prom"
+            "uid": "${DS_PROMETHEUS}"
           },
           "description": "The operator reconcile errors don't distinguish between database cluster or namespaces.",
           "fieldConfig": {
@@ -8695,7 +8712,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "grafanacloud-prom"
+                "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
               "expr": "max(controller_runtime_reconcile_total{namespace=~\"$operatorNamespace\", result=\"error\", controller=\"pooler\"})",
@@ -8723,8 +8740,8 @@
     "list": [
       {
         "current": {
-          "text": "grafanacloud-twaslowski-prom",
-          "value": "grafanacloud-prom"
+          "text": "homelab-prometheus",
+          "value": "dewhe19r8a5tsc"
         },
         "includeAll": false,
         "label": "Datasource",
@@ -8737,12 +8754,12 @@
       },
       {
         "current": {
-          "text": "",
+          "text": "cnpg-system",
           "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "grafanacloud-prom"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(controller_runtime_webhook_requests_total{webhook=\"/mutate-postgresql-cnpg-io-v1-cluster\"},namespace)",
         "description": "Namespace where the CNPG operator is located",
@@ -8757,16 +8774,22 @@
         },
         "refresh": 2,
         "regex": "",
+        "staticOptions": [
+          {
+            "text": "cnpg-system",
+            "value": ""
+          }
+        ],
         "type": "query"
       },
       {
         "current": {
-          "text": "grammr",
-          "value": "grammr"
+          "text": "mood-tracker",
+          "value": "mood-tracker"
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "grafanacloud-prom"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "cnpg_collector_up",
         "description": "Namespace where the database cluster is located",
@@ -8784,12 +8807,12 @@
       },
       {
         "current": {
-          "text": "grammr-pg",
-          "value": "grammr-pg"
+          "text": "mood-tracker-pg",
+          "value": "mood-tracker-pg"
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "grafanacloud-prom"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "cnpg_collector_up{namespace=~\"$namespace\"}",
         "description": "CNPG Cluster",
@@ -8818,7 +8841,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "grafanacloud-prom"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "cnpg_collector_up{namespace=~\"$namespace\",pod=~\"$cluster-([1-9][0-9]*)$\"}",
         "description": "Database cluster instances",
@@ -8849,5 +8872,5 @@
   "timezone": "",
   "title": "CloudNativePG",
   "uid": "cloudnative-pg",
-  "version": 1
+  "version": 3
 }
