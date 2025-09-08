@@ -15,7 +15,7 @@ prometheus:
 
   prometheusSpec:
     routePrefix: /
-    retention: 1d
+    retention: 4d
     resources:
       requests:
         cpu: 200m

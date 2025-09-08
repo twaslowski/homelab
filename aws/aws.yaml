@@ -26,14 +26,21 @@ Resources:
         Status: Enabled
       LifecycleConfiguration:
         Rules:
-          - Id: ExpireLogFolder
-            Prefix: fake/
-            Status: Enabled
-            ExpirationInDays: 14
           - Id: ExpireBackupFolder
-            Prefix: backup/
+            Prefix: backups/
             Status: Enabled
             ExpirationInDays: 30
+          - Id: ExpireNonCurrentVersions
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: 7
+          - Id: DeleteExpiredObjectDeleteMarkers
+            Status: Enabled
+            ExpiredObjectDeleteMarker: true
+          - Id: AbortIncompleteMultipartUpload
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
 
   PrometheusBucket:
     Type: AWS::S3::Bucket
@@ -61,7 +68,6 @@ Resources:
           - Id: ExpireItems
             Status: Enabled
             ExpirationInDays: 14
-
 
   HomelabStorageUser:
     Type: AWS::IAM::User
