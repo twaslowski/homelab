@@ -17,7 +17,7 @@ spec:
       name: backup-repo
       key: password
   backup:
-    schedule: '0 3 * * *'
+    schedule: '15 3 * * *'
     failedJobsHistoryLimit: 2
     successfulJobsHistoryLimit: 2
     promURL: https://kube-prometheus-stack-prometheus.prometheus:8443
