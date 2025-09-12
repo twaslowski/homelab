@@ -20,6 +20,11 @@ prometheus:
       requests:
         cpu: 200m
         memory: 200Mi
+    thanos:
+      objectStorageConfig:
+        existingSecret:
+          name: thanos-config
+          key: thanos-config.yaml
     podMonitorNamespaceSelector: { }
     podMonitorSelector:
       matchLabels:
