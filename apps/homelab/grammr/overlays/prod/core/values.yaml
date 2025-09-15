@@ -1,10 +1,8 @@
 fullnameOverride: core
-
 image:
-  tag: 3.12.0  # {"$imagepolicy": "grammr:grammr:tag"}
+  tag: 3.13.0 # {"$imagepolicy": "grammr:grammr:tag"}
   repository: grammrapp/grammr-core # {"$imagepolicy": "grammr:grammr:name"}
   pullPolicy: Always
-
 environmentVariables:
   - name: DATASOURCE_URL
     valueFrom:
@@ -22,7 +20,6 @@ environmentVariables:
       configMapKeyRef:
         name: clerk-jwt-public-key
         key: jwt-key.pub
-
 ingress:
   enabled: true
   className: cloudflare-tunnel
@@ -30,7 +27,6 @@ ingress:
   paths:
     - /api/
     - /actuator/health
-
 languages:
   - code: ru
     morphology:
