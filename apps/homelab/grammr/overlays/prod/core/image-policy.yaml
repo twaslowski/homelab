@@ -1,8 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: grammr-prod
-  namespace: flux-system
+  name: grammr
 spec:
   imageRepositoryRef:
     name: grammr-core
@@ -14,8 +13,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
-  name: update-grammr-core-prod
-  namespace: flux-system
+  name: update-grammr-core
 spec:
   sourceRef:
     kind: GitRepository
