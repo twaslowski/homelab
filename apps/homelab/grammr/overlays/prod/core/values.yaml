@@ -1,6 +1,6 @@
 fullnameOverride: core
 image:
-  tag: 3.13.0 # {"$imagepolicy": "grammr:grammr:tag"}
+  tag: 3.14.0 # {"$imagepolicy": "grammr:grammr:tag"}
   repository: grammrapp/grammr-core # {"$imagepolicy": "grammr:grammr:name"}
   pullPolicy: Always
 environmentVariables:
