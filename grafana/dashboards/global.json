@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 26,
+  "id": 0,
   "links": [],
   "panels": [
     {
@@ -102,7 +102,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -111,7 +111,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg(sum by (instance, cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", cluster=\"$cluster\"}[$__rate_interval])))",
+          "expr": "avg(sum by (instance, cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\"}[$__rate_interval])))",
           "interval": "",
           "legendFormat": "Real Linux",
           "range": true,
@@ -137,7 +137,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(kube_pod_container_resource_requests{resource=\"cpu\", cluster=\"$cluster\"}) / sum(machine_cpu_cores{cluster=\"$cluster\"})",
+          "expr": "sum(kube_pod_container_resource_requests{resource=\"cpu\"}) / sum(machine_cpu_cores)",
           "hide": false,
           "legendFormat": "Requests",
           "range": true,
@@ -257,7 +257,7 @@
         "text": {},
         "valueMode": "color"
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -396,7 +396,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -503,7 +503,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -708,7 +708,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -771,7 +771,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -927,7 +927,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1079,7 +1079,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1199,7 +1199,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1336,7 +1336,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1474,7 +1474,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1583,7 +1583,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1691,7 +1691,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1812,7 +1812,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -1939,7 +1939,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2051,7 +2051,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2171,7 +2171,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2290,7 +2290,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2398,7 +2398,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2506,7 +2506,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2621,7 +2621,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2763,7 +2763,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -2950,7 +2950,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -3064,7 +3064,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17610496912",
       "targets": [
         {
           "datasource": {
@@ -3206,7 +3206,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17556714384",
       "targets": [
         {
           "datasource": {
@@ -3349,7 +3349,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0-17245430286",
+      "pluginVersion": "12.2.0-17556714384",
       "targets": [
         {
           "datasource": {
@@ -3384,7 +3384,7 @@
   ],
   "preload": false,
   "refresh": "30s",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [
     "Kubernetes",
     "Prometheus"
@@ -3403,29 +3403,6 @@
         "refresh": 1,
         "regex": "",
         "type": "datasource"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${datasource}"
-        },
-        "definition": "label_values(kube_node_info,cluster)",
-        "includeAll": false,
-        "name": "cluster",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(kube_node_info,cluster)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "sort": 1,
-        "type": "query"
       },
       {
         "current": {
@@ -3492,6 +3469,25 @@
         "regex": "",
         "sort": 1,
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "definition": "label_names()",
+        "description": "",
+        "label": "Cluster",
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 0,
+          "query": "label_names()",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
       }
     ]
   },
@@ -3503,5 +3499,5 @@
   "timezone": "",
   "title": "Kubernetes / Views / Global",
   "uid": "k8s_views_global",
-  "version": 5
+  "version": 10
 }
