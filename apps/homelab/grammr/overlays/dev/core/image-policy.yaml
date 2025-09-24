@@ -2,13 +2,12 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: grammr-develop
-  namespace: flux-system
 spec:
   imageRepositoryRef:
     name: grammr-core
     namespace: flux-system
   filterTags:
-    pattern: '^dev-(?P<ts>\d{14})-[0-9a-f]{7,40}$'
+    pattern: '^develop-(?P<ts>\d{14})-[0-9a-f]{7,40}$'
     extract: '$ts'
   policy:
     numerical:

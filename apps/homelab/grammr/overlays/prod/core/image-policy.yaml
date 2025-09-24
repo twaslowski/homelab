@@ -1,14 +1,17 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: grammr
+  name: grammr-main
 spec:
   imageRepositoryRef:
     name: grammr-core
     namespace: flux-system
+  filterTags:
+    pattern: '^main-(?P<ts>\d{14})-[0-9a-f]{7,40}$'
+    extract: '$ts'
   policy:
-    semver:
-      range: "3.x"
+    numerical:
+      order: asc
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
