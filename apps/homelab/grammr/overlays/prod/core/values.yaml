@@ -1,6 +1,6 @@
 fullnameOverride: core
 image:
-  tag: main-20250924142408-c73aacb # {"$imagepolicy": "grammr:grammr-main:tag"}
+  tag: main-20250925150217-3296d39 # {"$imagepolicy": "grammr:grammr-main:tag"}
   repository: grammrapp/grammr-core # {"$imagepolicy": "grammr:grammr-main:name"}
   pullPolicy: Always
 environmentVariables:
