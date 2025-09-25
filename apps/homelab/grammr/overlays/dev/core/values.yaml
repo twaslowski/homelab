@@ -13,8 +13,6 @@ environmentVariables:
     value: https://dev.grammr.app
   - name: ANKI_EXPORTER_URL
     value: http://anki-exporter:8000
-  - name: SPRING_PROFILES_ACTIVE
-    value: runtime
   - name: JWT_PUBLIC_KEY
     valueFrom:
       configMapKeyRef:
