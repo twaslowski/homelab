@@ -3,6 +3,7 @@ env:
   PAPERLESS_OCR_LANG: "deu+eng"
   PAPERLESS_URL: "https://paperless.twaslowski.com"
 
+  PAPERLESS_EMAIL_TASK_CRON: "*/2 * * * *"
   # Database settings
   PAPERLESS_DBENGINE: postgresql
   PAPERLESS_DBHOST: paperless-pg-rw
