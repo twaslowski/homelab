@@ -1,5 +1,6 @@
 image:
-  tag: sha-26ac87d
+  tag: 1.1.0  # {"$imagepolicy": "mood-tracker:mood-tracker:tag"}
+  repository: twaslowski/mood-tracker  # {"$imagepolicy": "mood-tracker:mood-tracker:name"}
 
 telegramToken:
   existingSecret:
