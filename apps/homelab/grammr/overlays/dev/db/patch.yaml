@@ -1,4 +1,0 @@
-- op: replace
-  path: /spec/namespaceSelector/matchNames
-  value:
-    - grammr-dev
