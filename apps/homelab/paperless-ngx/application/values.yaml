@@ -1,3 +1,8 @@
+global:
+  # Changes needed for Redis and PostgreSQL
+  security:
+    allowInsecureImages: true
+
 env:
   TZ: "Europe/Berlin"
   PAPERLESS_OCR_LANG: "deu+eng"
@@ -34,6 +39,10 @@ ingress:
         paths:
           - path: /
             pathType: ImplementationSpecific
+
+redis:
+  image:
+    repository: bitnamilegacy/redis
 
 # Persistence settings
 postgresql:
